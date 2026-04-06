@@ -1,12 +1,46 @@
 {
   "env": {
-    "ENABLE_TOOL_SEARCH": "true"
+    "ENABLE_TOOL_SEARCH": "false"
   },
   "permissions": {
     "allow": []
   },
+  "options": {
+    "effortLevel": "high"
+  },
+  "enabledPlugins": [
+    "context7@claude-plugins-official"
+  ],
   "statusLine": {
     "type": "command",
     "command": "/bin/bash ~/.claude/statusline-command.sh"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "bash ~/.claude/hooks/auto-init-check.sh",
+        "timeout": 5000
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "bash ~/.claude/hooks/iterm-tab-notify.sh",
+        "timeout": 2000
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "bash ~/.claude/hooks/iterm-tab-reset.sh",
+        "timeout": 2000
+      },
+      {
+        "type": "command",
+        "command": "bash ~/.claude/hooks/iterm-tab-title.sh",
+        "timeout": 3000
+      }
+    ]
   }
 }
