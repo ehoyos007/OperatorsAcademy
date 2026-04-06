@@ -11,7 +11,7 @@ used_percentage=$(echo "$input" | jq -r '.context_window.used_percentage // empt
 # Get project name (basename of cwd)
 project_name=$(basename "$cwd")
 
-# Get git branch if in a git repo (skip optional locks for performance)
+# Get git branch if in a git repo
 git_branch=""
 if [ -d "$cwd/.git" ] || git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
   branch=$(git -C "$cwd" symbolic-ref --short HEAD 2>/dev/null || git -C "$cwd" describe --tags --exact-match 2>/dev/null || echo "detached")
@@ -28,7 +28,6 @@ fi
 # Build context usage progress bar if available
 progress_bar=""
 if [ -n "$used_percentage" ]; then
-  # Calculate used percentage as integer
   used_int=$(printf "%.0f" "$used_percentage")
 
   # Color code based on used percentage
@@ -50,7 +49,7 @@ if [ -n "$used_percentage" ]; then
   for ((i=0; i<empty; i++)); do bar+="░"; done
   bar+="]"
 
-  progress_bar=" $(printf "${context_color}")${bar} ${used_int}%%$(printf '\033[0m')"
+  progress_bar=" $(printf '\033[2m')│$(printf '\033[0m') $(printf "${context_color}")${bar} ${used_int}%%$(printf '\033[0m')"
 fi
 
 # Build status line: Model | Progress Bar | Git Branch | Project Name

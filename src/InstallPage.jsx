@@ -24,7 +24,7 @@ export default function InstallPage() {
           Install the Operators Academy Toolkit
         </h1>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          19 agents, 19 skills, Vision System, hooks, status bar, and guided MCP setup.
+          8 agents, 9 skills, 4 hooks, plan mode, and a complete shipping workflow.
           Two steps, under 5 minutes.
         </p>
       </div>
@@ -97,17 +97,15 @@ export default function InstallPage() {
               <div className="p-2 bg-cyan-500/20 rounded-lg">
                 <Shield className="text-cyan-400" size={20} />
               </div>
-              <h3 className="font-semibold">19 Specialized Agents</h3>
+              <h3 className="font-semibold">8 Specialized Agents</h3>
             </div>
             <p className="text-sm text-gray-400 mb-3">
-              QA, testing, DevOps, frontend, UI design, rapid prototyping, sprint planning,
-              API testing, UX research, performance benchmarking, and more.
+              QA orchestration, testing, git workflow, backend architecture, debugging, logging, and more.
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {['backend-architect', 'git-commit', 'qa-orchestrator', 'debugger', 'devops-automator', 'frontend-developer', 'ui-designer', 'rapid-prototyper'].map(a => (
+              {['backend-architect', 'git-commit', 'qa-orchestrator', 'debugger', 'test-runner', 'test-writer-fixer', 'logger', 'feature-tester'].map(a => (
                 <span key={a} className="text-xs bg-gray-700 px-2 py-0.5 rounded">{a}</span>
               ))}
-              <span className="text-xs text-gray-500 px-2 py-0.5">+11 more</span>
             </div>
           </div>
 
@@ -117,17 +115,15 @@ export default function InstallPage() {
               <div className="p-2 bg-purple-500/20 rounded-lg">
                 <Sparkles className="text-purple-400" size={20} />
               </div>
-              <h3 className="font-semibold">19 Skills</h3>
+              <h3 className="font-semibold">9 Skills</h3>
             </div>
             <p className="text-sm text-gray-400 mb-3">
-              Compound engineering, frontend design, code review, copywriting, copy editing,
-              browser automation, PDF/DOCX generation, vision system, and more.
+              Complete shipping workflow: ship, deploy, wrap-up, pickup, step-done, auto-init, QA sweep, smoke testing, and Google Ads research.
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {['compound-engineering', 'frontend-design', 'code-review', 'copywriting', 'dev-browser', 'init-vision'].map(s => (
+              {['ship', 'deploy', 'wrap-up', 'pickup', 'qa', 'smoke', 'auto-init', 'step-done', 'google-ads-research'].map(s => (
                 <span key={s} className="text-xs bg-gray-700 px-2 py-0.5 rounded">/{s}</span>
               ))}
-              <span className="text-xs text-gray-500 px-2 py-0.5">+13 more</span>
             </div>
           </div>
 
@@ -156,14 +152,14 @@ export default function InstallPage() {
               <div className="p-2 bg-green-500/20 rounded-lg">
                 <FolderOpen className="text-green-400" size={20} />
               </div>
-              <h3 className="font-semibold">5-File Documentation System</h3>
+              <h3 className="font-semibold">8-File Documentation System</h3>
             </div>
             <p className="text-sm text-gray-400 mb-3">
               Claude reads these at the start of each session so it never loses context.
-              Say <code className="text-green-300">"initialize project"</code> to create them.
+              Say <code className="text-green-300">"initialize project"</code> or <code className="text-green-300">/auto-init</code> to create them.
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {['CONTEXT', 'TASKS', 'PLAN', 'PROGRESS', 'TEST_LOG'].map(f => (
+              {['CONTEXT', 'TASKS', 'PLAN', 'PROGRESS', 'TEST_LOG', 'BRAIN', 'VISION', 'CLAUDE'].map(f => (
                 <span key={f} className="text-xs bg-gray-700 px-2 py-0.5 rounded">{f}.md</span>
               ))}
             </div>
@@ -200,11 +196,11 @@ export default function InstallPage() {
               <h3 className="font-semibold">Settings + Triggers</h3>
             </div>
             <p className="text-sm text-gray-400 mb-3">
-              High effort mode, agent teams, official plugins (Playwright, claude-md-management, frontend-design).
-              Natural language triggers like <code className="text-orange-300">"wrap up"</code> and <code className="text-orange-300">"run QA"</code>.
+              High effort mode, context7 plugin, Plan Mode default.
+              20+ natural language triggers like <code className="text-orange-300">"ship"</code>, <code className="text-orange-300">"deploy"</code>, and <code className="text-orange-300">"run QA"</code>.
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {['High effort', 'Agent teams', '3 plugins', 'Trigger phrases'].map(f => (
+              {['High effort', 'Plan mode', 'Context7 plugin', '20+ triggers'].map(f => (
                 <span key={f} className="text-xs bg-gray-700 px-2 py-0.5 rounded">{f}</span>
               ))}
             </div>
@@ -253,8 +249,8 @@ export default function InstallPage() {
             <div>
               <h3 className="font-semibold mb-1">Start any project</h3>
               <p className="text-sm text-gray-400">
-                Open Claude Code in a project directory. Say <code className="text-blue-300">"initialize project"</code> to
-                create the 5 documentation files. Say <code className="text-blue-300">/init-vision</code> to set up the Vision System.
+                Open Claude Code in a project directory. Say <code className="text-blue-300">"initialize project"</code> or <code className="text-blue-300">/auto-init</code> to
+                create all 8 documentation files automatically.
               </p>
             </div>
           </div>
@@ -266,8 +262,8 @@ export default function InstallPage() {
             <div>
               <h3 className="font-semibold mb-1">Work with context continuity</h3>
               <p className="text-sm text-gray-400">
-                Claude maintains project knowledge across sessions through CONTEXT.md and TASKS.md.
-                Say <code className="text-blue-300">"let's continue"</code> and it picks up where you left off.
+                Claude maintains project knowledge across 8 docs. Say <code className="text-blue-300">/pickup</code> or
+                <code className="text-blue-300">"let's continue"</code> and it picks up exactly where you left off.
               </p>
             </div>
           </div>
@@ -279,10 +275,9 @@ export default function InstallPage() {
             <div>
               <h3 className="font-semibold mb-1">Use skills and agents</h3>
               <p className="text-sm text-gray-400">
-                Use <code className="text-blue-300">/compound-engineering</code> for systematic development,
-                <code className="text-blue-300"> /frontend-design</code> for production UIs,
-                <code className="text-blue-300"> /code-review</code> for quality checks.
-                Say <code className="text-blue-300">"run QA"</code> to trigger the full testing cycle.
+                Say <code className="text-blue-300">"step done"</code> to checkpoint and keep going.
+                Say <code className="text-blue-300">"run QA"</code> to trigger lint + types + tests + build.
+                Use <code className="text-blue-300">/smoke</code> for post-deploy visual verification.
               </p>
             </div>
           </div>
@@ -294,8 +289,9 @@ export default function InstallPage() {
             <div>
               <h3 className="font-semibold mb-1">End sessions cleanly</h3>
               <p className="text-sm text-gray-400">
-                Say <code className="text-blue-300">"wrap up"</code> and Claude updates PROGRESS.md with a session summary,
-                so the next session starts with full context.
+                Say <code className="text-blue-300">"wrap up"</code> to save progress and write a handoff file.
+                Then <code className="text-blue-300">"ship"</code> to commit + push (auto-creates feature branch + PR).
+                Then <code className="text-blue-300">"deploy"</code> to merge and push to production.
               </p>
             </div>
           </div>
@@ -314,11 +310,9 @@ export default function InstallPage() {
                 <li><code className="text-gray-300">~/.claude/CLAUDE.md</code> — Global instructions file</li>
                 <li><code className="text-gray-300">~/.claude/statusline-command.sh</code> — Status bar script</li>
                 <li><code className="text-gray-300">~/.claude/settings.json</code> — Merged with hooks, plugins, and settings</li>
-                <li><code className="text-gray-300">~/.claude/agents/*.md</code> — 19 agent definitions</li>
-                <li><code className="text-gray-300">~/.claude/skills/*/SKILL.md</code> — 19 skill definitions</li>
-                <li><code className="text-gray-300">~/.claude/hooks/</code> — iTerm2 notification scripts</li>
-                <li><code className="text-gray-300">~/.claude/vision-templates/</code> — VISION.md + EVAL.md templates</li>
-                <li><code className="text-gray-300">~/.claude/commands/</code> — /init-vision command</li>
+                <li><code className="text-gray-300">~/.claude/agents/*.md</code> — 8 agent definitions</li>
+                <li><code className="text-gray-300">~/.claude/skills/*/SKILL.md</code> — 9 skill definitions</li>
+                <li><code className="text-gray-300">~/.claude/hooks/*.sh</code> — 4 hook scripts</li>
               </ul>
               <p>The toolkit source stays at <code className="text-gray-300">~/.local/share/operators-academy/</code> for updates.</p>
               <p>Any existing files are backed up to <code className="text-gray-300">~/.claude/backups/</code> before being replaced.</p>
