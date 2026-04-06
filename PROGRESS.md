@@ -6,16 +6,16 @@
 
 ### Last 10 Commits
 ```
-476cfad Fix premium toolkit clone failing for private repo (10 seconds ago)
-cb69ad8 📊 Auto-update PROGRESS.md (2 days ago)
-f1c69b7 Redesign homepage with PPL slide-based dark presentation style (2 days ago)
-1712224 📊 Auto-update PROGRESS.md (2 days ago)
-4b4cfc3 Update install page to unified full toolkit installer (2 days ago)
-a5d0107 📊 Auto-update PROGRESS.md (2 days ago)
-0fc263e Add premium tier, settings page, invite codes, and distributable git repo (2 days ago)
-5e1a7fa 📊 Auto-update PROGRESS.md (4 days ago)
-578fcd0 Update PROGRESS.md with Session 18 — user auth and email hook (4 days ago)
-56511fc 📊 Auto-update PROGRESS.md (4 days ago)
+361a956 feat: upgrade free toolkit to v2 with shipping workflow, hooks, and premium page redesign (#1) (7 seconds ago)
+53e6fb5 📊 Auto-update PROGRESS.md (4 weeks ago)
+476cfad Fix premium toolkit clone failing for private repo (4 weeks ago)
+cb69ad8 📊 Auto-update PROGRESS.md (4 weeks ago)
+f1c69b7 Redesign homepage with PPL slide-based dark presentation style (4 weeks ago)
+1712224 📊 Auto-update PROGRESS.md (4 weeks ago)
+4b4cfc3 Update install page to unified full toolkit installer (4 weeks ago)
+a5d0107 📊 Auto-update PROGRESS.md (4 weeks ago)
+0fc263e Add premium tier, settings page, invite codes, and distributable git repo (4 weeks ago)
+5e1a7fa 📊 Auto-update PROGRESS.md (4 weeks ago)
 ```
 
 ### Open Issues
