@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting Started — Operators Academy</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: rgba(255,255,255,0.05);
+    --surface-hover: rgba(255,255,255,0.08);
+    --border: rgba(255,255,255,0.1);
+    --border-hover: rgba(255,255,255,0.2);
+    --text: rgba(255,255,255,0.9);
+    --text-secondary: rgba(255,255,255,0.7);
+    --text-muted: rgba(255,255,255,0.5);
+    --blue: #60a5fa;
+    --blue-dim: rgba(96,165,250,0.15);
+    --green: #34d399;
+    --green-dim: rgba(52,211,153,0.15);
+    --amber: #fbbf24;
+    --amber-dim: rgba(251,191,36,0.15);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.15);
+    --purple: #a855f7;
+    --purple-dim: rgba(168,85,247,0.15);
+    --cyan: #22d3ee;
+    --cyan-dim: rgba(34,211,238,0.15);
+    --radius: 12px;
+    --radius-lg: 16px;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ─────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 12px 0;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--blue);
+    white-space: nowrap;
+    margin-right: 12px;
+    letter-spacing: -0.02em;
+  }
+  .nav-inner a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .nav-inner a:hover { color: var(--text); background: var(--surface); }
+
+  /* ── Layout ──────────────────────────── */
+  .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Hero ─────────────────────────────── */
+  .hero {
+    padding: 80px 24px 60px;
+    text-align: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--amber);
+    background: var(--amber-dim);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--blue); }
+  .hero p {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--text-secondary);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── Sections ────────────────────────── */
+  section { padding: 64px 0; }
+  section + section { border-top: 1px solid rgba(255,255,255,0.05); }
+
+  h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  h2 .num {
+    color: var(--blue);
+    font-size: 0.7em;
+    font-weight: 800;
+    margin-right: 8px;
+    opacity: 0.7;
+  }
+  .section-sub {
+    color: var(--text-secondary);
+    font-size: 17px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    letter-spacing: -0.01em;
+  }
+
+  p { margin-bottom: 16px; }
+
+  /* ── Terminal blocks ─────────────────── */
+  .terminal {
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 16px 0 24px;
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .terminal-dot.r { background: #ff5f57; }
+  .terminal-dot.y { background: #febc2e; }
+  .terminal-dot.g { background: #28c840; }
+  .terminal-bar span {
+    margin-left: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .terminal pre {
+    padding: 16px 20px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    overflow-x: auto;
+  }
+  .terminal pre .prompt { color: var(--green); }
+  .terminal pre .cmd { color: #fff; }
+  .terminal pre .comment { color: var(--text-muted); font-style: italic; }
+  .terminal pre .output { color: var(--text-muted); }
+  .terminal pre .flag { color: var(--amber); }
+
+  /* ── Cards ───────────────────────────── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    transition: all 0.2s;
+  }
+  .card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── Tip / Warning blocks ────────────── */
+  .tip, .warning, .important {
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    margin: 20px 0;
+    font-size: 15px;
+    line-height: 1.6;
+    border-left: 4px solid;
+  }
+  .tip {
+    background: var(--green-dim);
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .warning {
+    background: var(--amber-dim);
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+  .important {
+    background: var(--blue-dim);
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+  .tip strong, .warning strong, .important strong { display: block; margin-bottom: 4px; }
+
+  /* ── Flowchart ───────────────────────── */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 32px 0;
+  }
+  .flow-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 28px;
+    text-align: center;
+    min-width: 260px;
+    position: relative;
+  }
+  .flow-step .label {
+    font-family: 'SF Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .flow-step .desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+  .flow-step.green { border-color: var(--green); }
+  .flow-step.green .label { color: var(--green); }
+  .flow-step.amber { border-color: var(--amber); }
+  .flow-step.amber .label { color: var(--amber); }
+  .flow-step.purple { border-color: var(--purple); }
+  .flow-step.purple .label { color: var(--purple); }
+  .flow-arrow {
+    width: 2px;
+    height: 28px;
+    background: var(--border);
+    position: relative;
+  }
+  .flow-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--border);
+  }
+
+  /* ── Cheatsheet table ────────────────── */
+  .cheatsheet {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  .cheatsheet th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .cheatsheet td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+  .cheatsheet tr:hover td { background: var(--surface); }
+  .cheatsheet code {
+    font-family: 'SF Mono', monospace;
+    font-size: 13px;
+    background: var(--surface);
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+  .cheatsheet .cat {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .cat-ship { color: var(--green); background: var(--green-dim); }
+  .cat-doc { color: var(--blue); background: var(--blue-dim); }
+  .cat-qa { color: var(--amber); background: var(--amber-dim); }
+  .cat-debug { color: var(--red); background: var(--red-dim); }
+
+  /* ── Numbered steps ──────────────────── */
+  .steps { counter-reset: step; list-style: none; margin: 24px 0; }
+  .steps li {
+    counter-increment: step;
+    padding: 16px 16px 16px 56px;
+    margin-bottom: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    position: relative;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    width: 28px;
+    height: 28px;
+    background: var(--blue-dim);
+    color: var(--blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .steps li strong { color: #fff; }
+
+  /* ── Inline code ─────────────────────── */
+  :not(pre) > code {
+    font-family: 'SF Mono', monospace;
+    font-size: 0.88em;
+    background: var(--surface);
+    padding: 2px 8px;
+    border-radius: 6px;
+    color: var(--blue);
+  }
+
+  /* ── Footer ──────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+  footer a { color: var(--blue); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── Responsive ──────────────────────── */
+  @media (max-width: 640px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .flow-step { min-width: 200px; }
+    .cheatsheet { font-size: 13px; }
+    .cheatsheet td, .cheatsheet th { padding: 10px 12px; }
+    section { padding: 48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">Operators Academy</span>
+    <a href="#terminal">Terminal</a>
+    <a href="#claude">Claude Code</a>
+    <a href="#first-project">First Project</a>
+    <a href="#docs">8-File System</a>
+    <a href="#shipping">Shipping</a>
+    <a href="#cheatsheet">Cheatsheet</a>
+    <a href="#tips">Tips</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">Premium Toolkit Installed</div>
+  <h1>Start <span>Shipping</span> with Claude Code</h1>
+  <p>Everything you need to go from zero to deploying real projects. No prior experience required.</p>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Section 1: Terminal Basics             -->
+<!-- ═══════════════════════════════════════ -->
+<section id="terminal">
+  <h2><span class="num">01</span> Terminal Basics</h2>
+  <p class="section-sub">The Terminal is a text-based way to talk to your computer. Instead of clicking through folders, you type commands. It's faster and more powerful — and it's where Claude Code lives.</p>
+
+  <h3>Opening Terminal</h3>
+  <p>Press <code>Cmd + Space</code>, type <strong>Terminal</strong>, hit Enter. You'll see a window with a blinking cursor. That's it — you're in.</p>
+
+  <h3>Where am I?</h3>
+  <p>When you open Terminal, you start in your <strong>home folder</strong> (like <code>/Users/dylanhodge</code>). Think of it as your desktop — everything branches out from here.</p>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot r"></div>
+      <div class="terminal-dot y"></div>
+      <div class="terminal-dot g"></div>
+      <span>Terminal — Essential Commands</span>
+    </div>
+    <pre><span class="prompt">$</span> <span class="cmd">pwd</span>                       <span class="comment"># Where am I? (print working directory)</span>
+<span class="output">/Users/dylanhodge</span>
+
+<span class="prompt">$</span> <span class="cmd">ls</span>                        <span class="comment"># What's in this folder?</span>
+<span class="output">Desktop   Documents   Downloads   Projects</span>
+
+<span class="prompt">$</span> <span class="cmd">cd Projects</span>               <span class="comment"># Move into the Projects folder</span>
+
+<span class="prompt">$</span> <span class="cmd">cd ..</span>                     <span class="comment"># Go back up one folder</span>
+
+<span class="prompt">$</span> <span class="cmd">mkdir my-app</span>              <span class="comment"># Create a new folder called "my-app"</span>
+
+<span class="prompt">$</span> <span class="cmd">cd my-app</span>                 <span class="comment"># Move into it</span>
+
+<span class="prompt">$</span> <span class="cmd">clear</span>                     <span class="comment"># Clean up the screen</span></pre>
+  </div>
+
+  <div class="tip">
+    <strong>Tip</strong>
+    Press the <strong>Tab</strong> key to auto-complete folder and file names. Type <code>cd Pro</code> then Tab — it'll fill in <code>Projects</code> for you.
+  </div>
+
+  <h3>The 5 commands you'll use daily</h3>
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-icon">📍</span>
+      <h4>pwd</h4>
+      <p>"Where am I?" Shows your current folder path.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📂</span>
+      <h4>ls</h4>
+      <p>"What's here?" Lists files and folders in your current location.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🚶</span>
+      <h4>cd</h4>
+      <p>"Go there." Moves you into a folder. <code>cd ..</code> goes back.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📁</span>
+      <h4>mkdir</h4>
+      <p>"Make a folder." Creates a new directory.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🧹</span>
+      <h4>clear</h4>
+      <p>"Clean up." Clears your Terminal screen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Section 2: Claude Code                 -->
+<!-- ═══════════════════════════════════════ -->
+<section id="claude">
+  <h2><span class="num">02</span> Claude Code</h2>
+  <p class="section-sub">Claude Code is an AI coding assistant that lives in your Terminal. You talk to it in plain English and it writes code, runs commands, creates files, and deploys your projects.</p>
+
+  <h3>First launch</h3>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot r"></div>
+      <div class="terminal-dot y"></div>
+      <div class="terminal-dot g"></div>
+      <span>Terminal</span>
+    </div>
+    <pre><span class="prompt">$</span> <span class="cmd">claude</span>                    <span class="comment"># Launch Claude Code</span></pre>
+  </div>
+  <p>The first time you run this, it'll ask you to sign in with your Anthropic account. Follow the link it gives you, authorize in your browser, and you're connected.</p>
+
+  <h3>How it works</h3>
+  <p>Once Claude Code is running, you just type what you want in plain English. It reads your files, writes code, runs tests, and deploys — all from the same window.</p>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot r"></div>
+      <div class="terminal-dot y"></div>
+      <div class="terminal-dot g"></div>
+      <span>Claude Code Session</span>
+    </div>
+    <pre><span class="prompt">you:</span> <span class="cmd">create a landing page for a coffee subscription service</span>
+
+<span class="output">Claude will analyze your project, create files, write HTML/CSS/JS,
+and tell you what it built. You review, give feedback, and iterate.</span>
+
+<span class="prompt">you:</span> <span class="cmd">make the hero section taller and add a "Start Free Trial" button</span>
+
+<span class="output">Claude edits the existing files. No copy-pasting. No switching tools.</span></pre>
+  </div>
+
+  <div class="important">
+    <strong>Key concept</strong>
+    Claude Code works inside whatever folder you launched it from. If you're in <code>~/Projects/my-app</code>, it can see and edit files in that project. Always <code>cd</code> into your project folder first.
+  </div>
+
+  <h3>Useful commands inside Claude Code</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>/help</h4>
+      <p>See all available commands and shortcuts.</p>
+    </div>
+    <div class="card">
+      <h4>/compact</h4>
+      <p>Summarize the conversation so far (saves memory for long sessions).</p>
+    </div>
+    <div class="card">
+      <h4>/clear</h4>
+      <p>Full reset — start fresh. Wrap up first!</p>
+    </div>
+    <div class="card">
+      <h4>Ctrl + C</h4>
+      <p>Cancel the current action if Claude is running something.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Section 3: First Project               -->
+<!-- ═══════════════════════════════════════ -->
+<section id="first-project">
+  <h2><span class="num">03</span> Your First Project</h2>
+  <p class="section-sub">Let's create a project from scratch and set it up with the full documentation system.</p>
+
+  <ol class="steps">
+    <li><strong>Create a project folder</strong> — Open Terminal and run:
+      <code>mkdir -p ~/Projects/my-first-app && cd ~/Projects/my-first-app</code></li>
+    <li><strong>Initialize git</strong> — This tracks your changes (like version history):
+      <code>git init</code></li>
+    <li><strong>Launch Claude Code</strong> — Start your AI assistant:
+      <code>claude</code></li>
+    <li><strong>Say "initialize project"</strong> — Claude will create all 8 documentation files that keep your project organized. It analyzes your folder and scaffolds everything automatically.</li>
+    <li><strong>Tell Claude what to build</strong> — Describe your project in plain English. Be specific: "Build a personal portfolio site with a hero section, about me, and a contact form."</li>
+    <li><strong>Test it</strong> — Say <code>"run QA"</code> and Claude runs all checks.</li>
+    <li><strong>Ship it</strong> — Say <code>"ship"</code> and Claude commits your code, creates a branch, and opens a PR.</li>
+  </ol>
+
+  <div class="tip">
+    <strong>Pro move</strong>
+    At the end of every work session, say <strong>"wrap up"</strong>. Claude saves your progress so next time you can say <strong>"let's continue"</strong> and pick up exactly where you left off.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Section 4: 8-File System               -->
+<!-- ═══════════════════════════════════════ -->
+<section id="docs">
+  <h2><span class="num">04</span> The 8-File System</h2>
+  <p class="section-sub">Every project uses 8 markdown files to stay organized. Claude reads them at the start of every session and updates them as you work. Say <strong>"initialize project"</strong> to create them all at once.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-icon">📖</span>
+      <h4>CONTEXT.md</h4>
+      <p>Background knowledge about your project — tech stack, domain terms, how things connect.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">✅</span>
+      <h4>TASKS.md</h4>
+      <p>Your task board. What's done, what's in progress, what's next.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🧪</span>
+      <h4>TEST_LOG.md</h4>
+      <p>QA results. Every test run is logged here so you can track what works.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📐</span>
+      <h4>PLAN.md</h4>
+      <p>Strategic blueprint for complex features. Think before building.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📒</span>
+      <h4>PROGRESS.md</h4>
+      <p>Session-by-session log of what you did. Like a flight log.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🧠</span>
+      <h4>BRAIN.md</h4>
+      <p>Decisions and insights that carry across sessions. Your project's memory.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🎯</span>
+      <h4>VISION.md</h4>
+      <p>The "why" — what success looks like, hard constraints, tradeoff rules.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">⚙️</span>
+      <h4>CLAUDE.md</h4>
+      <p>Per-project instructions for Claude. Tech stack, commands, conventions.</p>
+    </div>
+  </div>
+
+  <div class="important">
+    <strong>Why this matters</strong>
+    These files give Claude <strong>persistent memory</strong> across sessions. Without them, every time you start a new session Claude forgets everything. With them, it picks up right where you left off.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Section 5: Shipping Workflow           -->
+<!-- ═══════════════════════════════════════ -->
+<section id="shipping">
+  <h2><span class="num">05</span> The Shipping Workflow</h2>
+  <p class="section-sub">This is the core loop. Build something, test it, ship it, deploy it. Four phrases to remember.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="label">Build Your Feature</div>
+      <div class="desc">Tell Claude what to build in plain English</div>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-step amber">
+      <div class="label">"run QA"</div>
+      <div class="desc">Lint + types + tests + build check</div>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-step green">
+      <div class="label">"ship"</div>
+      <div class="desc">Creates branch, commits, pushes, opens PR</div>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-step purple">
+      <div class="label">"deploy"</div>
+      <div class="desc">Merges PR to main, deploys to production</div>
+    </div>
+  </div>
+
+  <h3>What each step does</h3>
+
+  <p><code>"run QA"</code> — Claude runs your project's test suite: linting, type checking, unit tests, end-to-end tests, and a build check. Results get logged to TEST_LOG.md. If something fails, Claude tells you and helps fix it.</p>
+
+  <p><code>"ship"</code> — Claude creates a feature branch (never pushes directly to main), stages your changes, writes a commit message, pushes to GitHub, and opens a Pull Request. You get a PR link back.</p>
+
+  <p><code>"deploy"</code> — Claude merges your PR into main (squash merge, clean history), deletes the feature branch, and your hosting platform (Vercel, Netlify, etc.) auto-deploys. You get a production URL.</p>
+
+  <div class="warning">
+    <strong>Important rule</strong>
+    Never push directly to <code>main</code>. Always use feature branches. The <code>"ship"</code> command handles this automatically — if you're on main, it creates a branch first.
+  </div>
+
+  <h3>Session lifecycle</h3>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot r"></div>
+      <div class="terminal-dot y"></div>
+      <div class="terminal-dot g"></div>
+      <span>Typical Session</span>
+    </div>
+    <pre><span class="comment"># Starting a session</span>
+<span class="prompt">you:</span> <span class="cmd">let's continue</span>         <span class="comment"># or: /pickup</span>
+<span class="output">Claude reads your docs, shows where you left off, suggests next action.</span>
+
+<span class="comment"># Working</span>
+<span class="prompt">you:</span> <span class="cmd">add a contact form to the homepage</span>
+<span class="prompt">you:</span> <span class="cmd">make the submit button green</span>
+<span class="prompt">you:</span> <span class="cmd">run QA</span>
+
+<span class="comment"># Saving progress (no git)</span>
+<span class="prompt">you:</span> <span class="cmd">wrap up</span>               <span class="comment"># Saves progress, writes handoff for next session</span>
+
+<span class="comment"># Shipping (git)</span>
+<span class="prompt">you:</span> <span class="cmd">ship</span>                  <span class="comment"># Branch + commit + push + PR</span>
+
+<span class="comment"># Deploying (production)</span>
+<span class="prompt">you:</span> <span class="cmd">deploy</span>                <span class="comment"># Merge PR + go live</span></pre>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Section 6: Cheatsheet                  -->
+<!-- ═══════════════════════════════════════ -->
+<section id="cheatsheet">
+  <h2><span class="num">06</span> Trigger Phrases</h2>
+  <p class="section-sub">Say these phrases to Claude and it automatically runs the right workflow. You don't need to remember exact commands — natural language works.</p>
+
+  <table class="cheatsheet">
+    <thead>
+      <tr>
+        <th>Say This</th>
+        <th>What Happens</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>"ship"</code> / <code>"push it"</code> / <code>"commit and push"</code></td>
+        <td>Branch + commit + push + PR</td>
+        <td><span class="cat cat-ship">Ship</span></td>
+      </tr>
+      <tr>
+        <td><code>"deploy"</code> / <code>"go live"</code></td>
+        <td>Merge PR + deploy to production</td>
+        <td><span class="cat cat-ship">Ship</span></td>
+      </tr>
+      <tr>
+        <td><code>"wrap up"</code> / <code>"save progress"</code></td>
+        <td>Save session state + write handoff</td>
+        <td><span class="cat cat-ship">Ship</span></td>
+      </tr>
+      <tr>
+        <td><code>"step done"</code> / <code>"next step"</code></td>
+        <td>Mark current task complete, move to next</td>
+        <td><span class="cat cat-ship">Ship</span></td>
+      </tr>
+      <tr>
+        <td><code>"let's continue"</code> / <code>/pickup</code></td>
+        <td>Load context, show briefing, resume work</td>
+        <td><span class="cat cat-doc">Docs</span></td>
+      </tr>
+      <tr>
+        <td><code>"initialize project"</code> / <code>"init docs"</code></td>
+        <td>Create all 8 documentation files</td>
+        <td><span class="cat cat-doc">Docs</span></td>
+      </tr>
+      <tr>
+        <td><code>"update tasks"</code> / <code>"what's next"</code></td>
+        <td>Update TASKS.md with current state</td>
+        <td><span class="cat cat-doc">Docs</span></td>
+      </tr>
+      <tr>
+        <td><code>"let's plan"</code> / <code>"think through"</code></td>
+        <td>Create/update strategic plan</td>
+        <td><span class="cat cat-doc">Docs</span></td>
+      </tr>
+      <tr>
+        <td><code>"run QA"</code> / <code>"test this"</code></td>
+        <td>Full test suite: lint + types + tests + build</td>
+        <td><span class="cat cat-qa">QA</span></td>
+      </tr>
+      <tr>
+        <td><code>"smoke test"</code> / <code>"visual check"</code></td>
+        <td>Post-deploy visual verification</td>
+        <td><span class="cat cat-qa">QA</span></td>
+      </tr>
+      <tr>
+        <td><code>"debug this"</code> / <code>"why is this failing"</code></td>
+        <td>Investigate and fix bugs</td>
+        <td><span class="cat cat-debug">Debug</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Section 7: Tips & Gotchas              -->
+<!-- ═══════════════════════════════════════ -->
+<section id="tips">
+  <h2><span class="num">07</span> Tips for New Builders</h2>
+  <p class="section-sub">Common patterns that'll save you time.</p>
+
+  <h3>Be specific with Claude</h3>
+  <p>Instead of <em>"make it look better"</em>, say <em>"make the hero section 100vh, center the heading, and add a gradient background from dark blue to black."</em> The more specific you are, the better the result on the first try.</p>
+
+  <h3>Always work in your project folder</h3>
+  <p>Before launching <code>claude</code>, make sure you're in the right folder:</p>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot r"></div>
+      <div class="terminal-dot y"></div>
+      <div class="terminal-dot g"></div>
+      <span>Terminal</span>
+    </div>
+    <pre><span class="prompt">$</span> <span class="cmd">cd ~/Projects/my-app</span>
+<span class="prompt">$</span> <span class="cmd">claude</span></pre>
+  </div>
+
+  <h3>When something breaks</h3>
+  <ol class="steps">
+    <li><strong>Don't panic.</strong> Say <code>"debug this"</code> or paste the error message. Claude can read error logs and trace the issue.</li>
+    <li><strong>If Claude is stuck</strong>, say <code>/compact</code> to free up memory, then re-explain what you need.</li>
+    <li><strong>If everything is broken</strong>, say <code>/clear</code> to start a fresh session. Your files are still on disk — nothing is lost.</li>
+  </ol>
+
+  <h3>The daily rhythm</h3>
+  <div class="card-grid">
+    <div class="card" style="border-left: 3px solid var(--green);">
+      <h4 style="color: var(--green);">Start</h4>
+      <p><code>cd ~/Projects/my-app</code><br><code>claude</code><br>"let's continue"</p>
+    </div>
+    <div class="card" style="border-left: 3px solid var(--blue);">
+      <h4 style="color: var(--blue);">Build</h4>
+      <p>Describe features in plain English. Iterate with feedback. Say "step done" between tasks.</p>
+    </div>
+    <div class="card" style="border-left: 3px solid var(--amber);">
+      <h4 style="color: var(--amber);">Test</h4>
+      <p>"run QA" before shipping. Fix anything that fails.</p>
+    </div>
+    <div class="card" style="border-left: 3px solid var(--purple);">
+      <h4 style="color: var(--purple);">Ship</h4>
+      <p>"wrap up" to save. "ship" to push. "deploy" to go live.</p>
+    </div>
+  </div>
+
+  <div class="warning">
+    <strong>Don't forget to wrap up</strong>
+    If you close Terminal without saying "wrap up", Claude loses track of where you were. Always save your session before quitting.
+  </div>
+
+  <h3>Git basics (you'll pick this up naturally)</h3>
+  <p>Git tracks every change you make. The toolkit handles git for you — you'll rarely need to run git commands directly. But here's what's happening behind the scenes:</p>
+  <ul style="margin: 12px 0 0 20px; color: var(--text-secondary);">
+    <li><strong>Branch</strong> — A separate copy of your code for a feature. Keeps main clean.</li>
+    <li><strong>Commit</strong> — A saved snapshot of your changes with a message.</li>
+    <li><strong>Push</strong> — Send your commits to GitHub (the cloud).</li>
+    <li><strong>PR (Pull Request)</strong> — A proposal to merge your branch into main.</li>
+    <li><strong>Merge</strong> — Combine your branch's changes into main.</li>
+  </ul>
+</section>
+
+</div>
+
+<footer>
+  <p>Operators Academy &mdash; <a href="https://operators-academy.vercel.app">operators-academy.vercel.app</a></p>
+</footer>
+
+</body>
+</html>

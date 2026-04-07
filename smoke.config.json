@@ -1,0 +1,19 @@
+{
+  "baseUrl": "https://operators-academy.vercel.app",
+  "defaultTimeout": 10000,
+  "routes": [
+    "/",
+    "/course",
+    "/course/claude-ai",
+    "/course/claude-code",
+    "/course/n8n",
+    "/course/putting-it-together",
+    "/privacy"
+  ],
+  "flows": {},
+  "gifFlows": [],
+  "changelog": {
+    "outputDir": "public/changelogs",
+    "manifestFile": "public/changelogs/manifest.json"
+  }
+}
