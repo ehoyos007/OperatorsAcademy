@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Crown, Terminal, Eye, Zap, FileText, Brain, Shield, Bell, Settings, Package, ArrowRight, GitBranch, Layers, Sparkles, Wrench, Rocket, CheckCircle, Clock, Code, PenTool, Cpu, Layout, BarChart3, BookOpen } from 'lucide-react';
+import { Crown, Terminal, Eye, Zap, FileText, Brain, Shield, Bell, Settings, Package, ArrowRight, GitBranch, Layers, Sparkles, Wrench, Rocket, CheckCircle, Clock, Code, PenTool, Cpu, Layout, BarChart3, BookOpen, Loader2, RefreshCw } from 'lucide-react';
 import GatedCopyButton from './components/GatedCopyButton';
 import Expandable from './components/Expandable';
+import { useCloneUrl } from './hooks/useCloneUrl';
 
-const TOKEN = import.meta.env.VITE_PRO_INSTALL_TOKEN || '';
-const CLONE_CMD = `git clone https://${TOKEN}@github.com/ehoyos007/operators-academy-pro.git ~/.local/share/operators-academy-pro`;
 const INSTALL_CMD = '~/.local/share/operators-academy-pro/install.sh';
 const UPDATE_CMD = 'cd ~/.local/share/operators-academy-pro && git pull && ./install.sh';
 
@@ -111,6 +110,8 @@ const colorMap = {
 /* ─── Component ─────────────────────────────────────────────────── */
 
 export default function PremiumToolkitPage() {
+  const { cloneCommand, loading: cloneLoading, error: cloneError, refetch } = useCloneUrl('premium');
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
 
@@ -158,7 +159,15 @@ export default function PremiumToolkitPage() {
             <div className="bg-gray-900 border border-gray-700 rounded-xl p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-gray-300 font-medium">1. Clone the repo</span>
-                <GatedCopyButton text={CLONE_CMD} requiredTier="premium" />
+                {cloneLoading ? (
+                  <span className="flex items-center gap-1.5 px-2 py-1 text-xs text-gray-500"><Loader2 size={12} className="animate-spin" /> Loading</span>
+                ) : cloneError ? (
+                  <button onClick={refetch} className="flex items-center gap-1.5 px-2 py-1 text-xs text-red-400 hover:text-red-300 border border-red-500/30 rounded transition-all">
+                    <RefreshCw size={12} /> Retry
+                  </button>
+                ) : (
+                  <GatedCopyButton text={cloneCommand} requiredTier="premium" />
+                )}
               </div>
               <div className="bg-gray-950 rounded-lg p-3 font-mono text-xs sm:text-sm overflow-x-auto">
                 <span className="text-gray-500">$ </span>
@@ -690,7 +699,13 @@ export default function PremiumToolkitPage() {
               <span className="text-yellow-300/70">{'<token>'}</span>
               <span className="text-gray-400">@github.com/...operators-academy-pro.git</span>
             </div>
-            <GatedCopyButton text={CLONE_CMD} requiredTier="premium" />
+            {cloneLoading ? (
+              <span className="flex items-center gap-1.5 text-xs text-gray-500"><Loader2 size={12} className="animate-spin" /></span>
+            ) : cloneError ? (
+              <button onClick={refetch} className="text-xs text-red-400 hover:text-red-300"><RefreshCw size={12} /></button>
+            ) : (
+              <GatedCopyButton text={cloneCommand} requiredTier="premium" />
+            )}
           </div>
           <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
             <Link to="/tools/install" className="flex items-center gap-1 hover:text-cyan-300 transition-colors">

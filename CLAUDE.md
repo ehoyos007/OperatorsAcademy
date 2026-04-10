@@ -101,10 +101,20 @@ No auth gates. Course modules are free and public.
 ## Environment Variables
 
 ```
+# Client-side (bundled by Vite)
 VITE_SUPABASE_URL=https://cbeurhcgvqptclggkbhb.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJ...
-VITE_PRO_INSTALL_TOKEN=github_pat_...
+
+# Server-side only (used by /api/clone-url, never in client bundle)
+SUPABASE_URL=https://cbeurhcgvqptclggkbhb.supabase.co
+SUPABASE_ANON_KEY=eyJ...
+INSTALL_TOKEN=github_pat_...        # Free toolkit repo access
+PRO_INSTALL_TOKEN=github_pat_...    # Premium toolkit repo access
 ```
+
+### API Endpoints
+
+- `GET /api/clone-url?repo=free|premium` — Returns token-embedded git clone command. Requires `Authorization: Bearer <supabase_jwt>`. Premium repo requires `tier=premium` in user metadata.
 
 ---
 
