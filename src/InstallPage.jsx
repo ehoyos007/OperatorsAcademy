@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Terminal, FolderOpen, Shield, Eye, Zap, BookOpen, ArrowRight, Layers, Sparkles, Palette, MessageSquare, Wrench, Brain, Copy, Check } from 'lucide-react';
+import { Terminal, FolderOpen, Shield, Eye, Zap, BookOpen, ArrowRight, Layers, Sparkles, Palette, MessageSquare, Wrench, Brain, Copy, Check, Loader2, RefreshCw } from 'lucide-react';
 import CopyButton from './components/CopyButton';
 import Expandable from './components/Expandable';
-
-const TOKEN = import.meta.env.VITE_INSTALL_TOKEN || '';
-const INSTALL_CMD = `git clone https://${TOKEN}@github.com/ehoyos007/operators-academy-setup.git ~/.local/share/operators-academy && ~/.local/share/operators-academy/install.sh`;
+import { useCloneUrl } from './hooks/useCloneUrl';
 
 const STEP2_CMD = 'Read ~/.local/share/operators-academy/SETUP_PROMPT.md and help me set up my remaining integrations.';
 
 const UPDATE_CMD = 'cd ~/.local/share/operators-academy && git pull && ./install.sh';
 
 export default function InstallPage() {
+  const { cloneCommand, loading, error, refetch } = useCloneUrl('free');
+  const installCmd = cloneCommand ? `${cloneCommand} && ~/.local/share/operators-academy/install.sh` : '';
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Hero */}
@@ -41,7 +42,15 @@ export default function InstallPage() {
               <p className="text-xs text-gray-500">Clones the toolkit and installs everything into ~/.claude/</p>
             </div>
             <div className="ml-auto">
-              <CopyButton text={INSTALL_CMD} />
+              {loading ? (
+                <span className="flex items-center gap-1.5 px-2 py-1 text-xs text-gray-500"><Loader2 size={12} className="animate-spin" /> Loading</span>
+              ) : error ? (
+                <button onClick={refetch} className="flex items-center gap-1.5 px-2 py-1 text-xs text-red-400 hover:text-red-300 border border-red-500/30 rounded transition-all">
+                  <RefreshCw size={12} /> Retry
+                </button>
+              ) : (
+                <CopyButton text={installCmd} />
+              )}
             </div>
           </div>
           <div className="bg-gray-950 rounded-lg p-4 font-mono text-xs sm:text-sm overflow-x-auto">
@@ -56,6 +65,7 @@ export default function InstallPage() {
             <span className="text-gray-300">~/.local/share/operators-academy/</span>
             <span className="text-green-400">install.sh</span>
           </div>
+          {error && <p className="text-xs text-red-400 mt-3">{error}</p>}
           <p className="text-xs text-gray-600 mt-3">
             Access token is embedded in the URL. Backs up existing config before installing. Requires git and jq.
           </p>
@@ -393,7 +403,13 @@ export default function InstallPage() {
               <span className="text-gray-300">~/.local/share/operators-academy/</span>
               <span className="text-green-400">install.sh</span>
             </div>
-            <CopyButton text={INSTALL_CMD} />
+            {loading ? (
+              <span className="flex items-center gap-1.5 text-xs text-gray-500"><Loader2 size={12} className="animate-spin" /></span>
+            ) : error ? (
+              <button onClick={refetch} className="text-xs text-red-400 hover:text-red-300"><RefreshCw size={12} /></button>
+            ) : (
+              <CopyButton text={installCmd} />
+            )}
           </div>
           <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
             <Link to="/course/project-system" className="flex items-center gap-1 hover:text-purple-300 transition-colors">
