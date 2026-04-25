@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/((?!api|assets|claude-setup|skills-manifest\\.json).*)", "destination": "/index.html" }
+    { "source": "/((?!api|assets|claude-setup|skills-manifest\\.json|sitemap\\.xml|robots\\.txt|_spa-shell\\.html).*)", "destination": "/_spa-shell.html" }
   ]
 }

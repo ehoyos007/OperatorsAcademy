@@ -9,6 +9,8 @@
 - [ ] Add email capture on free tier (lead gen before paywall)
 - [ ] Set up Discord community for paid members
 - [ ] Fix invite code system (added in Session 18, verify it works end-to-end)
+- [ ] Add `https://operatoracademy.io/**` and `https://www.operatoracademy.io/**` to Supabase Redirect URLs allowlist (fixes Google OAuth landing on Satori)
+- [ ] Add per-page `<title>` and `<meta name="description">` via react-helmet-async (all prerendered pages currently share the generic "Operators Academy" title)
 
 ## Content
 - [ ] Complete Appendix: QA Agents, session mgmt, TEST_LOG sections (missing from strategy)
@@ -34,3 +36,6 @@
 - [x] Fix settings.json schema bug in both free + premium templates (2026-04-06)
 - [x] Create getting-started.html beginner guide (2026-04-06)
 - [x] Create operators-handbook knowledge base (31 files) for new users (2026-04-06)
+- [x] Diagnose Google OAuth landing on Satori — root cause: `operatoracademy.io` not in Supabase Redirect URLs allowlist, falls back to Site URL (2026-04-25)
+- [x] Make site AI-crawlable: prerender all 10 public routes (home, /privacy, /course + 8 modules) via puppeteer post-build script. Bodies went from 703 B empty shell → 6-96 KB real HTML. Hydration via `hydrateRoot`, SPA fallback preserved as `_spa-shell.html` (2026-04-25)
+- [x] Add sitemap.xml and explicit robots.txt allow rules for ClaudeBot, Claude-Web, anthropic-ai, ChatGPT-User, GPTBot, Google-Extended, PerplexityBot, CCBot (2026-04-25)

@@ -7,12 +7,20 @@ import App from './App.jsx'
 import './index.css'
 import './ppl-theme.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const rootEl = document.getElementById('root')
+
+const tree = (
   <React.StrictMode>
     <BrowserRouter>
       <App />
       <Analytics />
       <SpeedInsights />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
+
+if (document.documentElement.dataset.prerendered === 'true' && rootEl.hasChildNodes()) {
+  ReactDOM.hydrateRoot(rootEl, tree)
+} else {
+  ReactDOM.createRoot(rootEl).render(tree)
+}

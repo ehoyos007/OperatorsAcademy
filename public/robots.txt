@@ -1,4 +1,25 @@
 User-agent: *
 Allow: /
 
+# Premium / gated tool not meant for indexing
 Disallow: /tools/vision-system
+
+# Explicitly welcome AI training & retrieval bots — operators learn by reading
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://www.operatoracademy.io/sitemap.xml
