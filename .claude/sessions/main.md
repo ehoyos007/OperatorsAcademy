@@ -20,3 +20,17 @@
 ### Where Left Off
 - All 4 phases complete + deploy fix done. Local build exits 0 with NO env vars (9/9 prerender locally). Ready to commit + push to main (auto-deploys via Vercel).
 - Open follow-ups: PromptFlowsPage.jsx still 100% marketing (8 SEO/CRO/ads flows, still in Tools nav) — needs retheme to operator workflows. OpenClaw module still Mac-Mini-centric (VPS path covers Linux; no Windows host path). Domain operatoracademy.io DNS → Vercel but registered under a Vercel team not accessible from this CLI scope.
+
+## Session — 2026-06-20 (later) (wt: OperatorsAcademy)
+
+### Work Done
+- Committed the overhaul (52e3125) and pushed to main. Vercel auto-deploy went **GREEN** (● Ready, 21s) — first successful Production build in ~40 days.
+- Verified live on https://www.operatoracademy.io: homepage 200, /course/building-blocks 200, /claude-setup/install.ps1 200. Grepped the deployed JS bundle (index-5e8chwzc.js) — contains "Skills, Agents & Hooks", "The Operator Workflow", "building-blocks", "irm https"; old "Marketing from Zero" / "Module 3: n8n" GONE. Confirms new build is live, not cached.
+- Domain question RESOLVED: operators-academy.vercel.app 307-redirects to www.operatoracademy.io, so the custom domain IS attached to the operators-academy project and serves it. (The `vercel domains` CLI couldn't list it earlier, but it's wired at the project level and works.)
+
+### Decisions
+- Confirmed the non-fatal-prerender fix is the right call: deploy succeeds, site serves client-rendered via the SPA shell. Accepted tradeoff = per-route SEO HTML is the shell until prerender runs in CI (GitHub Actions or @sparticuz/chromium) — logged as a follow-up.
+
+### Where Left Off
+- DONE + LIVE. Working tree clean, main in sync, deploy green, content verified on the real domain.
+- Next session: retheme src/PromptFlowsPage.jsx away from marketing (still in SiteNav Tools dropdown), OR wire CI-side prerendering for SEO, OR add a Windows host path to the OpenClaw module.

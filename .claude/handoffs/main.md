@@ -1,9 +1,12 @@
 # Session Handoff — main
-Generated: 2026-06-20
+Generated: 2026-06-20 (updated post-deploy)
 Worktree: /Users/enzohoyos/Projects/OperatorsAcademy
 
+## Status: SHIPPED + LIVE
+Overhaul committed (52e3125), pushed to main, deploy GREEN (● Ready), verified live on https://www.operatoracademy.io (homepage + /course/building-blocks + install.ps1 all 200; deployed bundle confirmed new). Working tree clean, main in sync.
+
 ## What We Were Working On
-Full Claude Code-native overhaul of the Operators Academy course + downloadable toolkit + cross-platform install, plus fixing the broken Vercel deploy (all prior deploys were in Error).
+Full Claude Code-native overhaul of the Operators Academy course + downloadable toolkit + cross-platform install, plus fixing the broken Vercel deploy (all prior deploys were in Error). All complete and live.
 
 ## Remaining Work
 - **PromptFlowsPage.jsx** is still 100% marketing (8 SEO/CRO/ads flows) and still linked in the Tools nav dropdown. Retheme to operator/Claude-Code workflows (or remove) for consistency now that the Marketing module is gone.
