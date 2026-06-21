@@ -1,11 +1,11 @@
 import React from 'react';
-import { courseData } from './courseData';
+import { courseData, moduleRoutes } from './courseData';
 import ContentRenderer from '../components/ContentRenderer';
 import InstallBanner from '../components/InstallBanner';
 import { useCourseProgress } from '../components/CourseLayout';
 
-export default function Marketing() {
-  const moduleKey = 'module5';
+export default function BuildingBlocks() {
+  const moduleKey = 'module3';
   const module = courseData[moduleKey];
   const { completedSections, toggleComplete } = useCourseProgress();
 
@@ -15,7 +15,7 @@ export default function Marketing() {
       <div className="mb-8">
         <div className="flex items-center gap-3 text-teal-400 mb-2">
           {React.createElement(module.icon, { size: 24 })}
-          <span className="text-sm uppercase tracking-wider">Module 5</span>
+          <span className="text-sm uppercase tracking-wider">Module 3</span>
         </div>
         <h2 className="text-2xl lg:text-3xl font-bold">{module.title}</h2>
         {module.subtitle && (
@@ -26,10 +26,10 @@ export default function Marketing() {
         <div className="mt-6 bg-teal-900/20 border border-teal-500/30 rounded-lg p-4">
           <h3 className="text-sm font-semibold text-teal-400 mb-2">What you'll learn</h3>
           <ul className="text-sm text-gray-300 space-y-1">
-            <li>- Install and use 25 AI marketing skills</li>
-            <li>- Set up your marketing context document</li>
-            <li>- Master copywriting, SEO, email, and paid ads</li>
-            <li>- Follow the zero-to-launch marketing playbook</li>
+            <li>- Build reusable Skills (your own slash commands)</li>
+            <li>- Delegate work to specialist Agents (subagents)</li>
+            <li>- Automate with Hooks that fire on events</li>
+            <li>- Connect Claude to your other tools with MCP</li>
           </ul>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default function Marketing() {
                     : 'bg-gray-800 text-gray-500 hover:text-gray-300'
                 }`}
               >
-                {isComplete ? '\u2713 Complete' : 'Mark complete'}
+                {isComplete ? '✓ Complete' : 'Mark complete'}
               </button>
             </div>
             <div className="bg-gray-800/50 rounded-xl p-5 lg:p-8">

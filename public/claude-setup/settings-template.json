@@ -11,10 +11,6 @@
   "enabledPlugins": {
     "context7@claude-plugins-official": true
   },
-  "statusLine": {
-    "type": "command",
-    "command": "/bin/bash ~/.claude/statusline-command.sh"
-  },
   "hooks": {
     "SessionStart": [
       {
@@ -34,25 +30,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/iterm-tab-notify.sh",
+            "command": "bash ~/.claude/hooks/session-logger.sh",
             "timeout": 2000
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/iterm-tab-reset.sh",
-            "timeout": 2000
-          },
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/iterm-tab-title.sh",
-            "timeout": 3000
           }
         ]
       }

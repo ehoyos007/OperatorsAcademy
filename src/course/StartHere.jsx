@@ -27,7 +27,7 @@ export default function StartHere() {
           <h3 className="text-sm font-semibold text-teal-400 mb-2">What you'll learn</h3>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>- What an "Operator" is and why it matters</li>
-            <li>- The three tools in the Operator Stack</li>
+            <li>- The modern Operator Stack: Claude Code + your workflow layer</li>
             <li>- How the course is structured</li>
           </ul>
         </div>

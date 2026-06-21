@@ -6,7 +6,13 @@
 - **Related:** operators-academy-pro/ (toolkit distribution), operators-academy-setup/ (installer)
 
 ## What It Is
-AI course platform teaching Claude Code and AI workflows to operators. React 18 + Vite + Tailwind. 15 navigable pages, ~37 sections across 8 modules.
+AI course platform teaching the Claude Code-native operator workflow. React 18 + Vite + Tailwind. Course = Intro + 5 modules + Appendix: (1) Claude thinking partner, (2) Claude Code cross-platform install/use, (3) Skills/Agents/Hooks/MCP, (4) The Operator Workflow, (5) OpenClaw, Appendix: Project Startup System.
+
+## 2026-06-20 Overhaul (Claude Code-native)
+- Removed n8n (was Module 3) + Marketing from Zero (was Module 5). Old routes redirect to /course/building-blocks.
+- Module 2 install rewritten cross-platform: native installer (curl|bash / irm|iex), winget, npm fallback — Windows/Mac/Linux.
+- Downloadable toolkit (public/claude-setup) refreshed: 10 public-safe skills (commit, push, pr, test, pickup, wrap-up, auto-init, smoke, improve, plan), 7 agents (explorer, reviewer, debugger, test-runner, test-writer-fixer, git-commit, logger), cross-platform installers (install.sh + install.ps1).
+- Content is data-driven in src/course/courseData.js; module .jsx files are templates keyed by moduleKey.
 
 ## Current State (as of Strategy Audit, Mar 2, 2026)
 - **Auth:** None. No user accounts, no login.

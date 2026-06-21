@@ -80,7 +80,7 @@ Generated: YYYY-MM-DD HH:MM
 > Write it as if the USER is typing it to Claude.>
 ```
 
-The kickstart prompt is the most important part. Make it concrete and actionable — not "continue working on the feature" but "Implement the webhook handler in src/api/webhooks.ts — the route is scaffolded but the payload parsing and DB insert are still TODO. Run /qa when done."
+The kickstart prompt is the most important part. Make it concrete and actionable — not "continue working on the feature" but "Implement the webhook handler in src/api/webhooks.ts — the route is scaffolded but the payload parsing and DB insert are still TODO. Run /test when done."
 
 ### Step 6: Confirm
 

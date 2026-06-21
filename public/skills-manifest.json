@@ -1,229 +1,103 @@
 {
   "name": "Operators Academy",
-  "version": "1.0.0",
-  "description": "AI-powered operator stack: Claude Code workflows, 25 marketing skills, agents, and OpenClaw integration.",
+  "version": "2.0.0",
+  "description": "Claude Code-native operator workflow: install on any OS, then build with skills, agents, hooks, and MCP. Includes a free public-safe toolkit and the OpenClaw 24/7 agent guide.",
   "url": "https://operators-academy.vercel.app",
   "integration": {
-    "workflow_installer": "curl -fsSL https://operators-academy.vercel.app/claude-setup/install.sh | bash",
-    "marketing_skills": "npx skills add coreyhaines31/marketingskills",
-    "marketing_skills_git": "git clone https://github.com/coreyhaines31/marketingskills.git && cp -r marketingskills/skills/* .claude/skills/"
+    "claude_code_install": {
+      "windows": "irm https://claude.ai/install.ps1 | iex",
+      "mac_linux": "curl -fsSL https://claude.ai/install.sh | bash",
+      "windows_winget": "winget install Anthropic.ClaudeCode",
+      "npm_fallback": "npm install -g @anthropic-ai/claude-code"
+    },
+    "toolkit_installer": {
+      "windows": "irm https://operators-academy.vercel.app/claude-setup/install.ps1 | iex",
+      "mac_linux": "curl -fsSL https://operators-academy.vercel.app/claude-setup/install.sh | bash"
+    }
   },
   "modules": [
     {
+      "id": "introduction",
+      "title": "What is an Operator?",
+      "subtitle": "The mindset and the modern stack",
+      "topics": ["operator mindset", "the operator stack", "directing vs typing"]
+    },
+    {
       "id": "module1",
-      "title": "Claude.ai",
-      "subtitle": "Your AI Thinking Partner",
-      "topics": ["account setup", "artifacts", "prompt formatting", "research", "writing", "problem-solving"]
+      "title": "Claude",
+      "subtitle": "Your Thinking Partner",
+      "topics": ["account setup", "what to use Claude for", "prompt basics", "planning before building"]
     },
     {
       "id": "module2",
       "title": "Claude Code",
-      "subtitle": "Your AI Builder",
-      "topics": ["terminal basics", "installation", "CLI commands", "context", "tools", "agents", "hooks", "MCP", "skills", "agent teams"]
+      "subtitle": "Install and Build on Any OS",
+      "topics": ["terminal basics (Windows/Mac/Linux)", "native installer", "winget", "interface and slash commands", "context and sessions"]
     },
     {
       "id": "module3",
-      "title": "n8n",
-      "subtitle": "Your Automation Engine",
-      "topics": ["workflow automation", "nodes", "triggers", "connections"]
+      "title": "Skills, Agents & Hooks",
+      "subtitle": "The Workflow Layer",
+      "topics": ["skills (reusable commands)", "agents and subagents", "agent teams", "hooks and events", "MCP connectors"]
     },
     {
       "id": "module4",
-      "title": "Tying It All Together",
-      "subtitle": "The Operator Stack",
-      "topics": ["think-build-automate-monitor", "lead response system", "full stack integration"]
+      "title": "The Operator Workflow",
+      "subtitle": "Plan, Build, Review, Ship",
+      "topics": ["the operator loop", "plan mode", "reviewer agent", "shipping with skills", "worked example"]
     },
     {
       "id": "module5",
-      "title": "Marketing from Zero",
-      "subtitle": "AI-Powered Marketing with 25 Skills",
-      "install": "npx skills add coreyhaines31/marketingskills",
-      "topics": ["marketing skills toolkit", "product marketing context", "copywriting", "SEO", "email", "paid ads", "growth engineering", "zero-to-launch playbook"]
+      "title": "OpenClaw",
+      "subtitle": "Personal AI Agent, 24/7",
+      "topics": ["24/7 AI agent", "VPS setup", "Mac Mini setup", "messaging integration", "cost optimization", "security"]
     },
     {
-      "id": "module6",
-      "title": "OpenClaw",
-      "subtitle": "Personal AI Agent",
-      "topics": ["24/7 AI agent", "VPS setup", "Mac Mini setup", "messaging integration", "cost optimization", "security"]
+      "id": "appendix",
+      "title": "Project Startup System",
+      "subtitle": "Give Claude a Memory",
+      "topics": ["project doc system", "skill-driven workflow", "agents", "hooks", "session management", "one-command install"]
     }
   ],
-  "skills": {
-    "categories": [
-      {
-        "name": "Conversion (CRO)",
-        "skills": [
-          { "id": "page-cro", "description": "Audit and optimize any web page for conversions using a 7-point framework" },
-          { "id": "signup-flow-cro", "description": "Optimize account creation and trial activation flows" },
-          { "id": "onboarding-cro", "description": "Improve first-run experience to reduce churn" },
-          { "id": "form-cro", "description": "Reduce form fields, add smart defaults, use conditional logic" },
-          { "id": "popup-cro", "description": "Create exit-intent popups, lead magnets, and promotional overlays" }
-        ]
-      },
-      {
-        "name": "Copywriting",
-        "skills": [
-          { "id": "copywriting", "description": "Generate high-converting copy for any page type using proven frameworks" },
-          { "id": "copy-editing", "description": "Polish, tighten, and improve existing marketing copy" },
-          { "id": "email-sequence", "description": "Build welcome, nurture, and re-engagement email sequences" },
-          { "id": "social-content", "description": "Create platform-native social media content" }
-        ]
-      },
-      {
-        "name": "SEO & Discovery",
-        "skills": [
-          { "id": "seo-audit", "description": "Audit technical SEO, on-page SEO, indexation, and content gaps" },
-          { "id": "programmatic-seo", "description": "Create hundreds of optimized pages from 12 playbook templates" },
-          { "id": "schema-markup", "description": "Add structured data for rich search results" },
-          { "id": "competitor-alternatives", "description": "Create comparison and alternatives pages targeting competitor traffic" }
-        ]
-      },
-      {
-        "name": "Paid & Distribution",
-        "skills": [
-          { "id": "google-ads-research", "description": "Competitive Google Ads research — analyzes your business, researches competitor ad strategies, and proposes implementation ideas" },
-          { "id": "paid-ads", "description": "Create and manage paid advertising campaigns" },
-          { "id": "content-strategy", "description": "Plan content calendars and distribution strategies" },
-          { "id": "launch-strategy", "description": "Plan and execute product launches" }
-        ]
-      },
-      {
-        "name": "Measurement",
-        "skills": [
-          { "id": "analytics-tracking", "description": "Set up event tracking, funnels, and attribution" },
-          { "id": "ab-test-setup", "description": "Design and implement A/B tests with statistical rigor" }
-        ]
-      },
-      {
-        "name": "Growth Engineering",
-        "skills": [
-          { "id": "referral-program", "description": "Design viral referral loops and incentive structures" },
-          { "id": "free-tool-strategy", "description": "Build free tools that drive organic traffic and signups" },
-          { "id": "marketing-ideas", "description": "Generate and rank marketing ideas by effort vs impact" }
-        ]
-      },
-      {
-        "name": "Strategy",
-        "skills": [
-          { "id": "pricing-strategy", "description": "Optimize pricing models, tiers, and positioning" },
-          { "id": "marketing-psychology", "description": "Apply behavioral psychology principles to marketing" },
-          { "id": "product-marketing-context", "description": "Create the foundation document all other skills reference" }
-        ]
-      }
-    ]
-  },
-  "workflow_components": {
+  "toolkit": {
+    "skills": [
+      { "id": "auto-init", "description": "Create the project documentation files for a new project" },
+      { "id": "pickup", "description": "Resume a session: read the docs and report where you left off and what's next" },
+      { "id": "commit", "description": "Checkpoint work with a clear commit message and advance the task" },
+      { "id": "push", "description": "Commit and push the current branch (deploys if the project auto-deploys)" },
+      { "id": "pr", "description": "Create a feature branch and open a pull request" },
+      { "id": "test", "description": "Run lint, types, and tests; log results to TEST_LOG.md" },
+      { "id": "smoke", "description": "Post-deploy visual verification of a live URL" },
+      { "id": "improve", "description": "Audit the codebase and write an implementation plan (read-only)" },
+      { "id": "plan", "description": "Research and propose an approach before changing any files" },
+      { "id": "wrap-up", "description": "Save PROGRESS.md and a handoff note so the next session starts fast" }
+    ],
+    "agents": [
+      { "id": "explorer", "description": "Map unfamiliar code and find where things live (read-only)" },
+      { "id": "reviewer", "description": "Regression and security sweep on a change before shipping" },
+      { "id": "debugger", "description": "Root cause analysis and bug isolation" },
+      { "id": "test-runner", "description": "Run and validate test suites" },
+      { "id": "test-writer-fixer", "description": "Generate tests and fix failures" },
+      { "id": "git-commit", "description": "Stage, commit, and push in the background" },
+      { "id": "logger", "description": "Add strategic logging for observability" }
+    ],
+    "hooks": [
+      { "id": "auto-init-check", "event": "SessionStart", "description": "Nudge Claude to create missing project docs" },
+      { "id": "session-logger", "event": "Stop", "description": "Log each session for continuity" }
+    ],
     "documentation_system": {
       "files": ["CONTEXT.md", "TASKS.md", "PLAN.md", "PROGRESS.md", "TEST_LOG.md"],
       "trigger_phrases": {
-        "initialize_project": "Creates all missing documentation files",
-        "lets_continue": "Reads docs and resumes where you left off",
-        "wrap_up": "Updates PROGRESS.md and commits",
-        "update_tasks": "Updates TASKS.md with current state"
+        "initialize project": "Creates the documentation files",
+        "let's continue / /pickup": "Reads docs and resumes where you left off",
+        "commit this / /commit": "Checkpoints work",
+        "ship it / /push": "Commits and pushes",
+        "wrap up / /wrap-up": "Saves progress and a handoff note"
       }
-    },
-    "agents": [
-      { "id": "qa-orchestrator", "description": "Coordinates full QA workflow" },
-      { "id": "backend-architect", "description": "Architecture planning and API design" },
-      { "id": "test-runner", "description": "Runs and validates test suites" },
-      { "id": "test-writer-fixer", "description": "Generates tests and fixes failures" },
-      { "id": "feature-tester", "description": "Validates feature implementation" },
-      { "id": "debugger", "description": "Root cause analysis and bug isolation" },
-      { "id": "logger", "description": "Implements strategic logging" },
-      { "id": "git-commit", "description": "Manages commits and version control" }
-    ]
+    }
   },
-  "prompt_flows": [
-    {
-      "id": "product-launch",
-      "name": "Launch a Product from Scratch",
-      "description": "Go from zero to a fully marketed product in one session.",
-      "steps": [
-        "Create my product marketing context document",
-        "Write homepage copy for [product name]",
-        "Run a CRO audit on my homepage copy",
-        "Build a 5-email welcome sequence",
-        "Run an SEO audit and create a 90-day content strategy",
-        "Generate 3 comparison pages vs top competitors"
-      ]
-    },
-    {
-      "id": "competitor-takeover",
-      "name": "Competitor Traffic Capture",
-      "description": "Steal competitor search traffic with targeted pages and ads.",
-      "steps": [
-        "Analyze these competitors: [list competitors]",
-        "Generate [product] vs [competitor] comparison pages for each",
-        "Write a '[competitor] alternatives' page positioning us as #1",
-        "Create Google Ads targeting competitor brand terms",
-        "Add schema markup to all comparison pages"
-      ]
-    },
-    {
-      "id": "seo-engine",
-      "name": "Build an SEO Content Engine",
-      "description": "Create a scalable system for organic traffic growth.",
-      "steps": [
-        "Run a full SEO audit on my site",
-        "Identify the best programmatic SEO playbooks for my business",
-        "Generate the first batch of 20 pages using the [playbook] template",
-        "Add schema markup to all generated pages",
-        "Create a 90-day content strategy to support the pages"
-      ]
-    },
-    {
-      "id": "cro-sprint",
-      "name": "Conversion Rate Optimization Sprint",
-      "description": "Audit and optimize your entire funnel in one session.",
-      "steps": [
-        "Run a CRO audit on [URL]",
-        "Audit my signup flow for conversion blockers",
-        "Optimize my onboarding experience for new users",
-        "Create exit-intent popups for my top 3 pages",
-        "Design A/B tests for the top 3 CRO recommendations"
-      ]
-    },
-    {
-      "id": "growth-loop",
-      "name": "Build a Growth Loop",
-      "description": "Design viral mechanics and compounding growth channels.",
-      "steps": [
-        "Design a referral program for [product]",
-        "Build a free tool strategy to drive organic signups",
-        "Generate 50 marketing ideas ranked by effort vs impact",
-        "Create a launch strategy for the referral program",
-        "Set up analytics tracking for the referral funnel"
-      ]
-    },
-    {
-      "id": "google-ads-research",
-      "name": "Google Ads Competitor Research",
-      "description": "Analyze competitor ad strategies, find keyword gaps, and build your paid search plan.",
-      "steps": [
-        "Analyze my business from the codebase and present a summary for confirmation",
-        "Research top 3-5 competitors' Google Ads strategies — ad copy, landing pages, keywords, positioning",
-        "Generate a full competitive analysis report and save as google-ads-research.md",
-        "Propose 4-6 implementation ideas based on findings and codebase state, ranked by impact and effort"
-      ]
-    },
-    {
-      "id": "email-machine",
-      "name": "Build an Email Marketing Machine",
-      "description": "Create automated email sequences for every stage of the customer journey.",
-      "steps": [
-        "Build a 5-email welcome sequence for new signups",
-        "Create a 6-email lead nurture sequence for free trial users",
-        "Write a 4-email re-engagement sequence for churned users",
-        "Design a product launch email series (5 emails)",
-        "Set up analytics tracking for email conversion events"
-      ]
-    }
-  ],
   "quick_reference": {
-    "first_skill_to_use": "product-marketing-context",
-    "recommended_paths": {
-      "pre_launch": ["product-marketing-context", "copywriting", "page-cro", "content-strategy", "seo-audit"],
-      "post_launch": ["analytics-tracking", "ab-test-setup", "paid-ads", "email-sequence", "signup-flow-cro"],
-      "growth_stage": ["referral-program", "free-tool-strategy", "programmatic-seo", "marketing-ideas", "pricing-strategy"]
-    }
+    "start_here": "Install Claude Code (Module 2), then run the toolkit installer for your OS.",
+    "session_loop": ["/pickup", "build", "/commit", "/test", "/push", "/wrap-up"]
   }
 }

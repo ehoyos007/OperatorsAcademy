@@ -20,7 +20,6 @@ const allMobileLinks = [
   { to: '/tools/prompt-flows', label: 'Prompt Flows' },
   { to: '/tools/mission-control', label: 'Mission Control' },
   { to: '/tools/session-monitor', label: 'Session Monitor' },
-  { to: '/setup/marketing', label: 'Marketing Setup' },
   { to: '/setup/openclaw', label: 'OpenClaw Setup' },
   { to: '/tools/coop', label: 'Co-Op Mode' },
   { to: '/tools/premium', label: 'Premium Toolkit', premium: true },
@@ -92,15 +91,6 @@ export default function SiteNav() {
             </div>
           )}
         </div>
-
-        <Link
-          to="/setup/marketing"
-          className={`text-sm transition-colors ${
-            isActive('/setup/marketing') ? 'text-white' : 'text-gray-400 hover:text-white'
-          }`}
-        >
-          Marketing
-        </Link>
 
         <UserMenu />
       </div>

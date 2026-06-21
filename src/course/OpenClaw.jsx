@@ -15,7 +15,7 @@ export default function OpenClaw() {
       <div className="mb-8">
         <div className="flex items-center gap-3 text-teal-400 mb-2">
           {React.createElement(module.icon, { size: 24 })}
-          <span className="text-sm uppercase tracking-wider">Module 6</span>
+          <span className="text-sm uppercase tracking-wider">Module 5</span>
         </div>
         <h2 className="text-2xl lg:text-3xl font-bold">{module.title}</h2>
         {module.subtitle && (

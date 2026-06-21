@@ -28,3 +28,9 @@ npm-debug.log*
 
 # Supabase
 supabase/.temp/
+
+# Agent-View: track session shards + handoffs + project skills; ignore other .claude
+.claude/*
+!.claude/sessions/
+!.claude/handoffs/
+!.claude/skills/

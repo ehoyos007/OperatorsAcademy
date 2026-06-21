@@ -27,7 +27,7 @@ export default function ClaudeCode() {
           <h3 className="text-sm font-semibold text-teal-400 mb-2">What you'll learn</h3>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>- Navigate your computer with the terminal</li>
-            <li>- Install and set up Claude Code</li>
+            <li>- Install Claude Code on Windows, Mac, or Linux</li>
             <li>- Understand the Claude Code interface and commands</li>
             <li>- Master context, agents, and advanced features</li>
           </ul>

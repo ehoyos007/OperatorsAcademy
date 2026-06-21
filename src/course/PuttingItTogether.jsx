@@ -26,9 +26,9 @@ export default function PuttingItTogether() {
         <div className="mt-6 bg-teal-900/20 border border-teal-500/30 rounded-lg p-4">
           <h3 className="text-sm font-semibold text-teal-400 mb-2">What you'll learn</h3>
           <ul className="text-sm text-gray-300 space-y-1">
-            <li>- How Claude.ai, Claude Code, and n8n work together</li>
-            <li>- The Operator workflow from idea to automation</li>
-            <li>- Build a real lead response system example</li>
+            <li>- The Operator loop: plan, build, review, ship</li>
+            <li>- How to run the whole workflow inside Claude Code</li>
+            <li>- Build a real tool end to end in one sitting</li>
           </ul>
         </div>
       </div>

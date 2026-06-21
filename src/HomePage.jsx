@@ -78,18 +78,17 @@ export default function HomePage() {
             working AI <span className="hl">tool</span>
           </h1>
           <p className="subtitle">
-            Build AI-powered businesses using Claude.ai, Claude Code, and n8n
-            — without writing code yourself.
+            Build and ship AI tools with Claude Code — skills, agents, and
+            hooks — without writing code yourself. Works on Windows, Mac, and Linux.
           </p>
 
           <div className="ppl-tags">
             {[
-              { label: 'Claude.ai', to: '/course/claude-ai' },
               { label: 'Claude Code', to: '/course/claude-code' },
-              { label: 'n8n', to: '/course/n8n' },
-              { label: 'Build a Tool', to: '/course/putting-it-together' },
-              { label: 'Marketing', to: '/course/marketing' },
+              { label: 'Skills, Agents & Hooks', to: '/course/building-blocks' },
+              { label: 'The Operator Workflow', to: '/course/putting-it-together' },
               { label: 'OpenClaw', to: '/course/openclaw' },
+              { label: 'Project System', to: '/course/project-system' },
             ].map(({ label, to }) => (
               <Link key={to} to={to} className="ppl-tag">{label}</Link>
             ))}
@@ -177,16 +176,16 @@ export default function HomePage() {
             Three Tools. One <span className="hl">System</span>.
           </h2>
           <p className="subtitle">
-            The Operator Stack combines thinking, building, and automating into a single workflow.
+            One engine, plus the workflow layer around it. That's the modern Operator Stack.
           </p>
 
           <div className="ppl-steps">
             <div className="ppl-step">
               <div className="ppl-step-num ppl-step-num-blue">1</div>
               <div className="ppl-step-content">
-                <h3>Claude.ai — Think</h3>
-                <p>Your AI thinking partner. Brainstorm ideas, plan features, write content, analyze problems. Claude.ai handles the strategy and creative work.</p>
-                <div className="ppl-step-time">Brainstorming & Planning</div>
+                <h3>Claude — Think</h3>
+                <p>Your thinking partner for the quick planning stop before you build. Brainstorm the idea and the approach, then take it into Claude Code.</p>
+                <div className="ppl-step-time">Planning</div>
               </div>
             </div>
 
@@ -194,23 +193,23 @@ export default function HomePage() {
               <div className="ppl-step-num ppl-step-num-green">2</div>
               <div className="ppl-step-content">
                 <h3 style={{ color: 'var(--green)' }}>Claude Code — Build</h3>
-                <p>Your AI developer. Describe what you want in plain English, and Claude Code writes the code, creates the files, and builds the application.</p>
-                <div className="ppl-step-time">Development & Implementation</div>
+                <p>The engine. Describe what you want in plain English; Claude Code writes the files, runs the commands, and ships the app. Where you spend 90% of your time.</p>
+                <div className="ppl-step-time">Development & Shipping</div>
               </div>
             </div>
 
             <div className="ppl-step">
               <div className="ppl-step-num ppl-step-num-amber">3</div>
               <div className="ppl-step-content">
-                <h3 style={{ color: 'var(--amber)' }}>n8n — Automate</h3>
-                <p>Your automation engine. Connect apps, schedule tasks, process webhooks, and build pipelines that run 24/7 without your involvement.</p>
-                <div className="ppl-step-time">Automation & Integration</div>
+                <h3 style={{ color: 'var(--amber)' }}>Skills · Agents · Hooks — Multiply</h3>
+                <p>The workflow layer. Reusable skills, specialist agents, and event-driven hooks turn Claude Code from a smart assistant into a system that runs your work.</p>
+                <div className="ppl-step-time">Your workflow layer</div>
               </div>
             </div>
           </div>
 
           <div className="ppl-callout">
-            <strong>Together:</strong> Think with Claude.ai → Build with Claude Code → Automate with n8n. That's how operators turn ideas into running businesses.
+            <strong>Together:</strong> Plan with Claude → Build with Claude Code → Review and Ship with your skills and agents. That's how operators turn ideas into shipped tools.
           </div>
         </div>
       </section>
@@ -235,17 +234,17 @@ export default function HomePage() {
           <div className="ppl-grid">
             <div className="ppl-card">
               <div className="ppl-card-label">Phase 1</div>
-              <div className="ppl-card-title" style={{ color: 'var(--blue)' }}>Learn the Stack</div>
+              <div className="ppl-card-title" style={{ color: 'var(--blue)' }}>Set Up Claude Code</div>
               <div className="ppl-card-desc">
-                Three focused modules on Claude.ai, Claude Code, and n8n. Each one builds on the last. Real examples, not theory.
+                Install Claude Code on any computer — Windows, Mac, or Linux — and learn the interface, context, and commands. Real examples, not theory.
               </div>
             </div>
 
             <div className="ppl-card">
               <div className="ppl-card-label">Phase 2</div>
-              <div className="ppl-card-title" style={{ color: 'var(--green)' }}>Build Your First Tool</div>
+              <div className="ppl-card-title" style={{ color: 'var(--green)' }}>Build Your Workflow</div>
               <div className="ppl-card-desc">
-                Combine all three tools to create something real. A working product you can use, show, or sell — built in a single session.
+                Skills, agents, and hooks — the layer that makes you fast. Then run the operator loop to build a real tool end to end in one sitting.
               </div>
             </div>
 
@@ -253,7 +252,7 @@ export default function HomePage() {
               <div className="ppl-card-label">Phase 3</div>
               <div className="ppl-card-title" style={{ color: 'var(--amber)' }}>Scale & Automate</div>
               <div className="ppl-card-desc">
-                Marketing, personal AI agents, project systems. Everything you need to turn a tool into a business that runs itself.
+                A personal AI agent that runs 24/7, plus a project system that gives Claude a memory across sessions. Turn tools into a system that runs itself.
               </div>
             </div>
           </div>
@@ -278,19 +277,18 @@ export default function HomePage() {
             Course <span className="hl">Modules</span>
           </h2>
           <p className="subtitle">
-            Eight modules covering everything from AI fundamentals to launching your own products.
+            Six focused modules, from your first install to a workflow that runs itself.
           </p>
 
           <div className="ppl-grid">
             {[
               { emoji: '🧠', name: 'What is an Operator?', desc: 'The mindset, the stack, and how to think about AI-powered building.', to: '/course', accent: 'blue' },
-              { emoji: '💬', name: 'Claude.ai', desc: 'Account setup, capabilities, artifacts, and prompt engineering fundamentals.', to: '/course/claude-ai', accent: 'blue' },
-              { emoji: '⌨️', name: 'Claude Code', desc: 'Terminal-based development. Build real applications from natural language.', to: '/course/claude-code', accent: 'purple' },
-              { emoji: '⚡', name: 'n8n', desc: 'Visual workflow automation. Connect APIs and build pipelines.', to: '/course/n8n', accent: 'cyan' },
-              { emoji: '🔧', name: 'Build Your First Tool', desc: 'Combine all three tools into a working product.', to: '/course/putting-it-together', accent: 'green' },
-              { emoji: '📈', name: 'Marketing from Zero', desc: '25 AI skills covering SEO, copywriting, ads, email, and growth.', to: '/course/marketing', accent: 'green' },
+              { emoji: '💬', name: 'Claude', desc: 'Your thinking partner. Account setup and prompt basics — the quick stop before Claude Code.', to: '/course/claude-ai', accent: 'blue' },
+              { emoji: '⌨️', name: 'Claude Code', desc: 'Install on Windows, Mac, or Linux. Build real apps from plain English in your terminal.', to: '/course/claude-code', accent: 'purple' },
+              { emoji: '🧩', name: 'Skills, Agents & Hooks', desc: 'The workflow layer: reusable commands, specialist agents, event automation, and MCP.', to: '/course/building-blocks', accent: 'cyan' },
+              { emoji: '🔧', name: 'The Operator Workflow', desc: 'Plan, build, review, ship — the loop. Build a real tool end to end in one sitting.', to: '/course/putting-it-together', accent: 'green' },
               { emoji: '🤖', name: 'OpenClaw', desc: 'Run a personal AI agent 24/7 for under $10/month.', to: '/course/openclaw', accent: 'orange' },
-              { emoji: '📁', name: 'Project Startup System', desc: 'Documentation framework for AI-assisted development.', to: '/course/project-system', accent: 'purple' },
+              { emoji: '📁', name: 'Project Startup System', desc: 'The docs + skills setup that gives Claude a memory across sessions.', to: '/course/project-system', accent: 'purple' },
             ].map(({ emoji, name, desc, to, accent }) => (
               <Link key={to} to={to} className="ppl-niche-card" data-accent={accent}>
                 <div className="ppl-niche-emoji">{emoji}</div>

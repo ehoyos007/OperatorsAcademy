@@ -35,3 +35,9 @@ Beyond global CLAUDE.md guidelines, capture the following for Operators Academy:
 - Initialized BRAIN.md, VISION.md, CLAUDE.md, TEST_LOG.md
 - Decision: Free course (all 8 modules public) + paid tier for tools/advanced content
 - Architecture: Supabase profiles tracks source + tier in shared project
+
+### 2026-06-20 / main
+- [decision] Re-centered the course on a Claude Code-native stack (Claude Code + skills/agents/hooks/MCP); cut the n8n and Marketing modules because they no longer reflect the actual workflow. Old routes redirect to /course/building-blocks to preserve SEO.
+- [decision] Made prerendering non-fatal — it's SEO-only (vercel.json rewrites every route to the SPA shell), so it must never fail the build.
+- [blocker→fix] Every Vercel deploy had been in Error for ~40 days: scripts/prerender.mjs launches puppeteer, but Vercel's build container lacks Chrome's system libs (libnspr4.so → "Failed to launch the browser process: Code 127"), failing `npm run build`. Fixed by try/catch around puppeteer.launch (warn + exit 0) and guarding src/lib/supabase.js so missing env can't crash the SPA at import.
+- [insight] The downloadable public toolkit must be re-authored as generic skills, not copied from personal skills — the real ones are coupled to private brain MCPs, FHE infra, and absolute paths that would leak publicly.

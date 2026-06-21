@@ -26,9 +26,8 @@ export default function ClaudeAI() {
         <div className="mt-6 bg-teal-900/20 border border-teal-500/30 rounded-lg p-4">
           <h3 className="text-sm font-semibold text-teal-400 mb-2">What you'll learn</h3>
           <ul className="text-sm text-gray-300 space-y-1">
-            <li>- How to create and set up your Claude.ai account</li>
-            <li>- What Claude.ai can do beyond simple Q&A</li>
-            <li>- How to use Artifacts for documents, code, and tools</li>
+            <li>- How to set up your Claude account</li>
+            <li>- What to use Claude for (and when to switch to Claude Code)</li>
             <li>- How to write prompts that get better results</li>
           </ul>
         </div>

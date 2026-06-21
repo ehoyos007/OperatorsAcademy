@@ -12,6 +12,12 @@
 - [ ] Add `https://operatoracademy.io/**` and `https://www.operatoracademy.io/**` to Supabase Redirect URLs allowlist (fixes Google OAuth landing on Satori)
 - [ ] Add per-page `<title>` and `<meta name="description">` via react-helmet-async (all prerendered pages currently share the generic "Operators Academy" title)
 
+## Follow-ups from 2026-06-20 overhaul
+- [ ] Retheme PromptFlowsPage.jsx away from marketing (still 8 SEO/CRO/ads flows; still in Tools nav)
+- [ ] OpenClaw module: add Windows host guidance or note unsupported (currently Mac/VPS only)
+- [ ] Re-scope route-guard task above: module numbers shifted (Marketing gone, OpenClaw is now Module 5)
+- [ ] Confirm operatoracademy.io is attached to the operators-academy Vercel project (DNS points to Vercel but domain registered under a different team)
+
 ## Content
 - [ ] Complete Appendix: QA Agents, session mgmt, TEST_LOG sections (missing from strategy)
 - [ ] Review Module 2 split (2.1-2.3 free vs 2.4-2.7 paid) — currently all ungated
@@ -28,6 +34,10 @@
 - [x] Privacy page + cookie banner
 - [x] PPL dark presentation homepage style
 - [x] Unified full toolkit installer page
+- [x] Claude Code-native overhaul (2026-06-20) — cut n8n + Marketing; Module 3 → Skills/Agents/Hooks; Module 4 → The Operator Workflow; Appendix rewritten; OpenClaw → Module 5; old routes redirect to /course/building-blocks
+- [x] Cross-platform install parity (2026-06-20) — native installer (Win PowerShell / Mac / Linux), winget, npm fallback; install.ps1 added
+- [x] Public-safe toolkit refresh (2026-06-20) — 10 skills (commit/push/pr/test/pickup/wrap-up/auto-init/smoke/improve/plan) + 7 agents (explorer/reviewer/debugger/test-runner/test-writer-fixer/git-commit/logger); coupling-scanned clean
+- [x] FIX BROKEN DEPLOY (2026-06-20) — puppeteer prerender couldn't launch Chrome in Vercel container (libnspr4.so / Code 127). Made scripts/prerender.mjs non-fatal + guarded src/lib/supabase.js against missing env
 - [x] Toolkit v2 upgrade: 8-file doc system, shipping workflow, plan mode, hooks (2026-04-06)
 - [x] Premium toolkit standalone: base/ superset, 4 new skills, v2.0.0 installer (2026-04-06)
 - [x] PremiumToolkitPage redesign: 15 sections, workflow viz, FAQ (2026-04-06)

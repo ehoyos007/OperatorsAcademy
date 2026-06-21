@@ -255,7 +255,7 @@ export default function MissionControlPage() {
           <Expandable title="What are the prerequisites?">
             <div className="text-sm text-gray-400 space-y-2">
               <ul className="list-disc list-inside space-y-1 pl-2">
-                <li><strong className="text-gray-200">Node.js 18+</strong> — runtime (<code className="text-gray-300">brew install node</code> on macOS)</li>
+                <li><strong className="text-gray-200">Node.js 18+</strong> — runtime (<code className="text-gray-300">winget install OpenJS.NodeJS</code> on Windows, <code className="text-gray-300">brew install node</code> on macOS, or nodejs.org)</li>
                 <li><strong className="text-gray-200">pnpm</strong> — package manager (<code className="text-gray-300">npm install -g pnpm</code>)</li>
                 <li><strong className="text-gray-200">git</strong> — for cloning the repository</li>
                 <li><strong className="text-gray-200">Claude Code</strong> — the CLI tool this dashboard manages</li>

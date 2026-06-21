@@ -10,13 +10,11 @@ import CourseLayout from './components/CourseLayout'
 import StartHere from './course/StartHere'
 import ClaudeAI from './course/ClaudeAI'
 import ClaudeCode from './course/ClaudeCode'
-import N8n from './course/N8n'
+import BuildingBlocks from './course/BuildingBlocks'
 import PuttingItTogether from './course/PuttingItTogether'
-import Marketing from './course/Marketing'
 import OpenClaw from './course/OpenClaw'
 import ProjectSystem from './course/ProjectSystem'
 import InstallPage from './InstallPage'
-import MarketingSetupPage from './MarketingSetupPage'
 import OpenClawSetupPage from './OpenClawSetupPage'
 import PromptFlowsPage from './PromptFlowsPage'
 import MissionControlPage from './MissionControlPage'
@@ -51,11 +49,13 @@ export default function App() {
           <Route index element={<StartHere />} />
           <Route path="claude-ai" element={<ClaudeAI />} />
           <Route path="claude-code" element={<ClaudeCode />} />
-          <Route path="n8n" element={<N8n />} />
+          <Route path="building-blocks" element={<BuildingBlocks />} />
           <Route path="putting-it-together" element={<PuttingItTogether />} />
-          <Route path="marketing" element={<Marketing />} />
           <Route path="openclaw" element={<OpenClaw />} />
           <Route path="project-system" element={<ProjectSystem />} />
+          {/* Redirects from removed/renamed modules */}
+          <Route path="n8n" element={<Navigate to="/course/building-blocks" replace />} />
+          <Route path="marketing" element={<Navigate to="/course/building-blocks" replace />} />
         </Route>
 
         {/* Tools routes — gated */}
@@ -79,7 +79,7 @@ export default function App() {
 
         {/* Keep old setup routes working */}
         <Route path="/install" element={<Navigate to="/tools/install" replace />} />
-        <Route path="/setup/marketing" element={<GatedRoute><MarketingSetupPage /></GatedRoute>} />
+        <Route path="/setup/marketing" element={<Navigate to="/course/building-blocks" replace />} />
         <Route path="/setup/openclaw" element={<GatedRoute><OpenClawSetupPage /></GatedRoute>} />
         <Route path="/prompt-flows" element={<Navigate to="/tools/prompt-flows" replace />} />
         <Route path="/mission-control" element={<Navigate to="/tools/mission-control" replace />} />

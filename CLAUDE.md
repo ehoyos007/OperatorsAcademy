@@ -49,15 +49,15 @@ src/
 │   ├── CookieBanner.jsx       # GDPR consent
 │   └── CourseLayout.jsx       # Course sidebar nav + progress
 ├── course/
-│   ├── courseData.js           # Module definitions
-│   ├── StartHere.jsx           # Module 0
-│   ├── ClaudeAI.jsx            # Module 1
-│   ├── ClaudeCode.jsx          # Module 2
-│   ├── N8n.jsx                 # Module 3
-│   ├── PuttingItTogether.jsx   # Module 4
-│   ├── Marketing.jsx           # Module 5 (paid)
-│   ├── OpenClaw.jsx            # Module 6 (paid)
-│   └── ProjectSystem.jsx       # Module 7 / Appendix (paid)
+│   ├── courseData.js           # Module definitions + glossary (content lives here)
+│   ├── StartHere.jsx           # Intro: What is an Operator?
+│   ├── ClaudeAI.jsx            # Module 1: Claude (thinking partner, slim)
+│   ├── ClaudeCode.jsx          # Module 2: Claude Code (cross-platform install)
+│   ├── BuildingBlocks.jsx      # Module 3: Skills, Agents & Hooks (key='module3')
+│   ├── PuttingItTogether.jsx   # Module 4: The Operator Workflow (key='module4')
+│   ├── OpenClaw.jsx            # Module 5: OpenClaw (key='module6')
+│   └── ProjectSystem.jsx       # Appendix: Project Startup System (key='appendix')
+# NOTE: n8n + Marketing modules removed 2026-06-20. /course/n8n + /course/marketing redirect to /course/building-blocks.
 └── context/
     └── AuthContext.jsx          # React Context: user, session, profile, tier
 ```

@@ -15,9 +15,8 @@ const ROUTES = [
   '/course',
   '/course/claude-ai',
   '/course/claude-code',
-  '/course/n8n',
+  '/course/building-blocks',
   '/course/putting-it-together',
-  '/course/marketing',
   '/course/openclaw',
   '/course/project-system',
 ]
@@ -76,10 +75,24 @@ const server = createServer(async (req, res) => {
 await new Promise((resolve) => server.listen(PORT, resolve))
 console.log(`[prerender] static server on :${PORT}`)
 
-const browser = await puppeteer.launch({
-  headless: true,
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-})
+// Prerendering is an SEO enhancement, NOT required for the site to work:
+// vercel.json rewrites every route to _spa-shell.html, which client-renders.
+// Some CI/build environments (e.g. Vercel) lack the system libraries headless
+// Chrome needs (libnspr4.so etc.), so launching can fail. When it does, we skip
+// prerendering and exit 0 so the deploy still succeeds with the SPA fallback.
+let browser
+try {
+  browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  })
+} catch (err) {
+  const firstLine = String(err.message).split('\n')[0]
+  console.warn(`[prerender] SKIPPED — could not launch headless Chrome: ${firstLine}`)
+  console.warn('[prerender] Deploy continues with the client-rendered SPA fallback (_spa-shell.html).')
+  server.close()
+  process.exit(0)
+}
 
 let ok = 0
 const start = Date.now()
@@ -114,4 +127,9 @@ for (const route of ROUTES) {
 await browser.close()
 server.close()
 console.log(`[prerender] done. ${ok}/${ROUTES.length} routes in ${((Date.now() - start) / 1000).toFixed(1)}s`)
-process.exit(ok === ROUTES.length ? 0 : 1)
+// Never fail the build over prerendering — routes that weren't prerendered fall
+// back to the client-rendered SPA shell. Warn on partial, but always exit 0.
+if (ok < ROUTES.length) {
+  console.warn(`[prerender] ${ROUTES.length - ok} route(s) not prerendered — they will use the SPA fallback.`)
+}
+process.exit(0)

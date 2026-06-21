@@ -2,7 +2,7 @@
 
 ## Core Identity
 
-**Operators Academy** is a free-to-read, paid-to-do AI course platform that teaches operators how to build and ship AI workflows using Claude Code and modern AI tools (Claude, n8n, Supabase, Vercel).
+**Operators Academy** is a free-to-read, paid-to-do AI course platform that teaches operators how to build and ship AI tools using Claude Code and its workflow layer (skills, agents, hooks, MCP), cross-platform on Windows, Mac, and Linux. (Stack overhaul 2026-06-20: Claude Code-native; n8n + Marketing modules removed.)
 
 - **Target user:** Non-technical business operators and solo founders who want to automate workflows without hiring developers
 - **Experience goal:** Empower users to go from "I don't code" to "I shipped my first AI tool" in 8 modules
@@ -14,7 +14,7 @@
 
 1. **Course stays free.** All 8 modules, all explanations render publicly — no paywall. This is our SEO moat and lead generation engine.
 2. **Actions require signup.** Copy buttons, install commands, tool pages trigger auth gates. Signup is free but captures email.
-3. **Premium tier unlocks utility.** Paid tier ($29–49/mo) gates Modules 2.4–2.7, Module 5 (marketing), Module 6 (OpenClaw), Appendix, premium tools, and setup guides.
+3. **Premium tier unlocks utility.** Paid tier ($29–49/mo) gates advanced Module 2 sections, Module 5 (OpenClaw), the Appendix, premium tools, and setup guides. (Course modules: Intro, 1 Claude, 2 Claude Code, 3 Skills/Agents/Hooks, 4 Operator Workflow, 5 OpenClaw, Appendix.)
 4. **No vendor lock-in.** Teach open-source + vendor-neutral tools.
 5. **Vercel + Supabase stack.** Both have free tiers suitable for this scale.
 

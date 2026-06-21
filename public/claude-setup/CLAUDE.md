@@ -39,16 +39,17 @@ Maintain these documentation files to ensure continuity between sessions:
 | Phrase | Action |
 |--------|--------|
 | "wrap up" / "end session" / "done for today" / "save progress" | Run **/wrap-up** skill (update project files + write handoff prompt). NO git. |
-| "ship" / "push it" / "ship it" / "commit and push" / "commit this" | Run **/ship** skill (branch + commit + push + PR). Git only. |
-| "deploy" / "deploy to vercel" / "go live" / "push to production" | Run **/deploy** skill (PR + merge + production deploy) |
-| "step complete" / "mark this done" / "task done" / "next step" | Run **/step-done** skill (mark done + continue to next step immediately) |
+| "ship" / "push it" / "ship it" / "push to main" / "commit and push" | Run **/push** skill (commit + push the current branch; deploys if the project auto-deploys). |
+| "commit" / "commit this" / "save and continue" / "mark this done" | Run **/commit** skill (checkpoint commit, then keep working). |
+| "create a pr" / "open a pull request" | Run **/pr** skill (feature branch + pull request for review). |
 | "smoke test" / "visual check" / "visual verify" | Run **/smoke** skill (open deployed URL, test routes/flows) |
 
 ### Git Workflow Rule
 **ALWAYS use feature branches. NEVER push directly to main/master.**
 - If on main when shipping, auto-create a branch first (feat/ or fix/ prefix)
-- Use /deploy to merge feature branches to main via PR (squash merge)
-- This ensures preview deployments work and main stays clean
+- For solo work, /push commits and pushes the current branch directly
+- For team/review work, use /pr to open a pull request first
+- This keeps main clean and preview deployments working
 
 ### Documentation Triggers
 | Phrase | Action |
@@ -62,9 +63,9 @@ Maintain these documentation files to ensure continuity between sessions:
 ### QA Triggers
 | Phrase | Action |
 |--------|--------|
-| "run QA" / "quality check" / "run tests" / "test this" | Run **/qa** skill (lint + types + unit + E2E + build) |
+| "run tests" / "run QA" / "quality check" / "test this" | Run **/test** skill (lint + types + unit + E2E + build) |
 | "smoke test this" / "/smoke" / "/smoke <url>" | Run **/smoke** skill (post-deploy visual verification) |
-| "verify this works" | Run **/qa** skill |
+| "verify this works" / "make sure it builds" | Run **/test** skill |
 
 ### Debug Triggers
 | Phrase | Action |
@@ -116,7 +117,7 @@ Then help me continue.
 ```
 Before we pause:
 1. Run /wrap-up (updates PROGRESS.md, TASKS.md, writes handoff file)
-2. Then /ship to commit and push
+2. Then /push to commit and push (or /pr for review)
 3. Next session: /pickup to continue
 ```
 
@@ -150,7 +151,7 @@ If a `VISION.md` exists in the current project root, read it at session start. I
 
 ## QA — Automatic After Every Feature
 
-After completing any feature implementation, run QA automatically. Don't wait to be asked.
+After completing any feature implementation, run /test automatically. Don't wait to be asked.
 
 1. Run the project's test suite (check `package.json` scripts: `test`, `test:e2e`, `playwright test`)
 2. If no tests exist for the new feature, write them
