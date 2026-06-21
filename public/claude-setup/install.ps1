@@ -28,6 +28,21 @@ function Fetch($url, $dest) {
   Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing
 }
 
+# Deep-merge settings (mirrors the mac installer's `jq -s '.[0] * .[1]'`:
+# nested objects merge, arrays/scalars from the patch overwrite). No jq needed.
+function Merge-Json($base, $patch) {
+  foreach ($prop in $patch.PSObject.Properties) {
+    $existing = $base.PSObject.Properties[$prop.Name]
+    if ($existing `
+        -and ($existing.Value -is [System.Management.Automation.PSCustomObject]) `
+        -and ($prop.Value -is [System.Management.Automation.PSCustomObject])) {
+      Merge-Json $existing.Value $prop.Value
+    } else {
+      $base | Add-Member -NotePropertyName $prop.Name -NotePropertyValue $prop.Value -Force
+    }
+  }
+}
+
 # Step 1: Prerequisites
 Say "[1/6] Checking prerequisites" 'Cyan'
 if (Get-Command claude -ErrorAction SilentlyContinue) {
@@ -74,7 +89,20 @@ if (-not (Test-Path $settingsPath)) {
   Fetch "$BaseUrl/settings-template.json" $settingsPath
   Ok "settings.json - created (hooks, high effort)"
 } else {
-  Warn "settings.json already exists - left untouched. Merge settings-template.json manually if you want the hooks."
+  # Merge the template into the existing settings (yours win on conflicts other
+  # than nested objects, which deep-merge) - same result as the mac installer.
+  try {
+    $tmpl = Join-Path $env:TEMP "oa-settings-template.json"
+    Fetch "$BaseUrl/settings-template.json" $tmpl
+    $current = Get-Content $settingsPath -Raw | ConvertFrom-Json
+    $patch   = Get-Content $tmpl -Raw | ConvertFrom-Json
+    Merge-Json $current $patch
+    [System.IO.File]::WriteAllText($settingsPath, ($current | ConvertTo-Json -Depth 20))
+    Remove-Item $tmpl -ErrorAction SilentlyContinue
+    Ok "settings.json - merged (your settings preserved)"
+  } catch {
+    Warn "settings.json exists - could not auto-merge; left untouched. Add the hooks from settings-template.json manually."
+  }
 }
 
 # Step 5: Agents + Skills

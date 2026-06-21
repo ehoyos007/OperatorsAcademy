@@ -6,6 +6,7 @@ import Expandable from './components/Expandable';
 import { useCloneUrl } from './hooks/useCloneUrl';
 
 const INSTALL_CMD = '~/.local/share/operators-academy-pro/install.sh';
+const INSTALL_CMD_WIN = '& ~/.local/share/operators-academy-pro/install.ps1';
 const UPDATE_CMD = 'cd ~/.local/share/operators-academy-pro && git pull && ./install.sh';
 
 /* ─── Data ──────────────────────────────────────────────────────── */
@@ -183,16 +184,24 @@ export default function PremiumToolkitPage() {
                 <span className="text-sm text-gray-300 font-medium">2. Run the installer</span>
                 <GatedCopyButton text={INSTALL_CMD} requiredTier="premium" />
               </div>
-              <div className="bg-gray-950 rounded-lg p-3 font-mono text-xs sm:text-sm overflow-x-auto">
-                <span className="text-gray-500">$ </span>
-                <span className="text-green-400">{INSTALL_CMD}</span>
+              <div className="bg-gray-950 rounded-lg p-3 font-mono text-xs sm:text-sm overflow-x-auto space-y-1">
+                <div>
+                  <span className="text-gray-500"># macOS / Linux $ </span>
+                  <span className="text-green-400">{INSTALL_CMD}</span>
+                </div>
+                <div>
+                  <span className="text-gray-500"># Windows (PowerShell) &gt; </span>
+                  <span className="text-green-400">{INSTALL_CMD_WIN}</span>
+                </div>
               </div>
             </div>
           </div>
 
           <p className="text-xs text-gray-600 mt-4">
-            Backs up existing config before installing. Requires git and jq (<code className="text-gray-500">brew install jq</code>).
-            Token is embedded in the clone URL.
+            Backs up existing config before installing. Needs <strong className="text-gray-500">git</strong> and either{' '}
+            <strong className="text-gray-500">Node</strong> (recommended, for the status line) or{' '}
+            <strong className="text-gray-500">jq</strong> on macOS/Linux. The Windows installer (<code className="text-gray-500">install.ps1</code>)
+            needs neither jq nor iTerm2. Token is embedded in the clone URL.
           </p>
         </div>
       </div>
@@ -663,9 +672,10 @@ export default function PremiumToolkitPage() {
             <div className="text-sm text-gray-400 space-y-2">
               <ul className="list-disc list-inside space-y-1 pl-2">
                 <li><strong className="text-gray-200">Claude Code</strong> — installed and authenticated</li>
-                <li><strong className="text-gray-200">git</strong> — for cloning the toolkit (pre-installed on macOS)</li>
-                <li><strong className="text-gray-200">jq</strong> — for settings merge and status line (<code className="text-gray-300">brew install jq</code>)</li>
-                <li><strong className="text-gray-200">iTerm2</strong> — optional, for tab notification hooks</li>
+                <li><strong className="text-gray-200">git</strong> — for cloning the toolkit. On Windows, install <a href="https://git-scm.com/downloads/win" className="text-purple-300 underline">Git for Windows</a> (also gives you the bash the hooks use)</li>
+                <li><strong className="text-gray-200">Node</strong> — recommended on every OS; powers the cross-platform status line (no jq, no Nerd Font needed)</li>
+                <li><strong className="text-gray-200">jq</strong> — macOS/Linux only, and only if you don't have Node (<code className="text-gray-300">brew install jq</code>). The Windows <code className="text-gray-300">install.ps1</code> never needs it</li>
+                <li><strong className="text-gray-200">iTerm2</strong> — optional, macOS only. The gold "waiting" tab color is iTerm-only; everywhere else you still get the cross-terminal tab title (Windows Terminal included)</li>
               </ul>
             </div>
           </Expandable>
