@@ -34,3 +34,39 @@
 ### Where Left Off
 - DONE + LIVE. Working tree clean, main in sync, deploy green, content verified on the real domain.
 - Next session: retheme src/PromptFlowsPage.jsx away from marketing (still in SiteNav Tools dropdown), OR wire CI-side prerendering for SEO, OR add a Windows host path to the OpenClaw module.
+
+## Session — 2026-06-22 14:38 (wt: OperatorsAcademy)
+
+### Work Done
+- Reviewed the exported [client] session + the v2 Dispatch Brief; adversarial review found 2 blockers, grounded against real skill files: (a) `decide`/`interview-me` call the brain by BARE name (`semantic_search`/`search_all_brains`), sat in the brief's "ship-clean" bucket, AND the gate regex missed those tokens → false-GREEN; (b) orchestrator skills shipped without sub-skill deps — `create-presentation` was DOA (delegates to 3 presentation-* skills not in the kit).
+- Patched the brief (`10 Projects/[client]/Operators Academy — [client] v2 Dispatch Brief.md`): widened the gate regex (+semantic_search/search_all_brains/unified_search/brain_search), moved decide+interview-me to strip-a-cord, dropped create-presentation, added "eyeball each edited skill" step, counts → 22 power-skills.
+- BUILT the v2 kit in `~/Projects/operators-academy-pro` (commit **ec6abd5**): 38 skills (16 retained v1 + 22 new); removed brain-sync/brain-digest; de-personalized daily-tasks/my-help/session-review; ported statusline.mjs+.ps1 to 6 segments; settings patch (+caveman/context7/impeccable/supabase, +tool-search/workflows env); version 2.0.0. De-personalization gate independently re-verified = ZERO hits. Repackaged `~/Downloads/operators-academy-pro-windows-v2.zip` (byte-verified, sha256 36af4e2a…).
+- Built a bilingual (EN/ES) beginner install page → vault `10 Projects/[client]/Operators Academy — Windows Install v2 (for [client]).html` with the verified zip embedded (base64, byte-identical round-trip). Smoke-tested in Chrome (toggle works, 0 console errors, in-browser decode = 295752 B).
+- Deployed live + public: **https://operators-academy-install.vercel.app** (Vercel, enzo-hoyos-projects; 200, no SSO gate).
+
+### Decisions
+- De-personalize EVERY ported skill, not just the listed ones — the HARD "cut every cord" constraint pulled extra FHE/personal refs (schema-diff paths, test/ Supabase IDs + passwords) out of "copy-as-is" buckets.
+- Run the gate against the WHOLE skills tree, not just new files — v1's brain-sync/brain-digest already failed it.
+- Host the install page on Vercel (Enzo authed) not Netlify Drop/tiiny.host — CLI path, no browser drag-drop; the page still tells [client] to use Netlify for HIS deploys.
+
+### Where Left Off
+- DONE + SHIPPED. Kit committed (ec6abd5, local on main, **NOT pushed**). Live page public. Vault docs (brief/spec/index/HTML) updated — vault is not a git repo, saved as files.
+- Residual: `statusline.ps1` hand-reviewed but not runtime-tested (no PowerShell on Mac) — [client] only hits it if he skips Node. Future v3 zip rebuilds should exclude `.claude/` so session notes don't ship.
+
+## Session — 2026-06-22 16:37 (wt: OperatorsAcademy) — [client] feedback round
+
+### Work Done
+- [client] installed the v2 kit (Windows 11, PowerShell 5.1, Node v24). His report surfaced a real kit bug: his Claude's `/doctor` flagged `enabledPlugins` as an ARRAY — current Claude Code requires a RECORD (`{"name@marketplace": true}`). Confirmed our `settings/premium-patch.json` shipped the array.
+- FIXED the kit (operators-academy-pro commit **3a2905b**): premium-patch.json → record format, scoped to the 5 official-marketplace plugins (claude-md-management, playwright, frontend-design, context7, supabase). `caveman`+`impeccable` reference COMMUNITY marketplaces (`JuliusBrussee/caveman`, `pbakaus/impeccable`) the installer never registered → they silently dropped on record-conversion → moved to a documented optional `marketplace add + install` power-up. Clarified README: jq is macOS/Linux only (install.ps1 is jq-free).
+- Repackaged the zip (sha256 **cb910a3b**), re-embedded byte-identical into the install page, **redeployed** (same alias `operators-academy-install.vercel.app`) so future installs are `/doctor`-clean.
+- Added a bilingual (EN/ES) "Optional power-ups" step to the install page (caveman + impeccable add commands) + redeployed — future users self-serve.
+- Verified `install.ps1` merge handles a record (objects merge, arrays/scalars overwrite) — installer-compatible, no installer change needed.
+- Gave [client] a consolidated copy-paste fix message: statusLine → `node ~/.claude/statusline.mjs` (he installed Node AFTER the install, so it wired the `.ps1` fallback) + the optional plugin adds.
+
+### Decisions
+- Auto-enable only official-marketplace plugins; community-marketplace plugins (caveman/impeccable) become a documented optional add — guarantees a `/doctor`-clean install for non-technical users.
+- Left [client]'s `bypassPermissions` + auto-mode ON at his explicit request (his own setting; never shipped by our kit — grep-confirmed).
+
+### Where Left Off
+- Kit fix (3a2905b) + v2 build (ec6abd5) pushed to `ehoyos007/operators-academy-pro` (private). Install page live + fixed. [client] has his fix message.
+- ! OPEN: `OperatorsAcademy` is PUBLIC; this shard + BRAIN.md name a client — pending Enzo's call on push public / redact / keep local.

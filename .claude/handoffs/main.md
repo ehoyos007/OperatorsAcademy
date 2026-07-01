@@ -1,23 +1,32 @@
 # Session Handoff — main
-Generated: 2026-06-20 (updated post-deploy)
+Generated: 2026-06-22 16:37
 Worktree: /Users/enzohoyos/Projects/OperatorsAcademy
 
-## Status: SHIPPED + LIVE
-Overhaul committed (52e3125), pushed to main, deploy GREEN (● Ready), verified live on https://www.operatoracademy.io (homepage + /course/building-blocks + install.ps1 all 200; deployed bundle confirmed new). Working tree clean, main in sync.
+## Status: [client] v2 Windows kit — SHIPPED, FIXED post-feedback, kit pushed (private)
 
 ## What We Were Working On
-Full Claude Code-native overhaul of the Operators Academy course + downloadable toolkit + cross-platform install, plus fixing the broken Vercel deploy (all prior deploys were in Error). All complete and live.
+Shipping the de-personalized v2 premium toolkit to a non-technical Windows user ([client]) and the bilingual install page that delivers it — then fixing the issues his first install surfaced.
 
-## Remaining Work
-- **PromptFlowsPage.jsx** is still 100% marketing (8 SEO/CRO/ads flows) and still linked in the Tools nav dropdown. Retheme to operator/Claude-Code workflows (or remove) for consistency now that the Marketing module is gone.
-- **OpenClaw module** is Mac-Mini-centric. VPS path covers Linux; there's no native-Windows host path. Add Windows guidance or note it's not supported as a host.
-- From TASKS.md (pre-existing): Supabase auth wiring, Stripe, route guards (module numbers shifted — old "gate 2.4-2.7, 5, 6" now maps to advanced Module 2 + Module 5 OpenClaw + Appendix), per-page `<title>`/meta via react-helmet.
-- **Domain:** operatoracademy.io DNS points at Vercel but the domain is registered under a Vercel team not visible from the `enzo-hoyos-projects` CLI scope. Confirm/attach it to the operators-academy project so the new build serves on the custom domain.
+## Where Everything Landed
+- **Kit repo:** `~/Projects/operators-academy-pro` (PRIVATE) — commits `ec6abd5` (v2 build) + `3a2905b` (plugin-format fix), pushed to origin/main.
+- **Zip:** `~/Downloads/operators-academy-pro-windows-v2.zip` (sha256 `cb910a3b`).
+- **Install page (vault, not git):** `~/Documents/main-notes/10 Projects/[client]/Operators Academy — Windows Install v2 (for [client]).html` — bilingual EN/ES, verified zip embedded, now with an "Optional power-ups" step.
+- **Live public link:** https://operators-academy-install.vercel.app (Vercel `enzo-hoyos-projects`, project `operators-academy-install`) — redeployed twice this session (record-format fix, then the power-ups step).
+
+## Issues Found + Fixed ([client]'s install)
+- **`enabledPlugins` array → record** (the real bug): current Claude Code requires a record; our kit shipped an array, which `/doctor` flagged. Fixed in premium-patch.json.
+- **caveman/impeccable dropped**: they're community-marketplace plugins; the installer never registered those marketplaces, so they vanished on record-conversion. Now a documented optional add.
+- **Status line on `.ps1` despite Node**: he installed Node after running the install. Fix = re-point statusLine to `node ~/.claude/statusline.mjs` (sent to him).
+- **`bypassPermissions` ON**: his own setting (not our kit). Left ON per his request.
+
+## Remaining Work / Follow-ups
+- **Public-repo decision (this turn):** `OperatorsAcademy` is PUBLIC; the session shard + BRAIN.md name a client. Decide push-public / redact / keep-local before committing them here.
+- `statusline.ps1` fallback still never runtime-tested on real Windows (only matters if a user skips Node).
+- Course-site follow-ups (unchanged): retheme `src/PromptFlowsPage.jsx` off marketing; CI-side prerender for SEO; OpenClaw Windows host path.
 
 ## Key Decisions This Session
-- Prerender made non-fatal (it's SEO-only; vercel.json rewrites all routes to the SPA shell). Root cause of every Error deploy was puppeteer Chrome failing to launch in Vercel's build container (missing libnspr4.so).
-- Cut n8n + Marketing; old routes redirect to /course/building-blocks (SEO-preserving).
-- Public toolkit re-authored as clean generic skills (no brain/FHE/path coupling).
+- Auto-enable only official-marketplace plugins; community ones are an optional documented add.
+- Repackage + redeploy on the same Vercel alias so the live link always serves the latest kit.
 
 ## Kickstart Prompt
-> Operators Academy (~/Projects/OperatorsAcademy, branch main) just had its Claude Code-native overhaul committed + pushed; Vercel should be deploying. First confirm the latest Production deploy on enzo-hoyos-projects/operators-academy is READY (vercel ls operators-academy) — the fix was making scripts/prerender.mjs non-fatal so the puppeteer Chrome-launch failure no longer fails the build. Then tackle the top open item: retheme src/PromptFlowsPage.jsx away from marketing (its 8 flows in the `flows` array are all SEO/CRO/ads — see the marketing-heavy steps) toward operator/Claude-Code workflows (e.g. "ship a feature end-to-end", "set up your project doc system", "add an MCP connector"), and update its hero copy. The Marketing course module was already removed; this page is the last marketing-heavy surface and is still in the SiteNav Tools dropdown (src/components/SiteNav.jsx toolsLinks). Build check: `VITE_SUPABASE_URL=https://demo.supabase.co VITE_SUPABASE_ANON_KEY=demo npm run build` (expect 9/9 prerender, exit 0).
+> The [client] v2 Windows kit is shipped + fixed. operators-academy-pro (PRIVATE) is at commit 3a2905b (enabledPlugins record-format fix) on top of ec6abd5 (the v2 build), pushed to origin/main. The bilingual install page is LIVE at https://operators-academy-install.vercel.app with the fixed zip (sha256 cb910a3b) embedded + an "Optional power-ups" step. To redeploy the page after edits: copy `~/Documents/main-notes/10 Projects/[client]/Operators Academy — Windows Install v2 (for [client]).html` to `/tmp/operators-academy-install/index.html`, then `cd /tmp/operators-academy-install && vercel deploy --prod --yes --scope enzo-hoyos-projects`. If re-embedding a new zip: base64 it and replace the `const ZIP_B64 = "…"` string, then verify the embedded sha matches the source zip. The kit's de-personalization gate (must stay zero-hit): `cd ~/Projects/operators-academy-pro && grep -riE 'capture_thought|open-brain|mcp__[a-z_]*brain|semantic_search|search_all_brains|unified_search|brain_search|BRAIN_USER|coderabbit|pureprofit|smart-capture' skills/ statusline.mjs statusline.ps1`. One untested surface remains: operators-academy-pro/statusline.ps1 (no-Node Windows fallback).

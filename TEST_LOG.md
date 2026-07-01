@@ -89,3 +89,29 @@ Post-deploy smoke test after toolkit v2 upgrade:
 ### Blockers / Follow-ups:
 - [ ] item
 ```
+
+## QA — 2026-07-01 10:37
+### Branch: `main`
+### Mode: local-dev
+### Feature Under Test: PremiumToolkitPage sync to operators-academy-pro v2.1
+### Overall: PASS (build gate) — no lint/types/unit/E2E infra in this repo
+
+| Check | Result | Details |
+|-------|--------|---------|
+| Lint | SKIP | no lint script |
+| Types | SKIP | JS project, no tsconfig |
+| Unit | SKIP | no test runner configured |
+| E2E | SKIP | no Playwright; premium route is auth+premium gated |
+| Build | PASS | `vite build && prerender` clean, 9/9 routes prerendered |
+
+### Deploy:
+- Pushed `f95e647` → origin/main; Vercel deploy live (created 10:37, root+/tools/premium → 200).
+
+### Notes:
+- Only mechanical gate available is the build; it compiles PremiumToolkitPage incl. the new `Database` import and count changes, so a bad JSX/import would have failed here.
+- Chunk-size warning (693 kB JS) is pre-existing, unrelated to this change.
+- `.claude/sessions/main.md`, `.claude/handoffs/main.md`, `BRAIN.md` held uncommitted — name a client, public repo. Pending Enzo's call.
+
+### Blockers / Follow-ups:
+- [ ] Decide handling of the 3 client-naming files (redact / keep local / gitignore).
+- [ ] Optional: browser smoke of `/tools/premium` with a premium account (route is gated, so not prerender-verifiable).
