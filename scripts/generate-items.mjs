@@ -177,3 +177,28 @@ writeFileSync(OUT, JSON.stringify(items, null, 2) + '\n');
 console.log(`[generate-items] wrote ${items.length} items → ${OUT}`);
 const byKind = items.reduce((m, i) => ((m[i.kind] = (m[i.kind] || 0) + 1), m), {});
 console.log('[generate-items] by kind:', byKind);
+
+// ── Regenerate sitemap.xml (static routes + every Explore detail page) ────────
+const BASE = 'https://www.operatoracademy.io';
+const STATIC = [
+  ['/', 'weekly', '1.0'], ['/course', 'weekly', '0.9'],
+  ['/course/claude-ai', 'weekly', '0.9'], ['/course/claude-code', 'weekly', '0.9'],
+  ['/course/building-blocks', 'weekly', '0.9'], ['/course/putting-it-together', 'weekly', '0.8'],
+  ['/course/openclaw', 'weekly', '0.8'], ['/course/project-system', 'weekly', '0.8'],
+  ['/tools/install', 'weekly', '0.7'], ['/tools/premium', 'weekly', '0.7'],
+  ['/explore', 'weekly', '0.8'], ['/privacy', 'monthly', '0.3'],
+];
+let exploreSlugs = items.map((i) => i.slug);
+try {
+  const content = await import('../src/data/content.js');
+  for (const e of content.ecosystem || []) if (e?.slug) exploreSlugs.push(e.slug);
+} catch { /* ecosystem optional */ }
+exploreSlugs = [...new Set(exploreSlugs)];
+const urls = [
+  ...STATIC.map(([loc, cf, pr]) => `  <url><loc>${BASE}${loc}</loc><changefreq>${cf}</changefreq><priority>${pr}</priority></url>`),
+  ...exploreSlugs.map((s) => `  <url><loc>${BASE}/explore/${s}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>`),
+];
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
+const SITEMAP = join(__dirname, '..', 'public', 'sitemap.xml');
+writeFileSync(SITEMAP, sitemap);
+console.log(`[generate-items] wrote sitemap with ${urls.length} urls → ${SITEMAP}`);

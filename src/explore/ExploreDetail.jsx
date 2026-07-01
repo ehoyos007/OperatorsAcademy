@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { getItem, categoryLabel, KIND_LABELS } from '../data/items';
 import { useViewMode } from '../context/ViewModeContext';
+import { useDocumentMeta } from '../lib/seo';
 import GatedCopyButton from '../components/GatedCopyButton';
 import CopyButton from '../components/CopyButton';
 import ViewModeToggle from '../components/ViewModeToggle';
@@ -44,6 +45,11 @@ export default function ExploreDetail() {
   const { slug } = useParams();
   const { mode } = useViewMode();
   const item = getItem(slug);
+
+  useDocumentMeta(
+    item ? `${item.kind === 'skill' ? '/' : ''}${item.name} — Operators Academy` : 'Explore — Operators Academy',
+    item ? (item.operator?.tagline || item.technical?.tagline || '') : '',
+  );
 
   if (!item) {
     return (

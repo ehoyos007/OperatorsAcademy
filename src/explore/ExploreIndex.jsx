@@ -15,6 +15,7 @@ import ItemCard from './ItemCard';
 import FacetBar from './FacetBar';
 import ViewModeToggle from '../components/ViewModeToggle';
 import { useViewMode } from '../context/ViewModeContext';
+import { useDocumentMeta } from '../lib/seo';
 
 /**
  * ExploreIndex — the faceted, searchable catalog of everything OA ships plus the
@@ -54,6 +55,11 @@ function matches(it, f, skip) {
 export default function ExploreIndex() {
   const { mode } = useViewMode();
   const [params, setParams] = useSearchParams();
+
+  useDocumentMeta(
+    'Explore the toolkit — Operators Academy',
+    'Browse every skill, agent, plugin, and hook in the Operators Academy toolkit — plus curated ecosystem picks. Find the right tool, understand it, and paste a setup prompt into Claude Code.',
+  );
 
   const qRaw = params.get('q') || '';
   const f = {

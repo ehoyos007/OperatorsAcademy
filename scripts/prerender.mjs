@@ -21,6 +21,22 @@ const ROUTES = [
   '/course/project-system',
 ]
 
+// Append Explore routes (index + one page per catalog item). Loaded defensively:
+// content.js is plain JS (no JSON-import attribute) so it's safe on any Node, and
+// any read failure just skips explore prerendering rather than breaking the build.
+try {
+  const gen = JSON.parse(await readFile(join(__dirname, '..', 'src', 'data', 'items.generated.json'), 'utf-8'))
+  const slugs = new Set(gen.map((i) => i.slug))
+  try {
+    const content = await import('../src/data/content.js')
+    for (const e of content.ecosystem || []) if (e?.slug) slugs.add(e.slug)
+  } catch { /* ecosystem picks optional */ }
+  ROUTES.push('/explore', ...[...slugs].map((s) => `/explore/${s}`))
+  console.log(`[prerender] + ${slugs.size + 1} explore routes`)
+} catch (err) {
+  console.warn('[prerender] skipping explore routes — could not load catalog:', err.message)
+}
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js':   'application/javascript; charset=utf-8',
