@@ -8,7 +8,6 @@ import { getItem, categoryLabel, KIND_LABELS } from '../data/items';
 import { useViewMode } from '../context/ViewModeContext';
 import { useDocumentMeta } from '../lib/seo';
 import GatedCopyButton from '../components/GatedCopyButton';
-import CopyButton from '../components/CopyButton';
 import ViewModeToggle from '../components/ViewModeToggle';
 import ItemCard from './ItemCard';
 
@@ -178,7 +177,11 @@ export default function ExploreDetail() {
                       <h2 className="flex items-center gap-2 text-sm font-semibold text-gray-300">
                         <Terminal size={16} /> Install command
                       </h2>
-                      <CopyButton text={technical.installCommand} />
+                      <GatedCopyButton
+                        text={technical.installCommand}
+                        label="Copy install command"
+                        requiredTier={isPremium ? 'premium' : 'free'}
+                      />
                     </div>
                     <div className="bg-gray-950 border border-gray-800 rounded-xl p-4 font-mono text-sm text-green-400 overflow-x-auto">
                       <span className="text-gray-600 select-none">$ </span>
