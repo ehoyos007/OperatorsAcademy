@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Crown, Terminal, Eye, Zap, FileText, Brain, Shield, Bell, Settings, Package, ArrowRight, GitBranch, Layers, Sparkles, Wrench, Rocket, CheckCircle, Clock, Code, PenTool, Cpu, Layout, BarChart3, BookOpen, Loader2, RefreshCw } from 'lucide-react';
+import { Crown, Terminal, Eye, Zap, FileText, Brain, Shield, Bell, Settings, Package, ArrowRight, GitBranch, Layers, Sparkles, Wrench, Rocket, CheckCircle, Clock, Code, PenTool, Cpu, Layout, BarChart3, BookOpen, Loader2, RefreshCw, Database } from 'lucide-react';
 import GatedCopyButton from './components/GatedCopyButton';
 import Expandable from './components/Expandable';
 import { useCloneUrl } from './hooks/useCloneUrl';
@@ -12,31 +12,59 @@ const UPDATE_CMD = 'cd ~/.local/share/operators-academy-pro && git pull && ./ins
 /* ─── Data ──────────────────────────────────────────────────────── */
 
 const baseSkills = [
-  { name: 'ship', desc: 'Commit + push with auto feature branching and PRs', highlight: true },
-  { name: 'deploy', desc: 'PR + squash merge + production deployment', highlight: true },
+  { name: 'auto-init', desc: 'Bootstrap all 8 project documentation files', highlight: true },
+  { name: 'pickup', desc: 'Resume where you left off with a full context briefing', highlight: true },
+  { name: 'commit', desc: 'Checkpoint a task locally and continue', highlight: true },
+  { name: 'test', desc: 'Full QA sweep: lint, types, unit, E2E, build', highlight: true },
+  { name: 'push', desc: 'Commit + push the current branch (auto-branches off main)', highlight: true },
+  { name: 'pr', desc: 'Feature branch + pull request for review' },
   { name: 'wrap-up', desc: 'Save progress, update docs, write handoff prompt', highlight: true },
-  { name: 'pickup', desc: 'Resume where you left off with full context briefing', highlight: true },
-  { name: 'step-done', desc: 'Checkpoint a task and immediately continue to next' },
-  { name: 'auto-init', desc: 'Bootstrap all 8 project documentation files' },
-  { name: 'qa', desc: 'Full QA sweep: lint, types, unit, E2E, build' },
   { name: 'smoke', desc: 'Post-deploy visual verification via Chrome' },
-  { name: 'google-ads-research', desc: 'Competitive Google Ads analysis' },
+  { name: 'improve', desc: 'Self-review a diff for quality and simplification' },
+  { name: 'plan', desc: 'Declare context and plan before building' },
 ];
 
 const premiumSkillCategories = [
   {
-    name: 'Development',
-    color: 'purple',
-    icon: Code,
+    name: 'Session & Workflow',
+    color: 'cyan',
+    icon: Clock,
     skills: [
-      { name: 'compound-engineering', desc: 'Plan-Work-Review-Compound loop for systematic development' },
-      { name: 'frontend-design', desc: 'Production-grade UI with high design quality' },
-      { name: 'dev-browser', desc: 'Browser automation with persistent page state' },
+      { name: 'handoff', desc: 'Write a handoff file for the next session' },
+      { name: 'session-review', desc: 'Review and summarize Claude Code session logs' },
+      { name: 'daily-tasks', desc: 'Check daily tasks for the current git repo' },
+      { name: 'my-help', desc: 'Print a reference card of every tool you have' },
+      { name: 'spawn-team', desc: 'Fan work out across in-process subagents' },
+    ],
+  },
+  {
+    name: 'Quality & Verification',
+    color: 'green',
+    icon: CheckCircle,
+    skills: [
       { name: 'code-review', desc: 'Structured code review with actionable feedback' },
-      { name: 'documentation', desc: 'Auto-generate documentation from code' },
-      { name: 'audit-hooks', desc: 'Git pre-commit hooks for formatting and linting' },
-      { name: 'extract-style-guide', desc: 'Deep-dive CSS/theme → STYLE_GUIDE.md' },
-      { name: 'errors', desc: 'Check errors across Sentry + GitHub + build' },
+      { name: 'pagespeed', desc: 'Lighthouse-grade performance audit with source-mapped fixes' },
+    ],
+  },
+  {
+    name: 'Database',
+    color: 'blue',
+    icon: Database,
+    skills: [
+      { name: 'sql-migrate', desc: 'Run and manage Supabase migrations' },
+      { name: 'schema-diff', desc: 'Detect drift between live schema and your types' },
+    ],
+  },
+  {
+    name: 'Planning & Decisions',
+    color: 'amber',
+    icon: BarChart3,
+    skills: [
+      { name: 'grill-me', desc: 'Relentless plan interrogation with a shared-understanding score' },
+      { name: 'interview-me', desc: 'Targeted questions to align before building' },
+      { name: 'decide', desc: 'Reach a decision you understand and trust' },
+      { name: 'user-stories', desc: 'Turn a feature into structured user stories' },
+      { name: 'reframe-estimates', desc: 'Reframe human-time estimates for agent execution' },
     ],
   },
   {
@@ -44,47 +72,48 @@ const premiumSkillCategories = [
     color: 'teal',
     icon: Eye,
     skills: [
-      { name: 'init-vision', desc: 'Initialize VISION.md + EVAL.md via brain dump interview' },
+      { name: 'init-vision', desc: 'Initialize VISION.md + EVAL.md via brain-dump interview' },
       { name: 'vision-check', desc: 'Alignment check between vision and recent work' },
       { name: 'vision-adoption', desc: 'Scan all projects for Vision System adoption' },
     ],
   },
   {
-    name: 'Content Creation',
-    color: 'blue',
+    name: 'Build & Design',
+    color: 'purple',
+    icon: Code,
+    skills: [
+      { name: 'frontend-design', desc: 'Production-grade UI with high design quality' },
+      { name: 'dev-browser', desc: 'Browser automation with persistent page state' },
+      { name: 'compound-engineering', desc: 'Plan-Work-Review-Compound development loop' },
+      { name: 'ui-recon', desc: 'Harvest existing components + real data before designing' },
+      { name: 'tournament', desc: 'Converge on a UI design by elimination rounds' },
+      { name: 'audit-hooks', desc: 'Git pre-commit hooks for formatting and linting' },
+    ],
+  },
+  {
+    name: 'Content & Docs',
+    color: 'rose',
     icon: PenTool,
     skills: [
       { name: 'copywriting', desc: 'Marketing copy for pages, ads, and product' },
       { name: 'copy-editing', desc: 'Multi-pass editing and polishing' },
+      { name: 'documentation', desc: 'Auto-generate documentation from code' },
+      { name: 'yt-digest', desc: 'Turn a YouTube transcript into a clean HTML digest' },
+      { name: 'scribe', desc: 'Capture and structure notes from a working session' },
       { name: 'pdf', desc: 'Create, edit, extract, and manipulate PDFs' },
       { name: 'docx', desc: 'Generate formatted Word documents and reports' },
-    ],
-  },
-  {
-    name: 'Meta-Skills',
-    color: 'green',
-    icon: Sparkles,
-    skills: [
-      { name: 'skill-creator', desc: 'Create, test, and iterate your own custom skills' },
-      { name: 'claudeception', desc: 'Auto-extract reusable skills from session patterns' },
-      { name: 'my-help', desc: 'Quick reference of all your tools and commands' },
-      { name: 'session-review', desc: 'Review and summarize Claude Code session logs' },
-      { name: 'daily-tasks', desc: 'Check daily tasks for the current git repo' },
-      { name: 'brain-sync', desc: 'Sync brain captures and cross-project context' },
-      { name: 'brain-digest', desc: 'Health check on your knowledge system' },
     ],
   },
 ];
 
 const baseAgents = [
-  { name: 'backend-architect', desc: 'API design and server architecture' },
-  { name: 'qa-orchestrator', desc: 'Full QA workflow coordination' },
+  { name: 'explorer', desc: 'Map the surface area before you change code' },
+  { name: 'reviewer', desc: 'Regression sweep on a diff before you ship' },
+  { name: 'debugger', desc: 'Root cause analysis and bug isolation' },
   { name: 'test-runner', desc: 'Run and validate test suites' },
   { name: 'test-writer-fixer', desc: 'Generate tests and fix failures' },
-  { name: 'git-commit', desc: 'Background git commit workflow' },
-  { name: 'debugger', desc: 'Root cause analysis and bug isolation' },
+  { name: 'git-commit', desc: 'Background git commit + push workflow' },
   { name: 'logger', desc: 'Strategic logging implementation' },
-  { name: 'feature-tester', desc: 'Validate feature implementations' },
 ];
 
 const premiumAgents = [
@@ -106,6 +135,9 @@ const colorMap = {
   teal: { border: 'border-teal-500/30', text: 'text-teal-400', bg: 'bg-teal-500/15' },
   blue: { border: 'border-blue-500/30', text: 'text-blue-400', bg: 'bg-blue-500/15' },
   green: { border: 'border-green-500/30', text: 'text-green-400', bg: 'bg-green-500/15' },
+  cyan: { border: 'border-cyan-500/30', text: 'text-cyan-400', bg: 'bg-cyan-500/15' },
+  amber: { border: 'border-amber-500/30', text: 'text-amber-400', bg: 'bg-amber-500/15' },
+  rose: { border: 'border-rose-500/30', text: 'text-rose-400', bg: 'bg-rose-500/15' },
 };
 
 /* ─── Component ─────────────────────────────────────────────────── */
@@ -121,7 +153,7 @@ export default function PremiumToolkitPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 border border-amber-500/30 rounded-full text-amber-300 text-sm mb-6">
             <Crown size={14} />
-            Premium Toolkit v2.0
+            Premium Toolkit v2.1
           </div>
           <h1 className="text-3xl md:text-5xl font-bold mb-4">
             The Complete Operator Setup
@@ -132,9 +164,9 @@ export default function PremiumToolkitPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-3 text-sm">
             {[
-              { n: '31', label: 'Skills', color: 'text-cyan-400' },
-              { n: '19', label: 'Agents', color: 'text-purple-400' },
-              { n: '4', label: 'Hooks', color: 'text-amber-400' },
+              { n: '40', label: 'Skills', color: 'text-cyan-400' },
+              { n: '18', label: 'Agents', color: 'text-purple-400' },
+              { n: '5', label: 'Hooks', color: 'text-amber-400' },
               { n: '5', label: 'Plugins', color: 'text-green-400' },
               { n: '8', label: 'Doc Files', color: 'text-blue-400' },
             ].map(s => (
@@ -221,10 +253,10 @@ export default function PremiumToolkitPage() {
             {[
               { cmd: '/auto-init', label: 'Set up docs', icon: FileText, color: 'text-green-400', bg: 'bg-green-500/10', border: 'border-green-500/30' },
               { cmd: '/pickup', label: 'Resume work', icon: Clock, color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/30' },
-              { cmd: '/step-done', label: 'Checkpoint', icon: CheckCircle, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/30' },
-              { cmd: '/wrap-up', label: 'Save progress', icon: Layers, color: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/30' },
-              { cmd: '/ship', label: 'Branch + PR', icon: GitBranch, color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/30' },
-              { cmd: '/deploy', label: 'Production', icon: Rocket, color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/30' },
+              { cmd: '/commit', label: 'Checkpoint', icon: CheckCircle, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/30' },
+              { cmd: '/test', label: 'Run QA', icon: Shield, color: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/30' },
+              { cmd: '/push', label: 'Ship branch', icon: GitBranch, color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/30' },
+              { cmd: '/wrap-up', label: 'Save + handoff', icon: Layers, color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/30' },
             ].map((step, i) => (
               <React.Fragment key={step.cmd}>
                 <div className={`flex-1 ${step.bg} border ${step.border} rounded-xl p-3 text-center`}>
@@ -249,11 +281,11 @@ export default function PremiumToolkitPage() {
               <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center">
                 <GitBranch size={13} className="text-amber-400" />
               </div>
-              <h3 className="font-semibold text-sm">/ship — Never push to main</h3>
+              <h3 className="font-semibold text-sm">/push — Never clobber main by accident</h3>
             </div>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Automatically creates a feature branch if you're on main, generates a conventional commit message,
-              pushes, and opens a PR. One word, full git workflow.
+              Commits and pushes the current branch. If you're on main it creates a feature branch first,
+              generates a conventional commit message, and pushes. Run /pr when you want a pull request.
             </p>
           </div>
 
@@ -288,10 +320,10 @@ export default function PremiumToolkitPage() {
               <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
                 <BarChart3 size={13} className="text-green-400" />
               </div>
-              <h3 className="font-semibold text-sm">/qa + /smoke — Built-in quality gates</h3>
+              <h3 className="font-semibold text-sm">/test + /smoke — Built-in quality gates</h3>
             </div>
             <p className="text-xs text-gray-400 leading-relaxed">
-              /qa runs lint, types, unit tests, E2E, and build in sequence. /smoke opens your deployed app
+              /test runs lint, types, unit tests, E2E, and build in sequence. /smoke opens your deployed app
               in Chrome, checks every route for errors, and logs results to TEST_LOG.md.
             </p>
           </div>
@@ -342,13 +374,13 @@ export default function PremiumToolkitPage() {
             </p>
             <div className="space-y-1.5">
               {[
-                { phrase: '"ship it"', action: 'Branch + commit + push + PR' },
-                { phrase: '"deploy"', action: 'Merge PR + production deploy' },
+                { phrase: '"push it"', action: 'Branch + commit + push current branch' },
+                { phrase: '"create a pr"', action: 'Feature branch + pull request' },
                 { phrase: '"wrap up"', action: 'Save progress + handoff file' },
-                { phrase: '"run QA"', action: 'Lint + types + tests + build' },
+                { phrase: '"run tests"', action: 'Lint + types + tests + build' },
                 { phrase: '"initialize project"', action: 'Create all 8 doc files' },
                 { phrase: '"let\'s continue"', action: 'Full context briefing' },
-                { phrase: '"step done"', action: 'Checkpoint + continue' },
+                { phrase: '"commit this"', action: 'Checkpoint + continue' },
                 { phrase: '"debug this"', action: 'Root cause analysis' },
               ].map(({ phrase, action }) => (
                 <div key={phrase} className="flex items-center gap-3 text-xs">
@@ -365,7 +397,7 @@ export default function PremiumToolkitPage() {
       <div className="max-w-5xl mx-auto px-4 pb-14">
         <div className="mb-4">
           <div className="flex items-center gap-3 mb-2">
-            <h2 className="text-2xl font-bold">9 Base Skills</h2>
+            <h2 className="text-2xl font-bold">10 Base Skills</h2>
             <span className="text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full">Included</span>
           </div>
           <p className="text-sm text-gray-500">The shipping workflow. Every premium install starts with these.</p>
@@ -384,10 +416,10 @@ export default function PremiumToolkitPage() {
       <div className="max-w-5xl mx-auto px-4 pb-14">
         <div className="mb-4">
           <div className="flex items-center gap-3 mb-2">
-            <h2 className="text-2xl font-bold">22 Premium Skills</h2>
+            <h2 className="text-2xl font-bold">30 Premium Skills</h2>
             <span className="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full">Premium</span>
           </div>
-          <p className="text-sm text-gray-500">Advanced development, content creation, vision system, and self-improving meta-skills.</p>
+          <p className="text-sm text-gray-500">Session workflow, database, planning, the Vision System, build &amp; design, and content — grouped by what they do.</p>
         </div>
         <div className="space-y-6">
           {premiumSkillCategories.map(({ name, color, icon: Icon, skills }) => (
@@ -416,7 +448,7 @@ export default function PremiumToolkitPage() {
 
       {/* ── Agents ────────────────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-4 pb-14">
-        <h2 className="text-2xl font-bold mb-2">19 Agents</h2>
+        <h2 className="text-2xl font-bold mb-2">18 Agents</h2>
         <p className="text-gray-400 text-sm mb-6">
           Autonomous subprocesses that handle complex tasks in parallel with your main conversation.
         </p>
@@ -424,7 +456,7 @@ export default function PremiumToolkitPage() {
         {/* Base agents */}
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">8 Base Agents</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">7 Base Agents</span>
             <span className="text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full">Included</span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -464,12 +496,16 @@ export default function PremiumToolkitPage() {
               <div className="p-1.5 bg-yellow-500/20 rounded-lg">
                 <Bell className="text-yellow-400" size={16} />
               </div>
-              <h3 className="font-semibold text-sm">4 Hooks</h3>
+              <h3 className="font-semibold text-sm">5 Hooks</h3>
             </div>
             <div className="space-y-2 text-xs">
               <div className="bg-gray-900 rounded-lg px-3 py-2">
                 <div className="text-yellow-300 font-medium">auto-init-check</div>
-                <div className="text-gray-500">Detects missing docs on session start</div>
+                <div className="text-gray-500">Flags missing docs on session start</div>
+              </div>
+              <div className="bg-gray-900 rounded-lg px-3 py-2">
+                <div className="text-yellow-300 font-medium">session-logger</div>
+                <div className="text-gray-500">Logs a one-line record of each session</div>
               </div>
               <div className="bg-gray-900 rounded-lg px-3 py-2">
                 <div className="text-yellow-300 font-medium">iterm-tab-notify</div>
@@ -480,8 +516,8 @@ export default function PremiumToolkitPage() {
                 <div className="text-gray-500">Resets tab color when you type</div>
               </div>
               <div className="bg-gray-900 rounded-lg px-3 py-2">
-                <div className="text-yellow-300 font-medium">iterm-tab-title</div>
-                <div className="text-gray-500">Auto-names tab with your task</div>
+                <div className="text-yellow-300 font-medium">tab-title</div>
+                <div className="text-gray-500">Cross-terminal tab title from your task</div>
               </div>
             </div>
           </div>
@@ -505,7 +541,7 @@ export default function PremiumToolkitPage() {
               </div>
               <div className="flex items-center justify-between bg-gray-900 rounded-lg px-3 py-2">
                 <span className="text-gray-300">Status Line</span>
-                <span className="text-green-300 font-medium">Model + Git + Context %</span>
+                <span className="text-green-300 font-medium">6 segments</span>
               </div>
               <div className="flex items-center justify-between bg-gray-900 rounded-lg px-3 py-2">
                 <span className="text-gray-300">Settings Merge</span>
@@ -528,7 +564,7 @@ export default function PremiumToolkitPage() {
                 { name: 'claude-md-management', desc: 'CLAUDE.md auditing + updates' },
                 { name: 'playwright', desc: 'Browser testing automation' },
                 { name: 'frontend-design', desc: 'Enhanced UI generation' },
-                { name: 'slack', desc: 'Channel search + messaging' },
+                { name: 'supabase', desc: 'Project, schema + migration tooling' },
               ].map(p => (
                 <div key={p.name} className="bg-gray-900 rounded-lg px-3 py-2">
                   <div className="text-green-300 font-medium">{p.name}</div>
@@ -579,17 +615,21 @@ export default function PremiumToolkitPage() {
       {/* ── Status Bar Preview ─────────────────────────────────────── */}
       <div className="max-w-5xl mx-auto px-4 pb-14">
         <h2 className="text-2xl font-bold mb-4">Live Status Bar</h2>
-        <p className="text-sm text-gray-400 mb-4">Always visible in your terminal — model, context window usage, git branch, and project name.</p>
+        <p className="text-sm text-gray-400 mb-4">Always visible in your terminal — six segments: model, context window usage, git branch, project name, prompts this session, and your /grill-me shared-understanding score.</p>
         <div className="bg-gray-950 border border-gray-700 rounded-xl px-5 py-3 font-mono text-sm inline-flex items-center gap-0 overflow-x-auto w-full">
-          <span className="text-purple-400">Opus 4.6</span>
+          <span className="text-purple-400">Opus 4.8</span>
           <span className="text-gray-600 mx-2">│</span>
           <span className="text-green-400">[████░░░░░░] 38%</span>
           <span className="text-gray-600 mx-2">│</span>
-          <span className="text-green-400"> main</span>
+          <span className="text-green-400"> main*</span>
           <span className="text-gray-600 mx-2">│</span>
           <span className="text-cyan-400">my-project</span>
+          <span className="text-gray-600 mx-2">│</span>
+          <span className="text-cyan-400">✎ 12</span>
+          <span className="text-gray-600 mx-2">│</span>
+          <span className="text-cyan-400">🎯 85%</span>
         </div>
-        <p className="text-xs text-gray-600 mt-2">Color-coded: green &lt;50%, yellow 50-80%, red &gt;80% context usage. Yellow asterisk (*) when you have uncommitted changes.</p>
+        <p className="text-xs text-gray-600 mt-2">Color-coded: green &lt;50%, yellow 50-80%, red &gt;80% context usage. Asterisk (*) on the branch when you have uncommitted changes.</p>
       </div>
 
       {/* ── Bonus: TLE-Marketing ──────────────────────────────────── */}
@@ -631,11 +671,11 @@ export default function PremiumToolkitPage() {
               <p>The installer only touches files inside <code className="text-gray-300">~/.claude/</code>:</p>
               <ul className="list-disc list-inside space-y-1 pl-2">
                 <li><code className="text-gray-300">CLAUDE.md</code> — Global instructions (8-file doc system, plan mode, 20+ triggers)</li>
-                <li><code className="text-gray-300">statusline-command.sh</code> — Terminal status bar</li>
+                <li><code className="text-gray-300">statusline.mjs / .ps1 / -command.sh</code> — 6-segment terminal status bar (Node, PowerShell, bash)</li>
                 <li><code className="text-gray-300">settings.json</code> — Merged with hooks, plugins, effort level, agent teams</li>
-                <li><code className="text-gray-300">agents/*.md</code> — 19 agent definitions (8 base + 11 premium)</li>
-                <li><code className="text-gray-300">skills/*/SKILL.md</code> — 31 skill definitions (9 base + 22 premium)</li>
-                <li><code className="text-gray-300">hooks/*.sh</code> — 4 automation hook scripts</li>
+                <li><code className="text-gray-300">agents/*.md</code> — 18 agent definitions (7 base + 11 premium)</li>
+                <li><code className="text-gray-300">skills/*/SKILL.md</code> — 40 skill definitions (10 base + 30 premium)</li>
+                <li><code className="text-gray-300">hooks/*.sh</code> — 5 automation hook scripts</li>
                 <li><code className="text-gray-300">vision-templates/</code> — VISION.md + EVAL.md templates</li>
                 <li><code className="text-gray-300">commands/</code> — /init-vision command</li>
               </ul>
@@ -653,8 +693,8 @@ export default function PremiumToolkitPage() {
 
           <Expandable title="Do I still need the free installer?">
             <div className="text-sm text-gray-400 space-y-2">
-              <p><strong className="text-gray-200">No.</strong> The premium installer is fully standalone as of v2.0. It includes everything from the free tier (9 base skills, 8 base agents, all hooks, CLAUDE.md, statusline) plus all premium content.</p>
-              <p>If you already ran the free installer, premium will upgrade in place — your backups are preserved.</p>
+              <p><strong className="text-gray-200">No.</strong> The premium installer is fully standalone as of v2.1 — it ships its own CLAUDE.md, the 7 base agents, the base workflow skills, and the base hooks, so it installs cleanly on a fresh machine.</p>
+              <p>If you already ran the free installer, premium upgrades in place — your existing config is backed up first.</p>
             </div>
           </Expandable>
 
@@ -686,8 +726,8 @@ export default function PremiumToolkitPage() {
               <ul className="list-disc list-inside space-y-1 pl-2">
                 <li>Edit <code className="text-gray-300">~/.claude/CLAUDE.md</code> to add your own triggers or conventions</li>
                 <li>Edit skills in <code className="text-gray-300">~/.claude/skills/</code> to modify behavior</li>
-                <li>Use <code className="text-gray-300">/skill-creator</code> to build your own skills from scratch</li>
-                <li>Use <code className="text-gray-300">/claudeception</code> to auto-extract skills from your work patterns</li>
+                <li>Add a new skill as a folder with a <code className="text-gray-300">SKILL.md</code> — Claude Code picks it up automatically</li>
+                <li>Run <code className="text-gray-300">/my-help</code> to print a reference of everything installed</li>
                 <li>Add project-specific CLAUDE.md files for per-project overrides</li>
               </ul>
             </div>
