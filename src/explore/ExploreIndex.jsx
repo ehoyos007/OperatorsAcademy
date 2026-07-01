@@ -62,11 +62,16 @@ export default function ExploreIndex() {
   );
 
   const qRaw = params.get('q') || '';
+  // Ignore unknown facet values from stale/mistyped deep links (fall back to no filter)
+  const readEnumParam = (key, allowed) => {
+    const value = params.get(key) || '';
+    return allowed.includes(value) ? value : '';
+  };
   const f = {
-    kind: params.get('kind') || '',
-    origin: params.get('origin') || '',
-    category: params.get('category') || '',
-    tier: params.get('tier') || '',
+    kind: readEnumParam('kind', KINDS),
+    origin: readEnumParam('origin', ORIGINS),
+    category: readEnumParam('category', CATEGORY_KEYS),
+    tier: readEnumParam('tier', TIERS),
     q: qRaw.trim().toLowerCase(),
   };
   const sort = SORTS[params.get('sort')] ? params.get('sort') : 'updated';

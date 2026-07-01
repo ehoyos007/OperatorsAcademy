@@ -10,7 +10,8 @@ import { useDocumentMeta } from '../lib/seo';
  */
 export default function GuidesIndex() {
   const [params, setParams] = useSearchParams();
-  const active = params.get('level') || '';
+  const rawLevel = params.get('level') || '';
+  const active = DIFFICULTIES.includes(rawLevel) ? rawLevel : '';
 
   useDocumentMeta(
     'Guides — Operators Academy',
