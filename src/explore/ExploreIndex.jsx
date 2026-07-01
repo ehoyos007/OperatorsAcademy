@@ -34,9 +34,16 @@ const tierLabel = (v) => v.charAt(0).toUpperCase() + v.slice(1);
 
 const SORTS = { updated: 'Recently updated', name: 'A–Z' };
 
-// name + operator tagline + technical tagline + tags → the search corpus.
+// name + operator/technical taglines + summary + body + tags → the search corpus.
 function haystack(it) {
-  return [it.name, it.operator?.tagline, it.technical?.tagline, ...(it.tags || [])]
+  return [
+    it.name,
+    it.operator?.tagline,
+    it.operator?.summary,
+    it.technical?.tagline,
+    it.technical?.body,
+    ...(it.tags || []),
+  ]
     .filter(Boolean)
     .join(' ')
     .toLowerCase();

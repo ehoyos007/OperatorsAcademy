@@ -139,6 +139,7 @@ export default function ExploreDetail() {
                 )}
 
                 {/* Setup — paste into Claude Code */}
+                {operator.setupPrompt && (
                 <div className="bg-gray-800/60 border border-teal-500/30 rounded-2xl p-5">
                   <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
                     <h2 className="flex items-center gap-2 text-sm font-semibold text-teal-300">
@@ -157,6 +158,7 @@ export default function ExploreDetail() {
                     Paste this into your Claude Code session — Claude does the rest.
                   </p>
                 </div>
+                )}
               </section>
             ) : (
               /* ── Technical view ─────────────────────────────────── */
