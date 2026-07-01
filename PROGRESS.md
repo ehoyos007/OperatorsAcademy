@@ -6,16 +6,16 @@
 
 ### Last 10 Commits
 ```
-a0eb1a2 Merge branch 'feat/explore' (29 seconds ago)
-6aa1ab2 fix: ignore invalid facet/level deep-link params (CodeRabbit) (82 seconds ago)
-dfef765 feat: Phase 4 — Stacks + Updates (19 minutes ago)
-cf09913 feat: Phase 3 — Guides library (34 minutes ago)
-16238d4 fix: gate Technical-view install command copy (CodeRabbit) (52 minutes ago)
-e3cf66c feat: Phase 2 — prerender Explore routes + per-page SEO (55 minutes ago)
-555874e feat: Phase 1 — Explore catalog over the toolkit (70 minutes ago)
-a6f9f85 📊 Auto-update PROGRESS.md (2 hours ago)
-37925be docs: redact client name from session notes; log QA sweep (2 hours ago)
-87aa74d 📊 Auto-update PROGRESS.md (3 hours ago)
+7caee79 chore: session wrap-up — Explore/Guides/Stacks/Updates shipped (8 seconds ago)
+7a384ed fix: broaden Explore search corpus + guard setup panel (CodeRabbit) (8 seconds ago)
+62f1403 📊 Auto-update PROGRESS.md (8 minutes ago)
+a0eb1a2 Merge branch 'feat/explore' (9 minutes ago)
+6aa1ab2 fix: ignore invalid facet/level deep-link params (CodeRabbit) (10 minutes ago)
+dfef765 feat: Phase 4 — Stacks + Updates (28 minutes ago)
+cf09913 feat: Phase 3 — Guides library (42 minutes ago)
+16238d4 fix: gate Technical-view install command copy (CodeRabbit) (60 minutes ago)
+e3cf66c feat: Phase 2 — prerender Explore routes + per-page SEO (64 minutes ago)
+555874e feat: Phase 1 — Explore catalog over the toolkit (79 minutes ago)
 ```
 
 ### Open Issues
