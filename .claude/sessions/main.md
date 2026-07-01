@@ -70,3 +70,26 @@
 ### Where Left Off
 - Kit fix (3a2905b) + v2 build (ec6abd5) pushed to `ehoyos007/operators-academy-pro` (private). Install page live + fixed. [client] has his fix message.
 - ! OPEN: `OperatorsAcademy` is PUBLIC; this shard + BRAIN.md name a client — pending Enzo's call on push public / redact / keep local.
+
+## Session — 2026-07-01 13:14 (wt: OperatorsAcademy) — ClaudeKit port: Explore/Guides/Stacks/Updates
+
+### Work Done
+- Resolved the OPEN privacy item: repo is PUBLIC, client name existed ONLY in the uncommitted working tree (committed(HEAD)=0, absent from history — never leaked). Per Enzo's call, **redacted** Noel → `[client]` in shard/handoff/BRAIN.md and committed (37925be).
+- Reviewed deployed site vs toolkit repos; fixed **operators-academy-pro v2.1** to be truly standalone (bundles CLAUDE.md + 7 base agents + auto-init/plan skills + auto-init-check/session-logger hooks; install.sh + install.ps1). Regenerated PremiumToolkitPage to match the real repo (40 skills/18 agents/5 hooks/supabase plugin). Toolkit push (private) d828fe6; website f95e647.
+- Built the ClaudeKit-inspired reference layer across 4 gated phases on `feat/explore`, each commit → preview → QA + smoke:
+  - P1 (555874e): /explore faceted catalog (78 items = 68 OA + 10 ecosystem), Operator⇄Technical toggle, /explore/:slug detail with paste-and-go setup prompt, reshaped /tools/premium into a public pitch. Generator parses operators-academy-pro → items.generated.json; content.js hand-authored; items.js merge.
+  - P2 (e3cf66c): prerender all Explore routes + per-page SEO meta (src/lib/seo.js useDocumentMeta) + sitemap.
+  - P3 (cf09913): Guides library — 12 how-tos via import.meta.glob registry, reuses course ContentRenderer, "On this page" TOC. Authored by 3 parallel agents.
+  - P4 (dfef765): Stacks (7 role bundles) + Updates (changelog, type/tag filter).
+- CodeRabbit across commits: fixed the real Technical-view ungated-copy bug, a11y aria-labels, invalid-deep-link-param fallback, PRD doc name. Rejected 2 as product decisions (public /tools/premium pitch; curl|bash own installer).
+- **Merged feat/explore → main (a0eb1a2), deployed to production, smoked live** — operatoracademy.io/explore renders (78 items, 0 console errors). All routes 200.
+
+### Decisions
+- Catalog OUR toolkit only (not a 3rd-party directory — the moat). Public shop-window: browse/read free, copy setup-prompt gated on signup.
+- Global Operator⇄Technical toggle (default Operator) serves both non-technical operators and power users. Install = paste-into-Claude setup prompt, not raw command (the ClaudeKit differentiator).
+- Feature-branch + preview-per-phase deploy; merge to prod only after all 4 landed + Enzo reviewed.
+
+### Where Left Off
+- DONE + LIVE in production. `feat/explore` merged to main (a0eb1a2), deployed, smoked. Branch still exists (not deleted).
+- ! Known limit: Vercel build skips the puppeteer prerender (no headless Chrome) → prod client-renders + sets titles via JS; prerendered static HTML only from local builds. True static SEO would need a Vercel-side prerender.
+- Follow-ups (not started): "before/after example" blocks in Explore detail (deferred P2 polish); optional Explore→premium upgrade CTA (Stripe not built).

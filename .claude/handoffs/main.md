@@ -1,32 +1,24 @@
 # Session Handoff — main
-Generated: 2026-06-22 16:37
+Generated: 2026-07-01 13:14
 Worktree: /Users/enzohoyos/Projects/OperatorsAcademy
 
-## Status: [client] v2 Windows kit — SHIPPED, FIXED post-feedback, kit pushed (private)
-
 ## What We Were Working On
-Shipping the de-personalized v2 premium toolkit to a non-technical Windows user ([client]) and the bilingual install page that delivers it — then fixing the issues his first install surfaced.
+Shipped a ClaudeKit-inspired reference layer to production: a public faceted **Explore** catalog of the whole toolkit, a **Guides** library, **Stacks** (role bundles), and an **Updates** changelog — plus made the premium toolkit v2.1 truly standalone. All merged to main (a0eb1a2) and LIVE on operatoracademy.io.
 
-## Where Everything Landed
-- **Kit repo:** `~/Projects/operators-academy-pro` (PRIVATE) — commits `ec6abd5` (v2 build) + `3a2905b` (plugin-format fix), pushed to origin/main.
-- **Zip:** `~/Downloads/operators-academy-pro-windows-v2.zip` (sha256 `cb910a3b`).
-- **Install page (vault, not git):** `~/Documents/main-notes/10 Projects/[client]/Operators Academy — Windows Install v2 (for [client]).html` — bilingual EN/ES, verified zip embedded, now with an "Optional power-ups" step.
-- **Live public link:** https://operators-academy-install.vercel.app (Vercel `enzo-hoyos-projects`, project `operators-academy-install`) — redeployed twice this session (record-format fix, then the power-ups step).
-
-## Issues Found + Fixed ([client]'s install)
-- **`enabledPlugins` array → record** (the real bug): current Claude Code requires a record; our kit shipped an array, which `/doctor` flagged. Fixed in premium-patch.json.
-- **caveman/impeccable dropped**: they're community-marketplace plugins; the installer never registered those marketplaces, so they vanished on record-conversion. Now a documented optional add.
-- **Status line on `.ps1` despite Node**: he installed Node after running the install. Fix = re-point statusLine to `node ~/.claude/statusline.mjs` (sent to him).
-- **`bypassPermissions` ON**: his own setting (not our kit). Left ON per his request.
-
-## Remaining Work / Follow-ups
-- **Public-repo decision (this turn):** `OperatorsAcademy` is PUBLIC; the session shard + BRAIN.md name a client. Decide push-public / redact / keep-local before committing them here.
-- `statusline.ps1` fallback still never runtime-tested on real Windows (only matters if a user skips Node).
-- Course-site follow-ups (unchanged): retheme `src/PromptFlowsPage.jsx` off marketing; CI-side prerender for SEO; OpenClaw Windows host path.
+## Remaining Work
+- `feat/explore` branch is merged but not deleted — delete it (`git branch -d feat/explore && git push origin --delete feat/explore`) if you want cleanup.
+- Deferred polish: "before/after example" blocks on Explore detail pages (P2 stretch, not built).
+- Bigger follow-ups: true static SEO (Vercel-side prerender, since Vercel skips the local puppeteer prerender), and a real Explore→premium upgrade path (Stripe still not built).
 
 ## Key Decisions This Session
-- Auto-enable only official-marketplace plugins; community ones are an optional documented add.
-- Repackage + redeploy on the same Vercel alias so the live link always serves the latest kit.
+- Catalog OUR toolkit only (not a 3rd-party directory). Public shop-window: browse/read free, copy-setup-prompt gated on signup, premium clone tier-gated.
+- Global Operator⇄Technical framing toggle (default Operator). Install affordance = paste-into-Claude setup prompt.
+- 2 CodeRabbit findings deliberately rejected as product decisions: public `/tools/premium` pitch; `curl|bash` (OA's own installer).
+
+## Architecture Notes (for the next session)
+- Explore data pipeline: `scripts/generate-items.mjs` parses `~/Projects/operators-academy-pro` → `src/data/items.generated.json` (mechanical); `src/data/content.js` = hand-authored operator copy + ecosystem picks; `src/data/items.js` merges them. Re-run `npm run gen:items` when the toolkit changes; `npm run check:items` validates. Generator needs the toolkit repo present → NOT in the Vercel build (generated JSON is committed).
+- Guides: `src/data/guides.js` uses `import.meta.glob('../guides/content/*.js', {eager:true})` — drop a file in `src/guides/content/` and it auto-registers. Reuses `src/components/ContentRenderer.jsx` (markdown subset: **bold**, *italic*, `code`, • bullets, numbered, | tables |, ```fences```).
+- SEO: `src/lib/seo.js` `useDocumentMeta(title, desc)` sets per-page title/meta client-side (Vercel doesn't run the prerender).
 
 ## Kickstart Prompt
-> The [client] v2 Windows kit is shipped + fixed. operators-academy-pro (PRIVATE) is at commit 3a2905b (enabledPlugins record-format fix) on top of ec6abd5 (the v2 build), pushed to origin/main. The bilingual install page is LIVE at https://operators-academy-install.vercel.app with the fixed zip (sha256 cb910a3b) embedded + an "Optional power-ups" step. To redeploy the page after edits: copy `~/Documents/main-notes/10 Projects/[client]/Operators Academy — Windows Install v2 (for [client]).html` to `/tmp/operators-academy-install/index.html`, then `cd /tmp/operators-academy-install && vercel deploy --prod --yes --scope enzo-hoyos-projects`. If re-embedding a new zip: base64 it and replace the `const ZIP_B64 = "…"` string, then verify the embedded sha matches the source zip. The kit's de-personalization gate (must stay zero-hit): `cd ~/Projects/operators-academy-pro && grep -riE 'capture_thought|open-brain|mcp__[a-z_]*brain|semantic_search|search_all_brains|unified_search|brain_search|BRAIN_USER|coderabbit|pureprofit|smart-capture' skills/ statusline.mjs statusline.ps1`. One untested surface remains: operators-academy-pro/statusline.ps1 (no-Node Windows fallback).
+> Operators Academy Explore/Guides/Stacks/Updates initiative is DONE and live in production (main @ a0eb1a2, operatoracademy.io). If picking up: possible next tasks are (1) delete the merged `feat/explore` branch, (2) add "before/after example" blocks to `src/explore/ExploreDetail.jsx` Technical view, or (3) investigate a Vercel-side prerender so `/explore/:slug`, `/guides/:slug` serve true static HTML for SEO (currently Vercel skips the puppeteer prerender in `scripts/prerender.mjs` and client-renders). To add a guide: drop a file in `src/guides/content/<slug>.js` (auto-registers via glob). To refresh the catalog after a toolkit change: `npm run gen:items` then `npm run check:items`.
