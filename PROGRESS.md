@@ -6,16 +6,16 @@
 
 ### Last 10 Commits
 ```
-41c2baa chore: update session log + handoff (8 seconds ago)
-4d06528 claude-setup: Windows settings merge + premium page Windows install (8 seconds ago)
-1588260 📊 Auto-update PROGRESS.md (45 minutes ago)
-52e3125 feat: Claude Code-native course overhaul + cross-platform install + deploy fix (45 minutes ago)
-e7e6580 📊 Auto-update PROGRESS.md (6 weeks ago)
-ce91717 fix(claude-setup): iterm-tab-notify silent in no-tty contexts (6 weeks ago)
-4d3259a 📊 Auto-update PROGRESS.md (8 weeks ago)
-22e98e8 feat: prerender public routes for AI crawler visibility (8 weeks ago)
-8e850a7 📊 Auto-update PROGRESS.md (2 months ago)
-33699de fix: move GitHub PAT tokens server-side to prevent client exposure (#2) (2 months ago)
+f95e647 fix: sync premium toolkit page to operators-academy-pro v2.1 (9 seconds ago)
+66fd84c 📊 Auto-update PROGRESS.md (10 days ago)
+41c2baa chore: update session log + handoff (10 days ago)
+4d06528 claude-setup: Windows settings merge + premium page Windows install (10 days ago)
+1588260 📊 Auto-update PROGRESS.md (11 days ago)
+52e3125 feat: Claude Code-native course overhaul + cross-platform install + deploy fix (11 days ago)
+e7e6580 📊 Auto-update PROGRESS.md (7 weeks ago)
+ce91717 fix(claude-setup): iterm-tab-notify silent in no-tty contexts (7 weeks ago)
+4d3259a 📊 Auto-update PROGRESS.md (10 weeks ago)
+22e98e8 feat: prerender public routes for AI crawler visibility (10 weeks ago)
 ```
 
 ### Open Issues
