@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import App from './App.jsx'
+import { ViewModeProvider } from './context/ViewModeContext'
 import './index.css'
 import './ppl-theme.css'
 
@@ -12,7 +13,9 @@ const rootEl = document.getElementById('root')
 const tree = (
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <ViewModeProvider>
+        <App />
+      </ViewModeProvider>
       <Analytics />
       <SpeedInsights />
     </BrowserRouter>

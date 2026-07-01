@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Crown, Terminal, Eye, Zap, FileText, Brain, Shield, Bell, Settings, Package, ArrowRight, GitBranch, Layers, Sparkles, Wrench, Rocket, CheckCircle, Clock, Code, PenTool, Cpu, Layout, BarChart3, BookOpen, Loader2, RefreshCw, Database } from 'lucide-react';
+import { Crown, Terminal, Eye, Zap, FileText, Shield, Bell, Settings, Package, ArrowRight, GitBranch, Layers, CheckCircle, Clock, Cpu, BarChart3, BookOpen, Loader2, RefreshCw } from 'lucide-react';
 import GatedCopyButton from './components/GatedCopyButton';
 import Expandable from './components/Expandable';
 import { useCloneUrl } from './hooks/useCloneUrl';
@@ -8,137 +8,6 @@ import { useCloneUrl } from './hooks/useCloneUrl';
 const INSTALL_CMD = '~/.local/share/operators-academy-pro/install.sh';
 const INSTALL_CMD_WIN = '& ~/.local/share/operators-academy-pro/install.ps1';
 const UPDATE_CMD = 'cd ~/.local/share/operators-academy-pro && git pull && ./install.sh';
-
-/* ─── Data ──────────────────────────────────────────────────────── */
-
-const baseSkills = [
-  { name: 'auto-init', desc: 'Bootstrap all 8 project documentation files', highlight: true },
-  { name: 'pickup', desc: 'Resume where you left off with a full context briefing', highlight: true },
-  { name: 'commit', desc: 'Checkpoint a task locally and continue', highlight: true },
-  { name: 'test', desc: 'Full QA sweep: lint, types, unit, E2E, build', highlight: true },
-  { name: 'push', desc: 'Commit + push the current branch (auto-branches off main)', highlight: true },
-  { name: 'pr', desc: 'Feature branch + pull request for review' },
-  { name: 'wrap-up', desc: 'Save progress, update docs, write handoff prompt', highlight: true },
-  { name: 'smoke', desc: 'Post-deploy visual verification via Chrome' },
-  { name: 'improve', desc: 'Self-review a diff for quality and simplification' },
-  { name: 'plan', desc: 'Declare context and plan before building' },
-];
-
-const premiumSkillCategories = [
-  {
-    name: 'Session & Workflow',
-    color: 'cyan',
-    icon: Clock,
-    skills: [
-      { name: 'handoff', desc: 'Write a handoff file for the next session' },
-      { name: 'session-review', desc: 'Review and summarize Claude Code session logs' },
-      { name: 'daily-tasks', desc: 'Check daily tasks for the current git repo' },
-      { name: 'my-help', desc: 'Print a reference card of every tool you have' },
-      { name: 'spawn-team', desc: 'Fan work out across in-process subagents' },
-    ],
-  },
-  {
-    name: 'Quality & Verification',
-    color: 'green',
-    icon: CheckCircle,
-    skills: [
-      { name: 'code-review', desc: 'Structured code review with actionable feedback' },
-      { name: 'pagespeed', desc: 'Lighthouse-grade performance audit with source-mapped fixes' },
-    ],
-  },
-  {
-    name: 'Database',
-    color: 'blue',
-    icon: Database,
-    skills: [
-      { name: 'sql-migrate', desc: 'Run and manage Supabase migrations' },
-      { name: 'schema-diff', desc: 'Detect drift between live schema and your types' },
-    ],
-  },
-  {
-    name: 'Planning & Decisions',
-    color: 'amber',
-    icon: BarChart3,
-    skills: [
-      { name: 'grill-me', desc: 'Relentless plan interrogation with a shared-understanding score' },
-      { name: 'interview-me', desc: 'Targeted questions to align before building' },
-      { name: 'decide', desc: 'Reach a decision you understand and trust' },
-      { name: 'user-stories', desc: 'Turn a feature into structured user stories' },
-      { name: 'reframe-estimates', desc: 'Reframe human-time estimates for agent execution' },
-    ],
-  },
-  {
-    name: 'Vision System',
-    color: 'teal',
-    icon: Eye,
-    skills: [
-      { name: 'init-vision', desc: 'Initialize VISION.md + EVAL.md via brain-dump interview' },
-      { name: 'vision-check', desc: 'Alignment check between vision and recent work' },
-      { name: 'vision-adoption', desc: 'Scan all projects for Vision System adoption' },
-    ],
-  },
-  {
-    name: 'Build & Design',
-    color: 'purple',
-    icon: Code,
-    skills: [
-      { name: 'frontend-design', desc: 'Production-grade UI with high design quality' },
-      { name: 'dev-browser', desc: 'Browser automation with persistent page state' },
-      { name: 'compound-engineering', desc: 'Plan-Work-Review-Compound development loop' },
-      { name: 'ui-recon', desc: 'Harvest existing components + real data before designing' },
-      { name: 'tournament', desc: 'Converge on a UI design by elimination rounds' },
-      { name: 'audit-hooks', desc: 'Git pre-commit hooks for formatting and linting' },
-    ],
-  },
-  {
-    name: 'Content & Docs',
-    color: 'rose',
-    icon: PenTool,
-    skills: [
-      { name: 'copywriting', desc: 'Marketing copy for pages, ads, and product' },
-      { name: 'copy-editing', desc: 'Multi-pass editing and polishing' },
-      { name: 'documentation', desc: 'Auto-generate documentation from code' },
-      { name: 'yt-digest', desc: 'Turn a YouTube transcript into a clean HTML digest' },
-      { name: 'scribe', desc: 'Capture and structure notes from a working session' },
-      { name: 'pdf', desc: 'Create, edit, extract, and manipulate PDFs' },
-      { name: 'docx', desc: 'Generate formatted Word documents and reports' },
-    ],
-  },
-];
-
-const baseAgents = [
-  { name: 'explorer', desc: 'Map the surface area before you change code' },
-  { name: 'reviewer', desc: 'Regression sweep on a diff before you ship' },
-  { name: 'debugger', desc: 'Root cause analysis and bug isolation' },
-  { name: 'test-runner', desc: 'Run and validate test suites' },
-  { name: 'test-writer-fixer', desc: 'Generate tests and fix failures' },
-  { name: 'git-commit', desc: 'Background git commit + push workflow' },
-  { name: 'logger', desc: 'Strategic logging implementation' },
-];
-
-const premiumAgents = [
-  { name: 'devops-automator', desc: 'CI/CD, cloud infra, monitoring' },
-  { name: 'frontend-developer', desc: 'React/Vue/Angular components' },
-  { name: 'ui-designer', desc: 'Visual design and design systems' },
-  { name: 'rapid-prototyper', desc: 'Quick MVP scaffolding' },
-  { name: 'sprint-prioritizer', desc: 'Sprint planning and prioritization' },
-  { name: 'feedback-synthesizer', desc: 'Analyze user feedback into insights' },
-  { name: 'mobile-app-builder', desc: 'iOS/Android/React Native' },
-  { name: 'api-tester', desc: 'API endpoint testing and validation' },
-  { name: 'ux-researcher', desc: 'User research and usability analysis' },
-  { name: 'performance-benchmarker', desc: 'Performance testing and optimization' },
-  { name: 'workflow-optimizer', desc: 'Process improvement and automation' },
-];
-
-const colorMap = {
-  purple: { border: 'border-purple-500/30', text: 'text-purple-400', bg: 'bg-purple-500/15' },
-  teal: { border: 'border-teal-500/30', text: 'text-teal-400', bg: 'bg-teal-500/15' },
-  blue: { border: 'border-blue-500/30', text: 'text-blue-400', bg: 'bg-blue-500/15' },
-  green: { border: 'border-green-500/30', text: 'text-green-400', bg: 'bg-green-500/15' },
-  cyan: { border: 'border-cyan-500/30', text: 'text-cyan-400', bg: 'bg-cyan-500/15' },
-  amber: { border: 'border-amber-500/30', text: 'text-amber-400', bg: 'bg-amber-500/15' },
-  rose: { border: 'border-rose-500/30', text: 'text-rose-400', bg: 'bg-rose-500/15' },
-};
 
 /* ─── Component ─────────────────────────────────────────────────── */
 
@@ -194,7 +63,7 @@ export default function PremiumToolkitPage() {
                 <span className="text-sm text-gray-300 font-medium">1. Clone the repo</span>
                 {cloneLoading ? (
                   <span className="flex items-center gap-1.5 px-2 py-1 text-xs text-gray-500"><Loader2 size={12} className="animate-spin" /> Loading</span>
-                ) : cloneError ? (
+                ) : cloneError === 'Network error — try again' ? (
                   <button onClick={refetch} className="flex items-center gap-1.5 px-2 py-1 text-xs text-red-400 hover:text-red-300 border border-red-500/30 rounded transition-all">
                     <RefreshCw size={12} /> Retry
                   </button>
@@ -393,95 +262,32 @@ export default function PremiumToolkitPage() {
         </div>
       </div>
 
-      {/* ── Base Skills (included from free tier) ─────────────────── */}
+      {/* ── Browse the full toolkit (funnel into Explore) ─────────── */}
       <div className="max-w-5xl mx-auto px-4 pb-14">
-        <div className="mb-4">
-          <div className="flex items-center gap-3 mb-2">
-            <h2 className="text-2xl font-bold">10 Base Skills</h2>
-            <span className="text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full">Included</span>
+        <div className="bg-gradient-to-r from-cyan-900/20 to-purple-900/20 border border-cyan-500/30 rounded-2xl p-6 md:p-8 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/20 border border-cyan-500/30 rounded-full text-cyan-300 text-sm mb-4">
+            <Layers size={14} />
+            The full catalog
           </div>
-          <p className="text-sm text-gray-500">The shipping workflow. Every premium install starts with these.</p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-2">
-          {baseSkills.map(({ name, desc, highlight }) => (
-            <div key={name} className={`bg-gray-800 border rounded-lg p-3 ${highlight ? 'border-cyan-500/30' : 'border-gray-700'}`}>
-              <div className={`text-sm font-medium font-mono mb-0.5 ${highlight ? 'text-cyan-300' : 'text-gray-200'}`}>/{name}</div>
-              <div className="text-xs text-gray-500">{desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Premium Skills ────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-4 pb-14">
-        <div className="mb-4">
-          <div className="flex items-center gap-3 mb-2">
-            <h2 className="text-2xl font-bold">30 Premium Skills</h2>
-            <span className="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full">Premium</span>
-          </div>
-          <p className="text-sm text-gray-500">Session workflow, database, planning, the Vision System, build &amp; design, and content — grouped by what they do.</p>
-        </div>
-        <div className="space-y-6">
-          {premiumSkillCategories.map(({ name, color, icon: Icon, skills }) => (
-            <div key={name}>
-              <div className="flex items-center gap-2 mb-3">
-                <div className={`p-1.5 rounded-md ${colorMap[color].bg}`}>
-                  <Icon size={14} className={colorMap[color].text} />
-                </div>
-                <h3 className={`text-sm font-semibold uppercase tracking-wider ${colorMap[color].text}`}>
-                  {name}
-                </h3>
-                <span className="text-xs text-gray-600">({skills.length})</span>
-              </div>
-              <div className="grid md:grid-cols-2 gap-2">
-                {skills.map(({ name: skillName, desc }) => (
-                  <div key={skillName} className={`bg-gray-800 border ${colorMap[color].border} rounded-lg p-3`}>
-                    <div className="text-sm font-medium font-mono mb-0.5">/{skillName}</div>
-                    <div className="text-xs text-gray-500">{desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Agents ────────────────────────────────────────────────── */}
-      <div className="max-w-5xl mx-auto px-4 pb-14">
-        <h2 className="text-2xl font-bold mb-2">18 Agents</h2>
-        <p className="text-gray-400 text-sm mb-6">
-          Autonomous subprocesses that handle complex tasks in parallel with your main conversation.
-        </p>
-
-        {/* Base agents */}
-        <div className="mb-4">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">7 Base Agents</span>
-            <span className="text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full">Included</span>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            {baseAgents.map(({ name, desc }) => (
-              <div key={name} className="bg-gray-800 border border-gray-700 rounded-lg p-2.5">
-                <div className="text-xs font-medium mb-0.5">{name}</div>
-                <div className="text-[11px] text-gray-500">{desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Premium agents */}
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">11 Premium Agents</span>
-            <span className="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full">Premium</span>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {premiumAgents.map(({ name, desc }) => (
-              <div key={name} className="bg-gray-800 border border-amber-500/20 rounded-lg p-2.5">
-                <div className="text-xs font-medium mb-0.5">{name}</div>
-                <div className="text-[11px] text-gray-500">{desc}</div>
-              </div>
-            ))}
+          <h2 className="text-2xl font-bold mb-2">40 skills, 18 agents — browse every one</h2>
+          <p className="text-sm text-gray-400 max-w-2xl mx-auto mb-6">
+            Every skill and agent in the toolkit, searchable and filterable, each with a plain-English
+            detail page. Explore what's inside before you install — no exhaustive lists to scroll here.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              to="/explore?tier=premium&origin=oa"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-200 rounded-xl font-medium transition-colors"
+            >
+              Browse all 40 skills &amp; 18 agents
+              <ArrowRight size={16} />
+            </Link>
+            <Link
+              to="/explore?tier=free"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-xl font-medium transition-colors"
+            >
+              See the free tier
+            </Link>
           </div>
         </div>
       </div>
@@ -751,7 +557,7 @@ export default function PremiumToolkitPage() {
             </div>
             {cloneLoading ? (
               <span className="flex items-center gap-1.5 text-xs text-gray-500"><Loader2 size={12} className="animate-spin" /></span>
-            ) : cloneError ? (
+            ) : cloneError === 'Network error — try again' ? (
               <button onClick={refetch} className="text-xs text-red-400 hover:text-red-300"><RefreshCw size={12} /></button>
             ) : (
               <GatedCopyButton text={cloneCommand} requiredTier="premium" />

@@ -1,6 +1,6 @@
 import { createServer } from 'node:http'
 import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises'
-import { existsSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { join, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import puppeteer from 'puppeteer'
@@ -20,6 +20,43 @@ const ROUTES = [
   '/course/openclaw',
   '/course/project-system',
 ]
+
+// Append Explore routes (index + one page per catalog item). Loaded defensively:
+// content.js is plain JS (no JSON-import attribute) so it's safe on any Node, and
+// any read failure just skips explore prerendering rather than breaking the build.
+try {
+  const gen = JSON.parse(await readFile(join(__dirname, '..', 'src', 'data', 'items.generated.json'), 'utf-8'))
+  const slugs = new Set(gen.map((i) => i.slug))
+  try {
+    const content = await import('../src/data/content.js')
+    for (const e of content.ecosystem || []) if (e?.slug) slugs.add(e.slug)
+  } catch { /* ecosystem picks optional */ }
+  ROUTES.push('/explore', ...[...slugs].map((s) => `/explore/${s}`))
+  console.log(`[prerender] + ${slugs.size + 1} explore routes`)
+} catch (err) {
+  console.warn('[prerender] skipping explore routes — could not load catalog:', err.message)
+}
+
+// Append Guides routes (index + one per guide file).
+try {
+  const gslugs = readdirSync(join(__dirname, '..', 'src', 'guides', 'content'))
+    .filter((f) => f.endsWith('.js'))
+    .map((f) => f.replace(/\.js$/, ''))
+  ROUTES.push('/guides', ...gslugs.map((s) => `/guides/${s}`))
+  console.log(`[prerender] + ${gslugs.length + 1} guide routes`)
+} catch (err) {
+  console.warn('[prerender] skipping guide routes:', err.message)
+}
+
+// Append Stacks + Updates routes.
+try {
+  ROUTES.push('/stacks', '/updates')
+  const u = await import('../src/data/updates.js')
+  ROUTES.push(...(u.updates || []).map((x) => `/updates/${x.slug}`))
+  console.log(`[prerender] + stacks + ${(u.updates || []).length + 1} updates routes`)
+} catch (err) {
+  console.warn('[prerender] skipping stacks/updates routes:', err.message)
+}
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',

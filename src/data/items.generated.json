@@ -1,0 +1,886 @@
+[
+  {
+    "slug": "auto-init",
+    "name": "auto-init",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "auto-init-check",
+    "name": "auto-init-check",
+    "kind": "hook",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Automation hook installed into ~/.claude/hooks by the toolkit installer.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "debugger",
+    "name": "debugger",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "quality",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Root cause analysis and bug isolation. Use when tests fail or unexpected behavior occurs.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "explorer",
+    "name": "explorer",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "build",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Read-only codebase mapper. Maps the surface area of a feature, bug, or change — finds the relevant files, traces data flow, and returns a file:line map plus hypotheses and a recommended next step. Use BEFORE editing unfamiliar code. Never edits files.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "git-commit",
+    "name": "git-commit",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Use this agent PROACTIVELY after code changes to stage, commit, and push to version control. This agent should be spawned automatically whenever significant code modifications are made, files are created/deleted, or refactoring is completed. It runs independently in the background so main development work can continue uninterrupted.\\\\n\\\\nExamples of when to use this agent:\\\\n\\\\n<example>\\\\nContext: The user asked for a new feature and code was written.\\\\nuser: \\\"Add a function to validate email addresses\\\"\\\\nassistant: \\\"Here's the email validation function I've created:\\\"\\\\n<function implementation completed>\\\\n<commentary>\\\\nSince a significant piece of code was written, use the Task tool to launch the git-commit agent to stage, commit, and push these changes in the background.\\\\n</commentary>\\\\nassistant: \\\"I'll now use the git-commit agent to commit these changes while we continue working.\\\"\\\\n</example>\\\\n\\\\n<example>\\\\nContext: A bug fix was just completed.\\\\nuser: \\\"Fix the null pointer exception in the user service\\\"\\\\nassistant: \\\"I've fixed the null pointer exception by adding proper null checks:\\\"\\\\n<fix implementation completed>\\\\n<commentary>\\\\nSince a bug fix was completed, use the Task tool to launch the git-commit agent to commit this fix.\\\\n</commentary>\\\\nassistant: \\\"Let me commit this bug fix using the git-commit agent.\\\"\\\\n</example>\\\\n\\\\n<example>\\\\nContext: Refactoring work was just finished.\\\\nassistant: \\\"I've completed refactoring the authentication module to use the new pattern.\\\"\\\\n<commentary>\\\\nSince refactoring work was completed, proactively use the Task tool to launch the git-commit agent to commit these changes.\\\\n</commentary>\\\\nassistant: \\\"I'll have the git-commit agent commit this refactoring work in the background.\\\"\\\\n</example>\\\\n\\\\n<example>\\\\nContext: User explicitly requests a commit.\\\\nuser: \\\"Commit and push this\\\"\\\\nassistant: \\\"I'll use the git-commit agent to handle that.\\\"\\\\n<commentary>\\\\nUser explicitly requested git operations, use the Task tool to launch the git-commit agent.\\\\n</commentary>\\\\n</example>",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "logger",
+    "name": "logger",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "build",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Implements strategic logging for complex features. Use when building features that need observability or debugging hooks.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "plan",
+    "name": "plan",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "planning",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "reviewer",
+    "name": "reviewer",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "quality",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Read-only diff and regression reviewer. Sweeps a change before shipping for bugs, hidden coupling, missed tests, security gaps, and scope creep. Returns severity-tagged findings with file:line refs and ends in a PASS or NEEDS-CHANGES verdict. Reports — never fixes. Run on every diff before push.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "session-logger",
+    "name": "session-logger",
+    "kind": "hook",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Automation hook installed into ~/.claude/hooks by the toolkit installer.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "test-runner",
+    "name": "test-runner",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "quality",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Use PROACTIVELY before commits, after refactors, or when asked to verify project health. Reads TASKS.md and PLAN.md to identify recently completed or in-progress features, selects 3 for verification, writes integration tests using domain knowledge from CONTEXT.md, executes them, and updates PROGRESS.md with results. Ideal after completing items in TASKS.md or finishing a PLAN.md implementation phase.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "test-writer-fixer",
+    "name": "test-writer-fixer",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "quality",
+    "updated": "2026-07-01",
+    "technical": {
+      "tagline": "Use this agent when code changes have been made and you need to write new tests, run existing tests, analyze failures, and fix them while maintaining test integrity. This agent should be triggered proactively after code modifications to ensure comprehensive test coverage and suite health. Examples:\\n\\n<example>\\nContext: The user has just implemented a new feature or modified existing code.\\nuser: \"I've updated the user authentication logic to support OAuth\"\\nassistant: \"I've successfully updated the authentication logic. Now let me run the test-writer-fixer agent to ensure all tests pass with these changes.\"\\n<commentary>\\nSince code changes were made, use the Task tool to launch the test-writer-fixer agent to run relevant tests and fix any failures.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: The user has refactored a module or changed function signatures.\\nuser: \"Please refactor this payment processing module to use async/await\"\\nassistant: \"I've completed the refactoring to use async/await throughout the payment module.\"\\n<function call omitted for brevity>\\nassistant: \"Now I'll use the test-writer-fixer agent to run the tests and fix any issues caused by the refactoring.\"\\n<commentary>\\nAfter refactoring code, proactively use the test-writer-fixer agent to ensure tests still pass.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: The user has fixed a bug or made a critical change.\\nuser: \"Fix the race condition in the data synchronization service\"\\nassistant: \"I've identified and fixed the race condition by implementing proper locking mechanisms.\"\\n<function call omitted for brevity>\\nassistant: \"Let me run the test-writer-fixer agent to verify the fix doesn't break existing functionality.\"\\n<commentary>\\nAfter bug fixes, use the test-writer-fixer agent to ensure the fix works and doesn't introduce regressions.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Code lacks test coverage for critical functionality.\\nuser: \"Our payment processing module has no tests\"\\nassistant: \"That's a critical gap. Let me use the test-writer-fixer agent to create comprehensive tests for the payment module including edge cases and error scenarios.\"\\n<commentary>\\nCritical modules without tests are high-risk areas that need immediate test coverage.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: After implementing a new feature that needs tests.\\nuser: \"I've added the social sharing functionality\"\\nassistant: \"Great! The social sharing is implemented. Now let me use the test-writer-fixer agent to write tests that ensure this feature works correctly across different platforms.\"\\n<commentary>\\nNew features should always include comprehensive test coverage from the start.\\n</commentary>\\n</example>",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "commit",
+    "name": "commit",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Checkpoint, commit & continue (branch-aware) — mini wrap-up to the branch shard + local commit + background test + advance to next task. Use when the user says \"/commit\", \"commit this\", \"commit and continue\", \"save and continue\", \"mark this done\", or \"task done\".",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "daily-tasks",
+    "name": "daily-tasks",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Check today's daily tasks for the current git repo. Use when the user says \"/daily-tasks\", \"my tasks\", \"check tasks\", \"daily tasks\", or wants to see what's on their plate for today.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "decide",
+    "name": "decide",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Help the user reach a decision they actually understand and trust, grounded in the current session and local project docs. Runs in two modes — quick (\"if you were me, what would you do\") for a fast gut call off current session context, and full (plain-language explanation of the jargon on screen + conversational back-and-forth + a grounded recommendation) when the user is stuck and may not know the best path. Use when the user says \"/decide\", \"what would you do\", \"what would you do if you were me\", \"help me decide\", \"I'm stuck choosing\", \"which should I pick\", \"can't decide between\", or is visibly weighing options they don't fully understand. Reach for this whenever a choice is on the table and the user wants a recommendation, not just a list of options.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "grill-me",
+    "name": "grill-me",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Interview the user relentlessly about a plan, design, or topic, checkpointing every answer to a brainstorm file so nothing is lost, and emitting a live Shared Understanding score (0-100%) so you know when alignment is high enough to build. Use when the user wants to stress-test a plan, get grilled on a design, run a brainstorm or discovery session, extract what's in their head into a doc before building, reach shared understanding during the planning phase, or says \"grill me\" / \"are we aligned\" / \"grill me before we build\".",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "handoff",
+    "name": "handoff",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Package the current Claude Code session — the topic under discussion plus the relevant code and context from the codebase — into a zipped folder of Markdown briefing files (with verbatim source copies) that can be uploaded to Claude.ai to continue the work there with full context. Use this skill whenever the user wants to \"hand off,\" \"package up,\" \"bundle,\" or \"zip up\" the current work to continue on Claude.ai / the web app, take a conversation \"to the browser\" or \"to the web,\" build a \"context pack,\" \"briefing packet,\" or \"care package\" for another Claude, or move a CLI session somewhere with a bigger window or different tools — even if they don't say the word \"skill\" or \"handoff\" explicitly.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "improve",
+    "name": "improve",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "quality",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Survey any codebase as a senior advisor and produce prioritized, self-contained implementation plans for OTHER models/agents to execute. Strictly read-only on source code — never implements, fixes, or refactors anything itself. Use when asked to audit a codebase, find improvement opportunities (bugs, security, performance, test coverage, tech debt, migrations, DX), suggest features or where to take the project next (roadmap, product direction), or generate handoff plans for another agent to implement.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "interview-me",
+    "name": "interview-me",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Reach shared understanding of a plan by asking the user targeted questions with the AskUserQuestion tool, until you're confident you both mean the same thing. Runs in two modes — quick (ad-hoc multiple-choice questions right now) and deep (read the local project docs first, so the questions are informed by what already exists). Use when the user says \"/interview-me\", \"interview me\", \"ask me questions\", \"make sure we're aligned\", \"check understanding\", \"align on this\", or before building anything where a wrong assumption would cost rework. This is the lightweight, AskUserQuestion-based alignment check — reach for /grill-me instead when the stakes justify a relentless, scored, one-question-at-a-time extraction.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "my-help",
+    "name": "my-help",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Show a quick reference of all custom skills, hooks, MCP integrations, and workflow commands. Use when the user says \"/my-help\", \"my help\", \"what tools do I have\", \"list my skills\", \"show commands\", or \"what can you do\".",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "pagespeed",
+    "name": "pagespeed",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "quality",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Run a PageSpeed Insights-grade Lighthouse audit on a landing page and produce a source-mapped, prioritized report. Use when the user says \"/pagespeed\", \"pagespeed test\", \"run pagespeed\", \"lighthouse\", \"lighthouse audit\", \"core web vitals\", \"CWV\", \"perf audit\", \"performance audit\", \"page speed\", \"why is my page slow\", \"score my landing page\", or wants the same scoring pagespeed.web.dev gives. Runs the real Lighthouse engine locally against a production build (or a deployed URL), then traces each opportunity back to the actual source files with P1-P4 fixes.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "pickup",
+    "name": "pickup",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Pick up where you left off — branch-aware. Reads the current branch's shard + handoff (.claude/sessions/<branch>.md, .claude/handoffs/<branch>.md), PROGRESS.md (merged-work record), TASKS.md (with claim annotations), VISION.md, CONTEXT.md, PLAN.md, scans git status, surfaces other branches in flight, and presents a concise briefing. Use when the user says \\\"/pickup\\\", \\\"pick up where I left off\\\", \\\"let's continue\\\", \\\"what's next\\\", \\\"where were we\\\", \\\"catch me up\\\", or \\\"what was I working on\\\".",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "pr",
+    "name": "pr",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Feature branch + pull request. Use when the user says \"/pr\", \"create a pr\", \"open a pull request\", or \"create a pull request\".",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "push",
+    "name": "push",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Commit & push (ruleset-aware) — auto wrap-up if stale, commit, push the current branch; consolidates merged-branch shards when on main. Use when the user says \"/push\", \"push it\", \"push to main\", \"commit and push\", \"ship it\", or \"ship\".",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "reframe-estimates",
+    "name": "reframe-estimates",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Rewrite a plan that estimates work in human developer timeframes (days, weeks, months, sprints) so it is no longer time-oriented — because the work is being built with AI, which executes in minutes to hours, not the weeks a human-paced plan assumes. Strips all duration language and reframes scope by completeness and work units instead. Use when the user says \"/reframe-estimates\", \"remove time estimates\", \"detime this plan\", \"this plan thinks in weeks/months\", \"stop estimating in human time\", \"we're building this with AI not over a quarter\", or hands over any roadmap/plan padded with calendar estimates. Preserves dependencies and sequencing — it only kills the clock.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "schema-diff",
+    "name": "schema-diff",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "database",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Database schema drift detection — diff the live Supabase schema against Drizzle/Zod types and query expectations. Use when the user says \"/schema-diff\", \"check schema drift\", or \"schema mismatch\".",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "scribe",
+    "name": "scribe",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "content",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Ambient note-taking interviewer for your local Obsidian vault. Use when the user says \"/scribe\", \"scribe\", \"dump\", wants to talk freely and have it filed into notes, capture and route notes, log a task or event, update a kanban board, or run the ambient interviewer. Harvests the peripheral context the user leaks while talking, routes each capture to the right vault location (daily note, kanban board, inbox note, project note) through the Obsidian MCP, and mutates the vault under per-category graduated autonomy (draft = propose, graduated = write silently). Local-vault only — never writes to any external service.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "session-review",
+    "name": "session-review",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Review Claude Code session conversation logs. Use when the user asks to \"review sessions\", \"what did I work on\", \"session summary\", \"review conversation logs\", \"analyze my sessions\", \"session history\", or wants to understand what was accomplished across Claude Code conversations.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "smoke",
+    "name": "smoke",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "quality",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Drive a real Chrome browser against a LIVE deployed URL — load each page, click through routes and flows, watch the console for errors and failed network requests, and capture a screenshot or GIF of every screen. This is the only skill that opens a running site and verifies it by eye after shipping. Reach for it when the user points at a deployed, preview, production, or vercel link and wants to confirm the shipped pages actually render and nothing throws — phrased as \"smoke test\", \"smoke test this\", \"/smoke\", \"/smoke <url>\", \"visual check\", \"visual verify\", \"eyeball the prod site\", or \"open it and make sure nothing's broken\". The \"/smoke --init\" / \"set up smoke testing\" variant crawls the app and writes a smoke config file. Pick this over /test, which runs code-level lint/type/unit/build with no browser; over /pagespeed for Lighthouse performance scores; and over uptime or bare API status pings.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "spawn-team",
+    "name": "spawn-team",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Analyze a piece of work, design the optimal way to attack it in parallel, pick the right WORKER for each stream (in-process subagent with a best-fit custom agent type, a background session, or serial), then execute — after the user approves the team. Use when the user says \"/spawn-team\", \"create a team\", \"create an agent team\", \"parallelize this\", \"fan out\", \"attack this in parallel\", \"split this across agents\", \"which agent should run this\", \"route these tasks to the right agents\", \"use the best subagent for each\", or has a task big enough that running it as independent workstreams beats doing it serially. This is the router/orchestrator for parallel work: it plans the decomposition, assigns each stream to the best-fit worker, AND dispatches, pausing for a human checkpoint before any agent spawns. It hands cross-repo/background streams off to dispatch-conductor (which owns their ledger + collect loop) and runs in-process streams itself.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "sql-migrate",
+    "name": "sql-migrate",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "database",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Supabase migration runner. Use when the user says \"/sql-migrate\", \"run migration\", \"migrate the database\", or \"push schema changes\".",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "test",
+    "name": "test",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "quality",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Run the project's full automated check suite and report green/red — lint, TypeScript (tsc), unit tests, Playwright E2E, and a production build — logging results to TEST_LOG.md. Reach for this whenever the user wants code mechanically checked by executing the suite: \"run the tests\", \"run QA\", \"quality check\", \"test this\", \"verify this works\", \"make sure tsc is clean\", \"make sure it builds\", a bare \"/test\", or running E2E against a local server or a deployed preview/Vercel URL — most often after a refactor or bug fix and before a push or PR. Also serves the programmatic \"/test --target-url <url> --json\" health call. Pick this over /verify (which hand-runs the app to watch behavior), /smoke (which only screenshots a live page), and /commit or /push (which ship code) — here the intent is to execute the checks and get pass/fail.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "tournament",
+    "name": "tournament",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Decide a UI design by converging elimination instead of one-shot guessing. Shows 3 variants of one element, the human picks one, the next round's 3 converge toward that pick, and when the same design wins twice in a row it locks and gets recorded. Use when the user wants to choose a design by iterative human judgment — \"run a design tournament\", \"/tournament\", \"spread some variants\", \"show me 3 options and I'll pick one each round\", \"tournament mode\", \"converge on a design for this modal/panel/button\", \"pick one of three and narrow down\", or any \"help me decide between design directions by elimination\" request. It orchestrates other skills rather than doing the craft itself: it calls ui-recon to ground variants in real data, follows impeccable's live-mode rules to generate on-brand variants, optionally calls impeccable critique/audit to score them, and hands the winner to impeccable polish/craft to become a real component. Prefer this over a single best-guess mockup whenever the design is subjective enough that the user wants to steer it round by round.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "ui-recon",
+    "name": "ui-recon",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Harvest the UI you already have before designing new UI. Dispatches read-only subagents to find existing same-class components in a codebase (modals, side panels, tables, forms, cards, toasts, empty states, etc.), then extracts the real data each one surfaces, the role it plays, the states it handles, and its true content ranges — compiled into N structured reference cards plus ONE canonical real-data fixture. Use this whenever a design, mockup, or component task should demo REAL data instead of lorem-ipsum / invented placeholders (Jane Doe, O30481), or when you need to know \"what modals/panels/X do we already have\" before building another one. Trigger on \"harvest components\", \"recon the existing UI\", \"what X do we already have\", \"pull real data for these mockups\", \"ground this in real data\", \"show me our existing modals/panels/tables\", or when another skill (tournament, impeccable craft/shape) needs real-data grounding. Reach for it BEFORE building net-new UI so you enhance what exists rather than reinventing it. Read-only: it never edits the codebase.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "user-stories",
+    "name": "user-stories",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Convert a plan, phase, or feature list into testable User Role Story acceptance criteria — \"As a <concrete role>, I can <action touching feature X> and observe <expected outcome>\" — so completeness, not elapsed time, defines when something is done. Use when the user says \"/user-stories\", \"user stories\", \"acceptance criteria\", \"acceptance stories\", \"role stories\", \"completion criteria\", \"define done for this\", or wants a build's finish line expressed as things a specific role can do and observe. Produces numbered, traceable, end-to-end-testable stories and lint-verifies that every role is concrete (never a generic \"user\").",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "wrap-up",
+    "name": "wrap-up",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Save the session to the branch shard — update project files + write the handoff prompt (no git). Use when the user says \"wrap up\", \"save progress\", \"done for now\", \"lets wrap\", \"end session\", or \"done for today\".",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "yt-digest",
+    "name": "yt-digest",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "content",
+    "updated": "2026-06-22",
+    "technical": {
+      "tagline": "Turn a YouTube video transcript into a clean, easy-to-digest single-file HTML doc. Use when the user says \"/yt-digest\", \"digest this transcript\", \"digest this video\", \"summarize this YouTube video\", \"make a transcript digest\", \"turn this transcript into HTML\", or pastes a YouTube transcript / .txt/.srt/.vtt file and wants it written up. Produces a 3-tab BLUF-style doc — Digest (TL;DR, key takeaways, section-by-section breakdown, notable quotes, glossary), Prompts (copy-ready prompts that apply the video's concepts to the user's stack), and the cleaned-up Transcript.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "iterm-tab-notify",
+    "name": "iterm-tab-notify",
+    "kind": "hook",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-06-20",
+    "technical": {
+      "tagline": "Automation hook installed into ~/.claude/hooks by the toolkit installer.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "iterm-tab-reset",
+    "name": "iterm-tab-reset",
+    "kind": "hook",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-06-20",
+    "technical": {
+      "tagline": "Automation hook installed into ~/.claude/hooks by the toolkit installer.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "tab-title",
+    "name": "tab-title",
+    "kind": "hook",
+    "origin": "oa",
+    "tier": "free",
+    "categoryKey": "session",
+    "updated": "2026-06-20",
+    "technical": {
+      "tagline": "Automation hook installed into ~/.claude/hooks by the toolkit installer.",
+      "installCommand": "curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash"
+    }
+  },
+  {
+    "slug": "api-tester",
+    "name": "api-tester",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "quality",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent for comprehensive API testing including performance testing, load testing, and contract testing. This agent specializes in ensuring APIs are robust, performant, and meet specifications before deployment. Examples:\\n\\n<example>\\nContext: Testing API performance under load",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "audit-hooks",
+    "name": "audit-hooks",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Install a git pre-commit hook that auto-formats code before committing, preventing CI failures from formatting issues. Use when the user says \"/audit-hooks\", \"audit hooks\", \"install pre-commit\", \"add formatting hook\", \"fix ci formatting\", or \"pre-commit hook\".",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "code-review",
+    "name": "code-review",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "quality",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "compound-engineering",
+    "name": "compound-engineering",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Compound Engineering workflow for AI-assisted development. Use when planning features, executing work, reviewing code, or codifying learnings. Follows the Plan → Work → Review → Compound loop where each unit of engineering makes subsequent work easier. Triggers on: plan this feature, implement this, review this code, compound learnings, create implementation plan, systematic development.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "copy-editing",
+    "name": "copy-editing",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "content",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "copywriting",
+    "name": "copywriting",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "content",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "dev-browser",
+    "name": "dev-browser",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows. Trigger phrases include \"go to [url]\", \"click on\", \"fill out the form\", \"take a screenshot\", \"scrape\", \"automate\", \"test the website\", \"log into\", or any browser interaction request.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "devops-automator",
+    "name": "devops-automator",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent when setting up CI/CD pipelines, configuring cloud infrastructure, implementing monitoring systems, or automating deployment processes. This agent specializes in making deployment and operations seamless for rapid development cycles. Examples:\\n\\n<example>\\nContext: Setting up automated deployments\\nuser: \"We need automatic deployments when we push to main\"\\nassistant: \"I'll set up a complete CI/CD pipeline. Let me use the devops-automator agent to configure automated testing, building, and deployment.\"\\n<commentary>\\nAutomated deployments require careful pipeline configuration and proper testing stages.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Infrastructure scaling issues\\nuser: \"Our app crashes when we get traffic spikes\"\\nassistant: \"I'll implement auto-scaling and load balancing. Let me use the devops-automator agent to ensure your infrastructure handles traffic gracefully.\"\\n<commentary>\\nScaling requires proper infrastructure setup with monitoring and automatic responses.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Monitoring and alerting setup\\nuser: \"We have no idea when things break in production\"\\nassistant: \"Observability is crucial for rapid iteration. I'll use the devops-automator agent to set up comprehensive monitoring and alerting.\"\\n<commentary>\\nProper monitoring enables fast issue detection and resolution in production.\\n</commentary>\\n</example>",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "documentation",
+    "name": "documentation",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "content",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "docx",
+    "name": "docx",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "content",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Create, edit, and manipulate Word documents (.docx). Use when the user needs to generate reports, letters, proposals, or any formatted document. Triggers on: create document, write report, make word file, docx, proposal document, letter.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "feedback-synthesizer",
+    "name": "feedback-synthesizer",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent when you need to analyze user feedback from multiple sources, identify patterns in user complaints or requests, synthesize insights from reviews, or prioritize feature development based on user input. This agent excels at turning raw feedback into actionable product insights. Examples:\\n\\n<example>\\nContext: Weekly review of user feedback",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "frontend-design",
+    "name": "frontend-design",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code that avoids generic AI aesthetics. Triggers on: build a page, create component, design UI, make it look good, frontend, landing page, dashboard.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "frontend-developer",
+    "name": "frontend-developer",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent when building user interfaces, implementing React/Vue/Angular components, handling state management, or optimizing frontend performance. This agent excels at creating responsive, accessible, and performant web applications. Examples:\\n\\n<example>\\nContext: Building a new user interface\\nuser: \"Create a dashboard for displaying user analytics\"\\nassistant: \"I'll build an analytics dashboard with interactive charts. Let me use the frontend-developer agent to create a responsive, data-rich interface.\"\\n<commentary>\\nComplex UI components require frontend expertise for proper implementation and performance.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Fixing UI/UX issues\\nuser: \"The mobile navigation is broken on small screens\"\\nassistant: \"I'll fix the responsive navigation issues. Let me use the frontend-developer agent to ensure it works perfectly across all device sizes.\"\\n<commentary>\\nResponsive design issues require deep understanding of CSS and mobile-first development.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Optimizing frontend performance\\nuser: \"Our app feels sluggish when loading large datasets\"\\nassistant: \"Performance optimization is crucial for user experience. I'll use the frontend-developer agent to implement virtualization and optimize rendering.\"\\n<commentary>\\nFrontend performance requires expertise in React rendering, memoization, and data handling.\\n</commentary>\\n</example>",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "init-vision",
+    "name": "init-vision",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "vision",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "mobile-app-builder",
+    "name": "mobile-app-builder",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent when developing native iOS or Android applications, implementing React Native features, or optimizing mobile performance. This agent specializes in creating smooth, native-feeling mobile experiences. Examples:\\n\\n<example>\\nContext: Building a new mobile app\\nuser: \"Create a TikTok-style video feed for our app\"\\nassistant: \"I'll build a performant video feed with smooth scrolling. Let me use the mobile-app-builder agent to implement native performance optimizations.\"\\n<commentary>\\nVideo feeds require careful mobile optimization for smooth scrolling and memory management.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Implementing mobile-specific features\\nuser: \"Add push notifications and biometric authentication\"\\nassistant: \"I'll implement native push notifications and Face ID/fingerprint auth. Let me use the mobile-app-builder agent to ensure proper platform integration.\"\\n<commentary>\\nNative features require platform-specific implementation and proper permissions handling.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Cross-platform development\\nuser: \"We need this feature on both iOS and Android\"\\nassistant: \"I'll implement it using React Native for code reuse. Let me use the mobile-app-builder agent to ensure native performance on both platforms.\"\\n<commentary>\\nCross-platform development requires balancing code reuse with platform-specific optimizations.\\n</commentary>\\n</example>",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "pdf",
+    "name": "pdf",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "content",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Create, edit, and manipulate PDF documents. Use when the user needs to generate PDFs, extract text from PDFs, merge/split PDFs, or fill PDF forms. Triggers on: create pdf, generate pdf, extract from pdf, merge pdf, fill form, pdf document.",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "performance-benchmarker",
+    "name": "performance-benchmarker",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "quality",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent for comprehensive performance testing, profiling, and optimization recommendations. This agent specializes in measuring speed, identifying bottlenecks, and providing actionable optimization strategies for applications. Examples:\\n\\n<example>\\nContext: Application speed testing",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "rapid-prototyper",
+    "name": "rapid-prototyper",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent when you need to quickly create a new application prototype, MVP, or proof-of-concept within the 6-day development cycle. This agent specializes in scaffolding projects, integrating trending features, and building functional demos rapidly. Examples:\\n\\n<example>\\nContext: Starting a new experiment or app idea\\nuser: \"Create a new app that helps people overcome phone anxiety\"\\nassistant: \"I'll help you create a phone anxiety app. Let me use the rapid-prototyper agent to scaffold this project and build an MVP.\"\\n<commentary>\\nWhen starting any new project or experiment, use the rapid-prototyper to quickly set up the foundation and core features.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Need to test a trending feature or viral concept\\nuser: \"I saw this TikTok trend about AI avatars, can we build something around that?\"\\nassistant: \"That's a great trending opportunity! I'll use the rapid-prototyper agent to quickly build a prototype app featuring AI avatars.\"\\n<commentary>\\nFor capitalizing on trends and viral content, the rapid-prototyper can quickly create testable prototypes.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Validating a business idea with minimal investment\\nuser: \"We need to test if people would pay for a subscription box curation app\"\\nassistant: \"Let's validate that idea with a quick prototype. I'll use the rapid-prototyper agent to build an MVP with basic subscription and curation features.\"\\n<commentary>\\nBusiness validation requires fast prototyping to test market fit before full investment.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Creating demo apps for stakeholder presentations\\nuser: \"We're meeting with investors next week and need to show them our vision\"\\nassistant: \"I'll help create a compelling demo. Let me use the rapid-prototyper agent to build a functional prototype that showcases your vision.\"\\n<commentary>\\nInvestor demos and stakeholder presentations benefit from working prototypes rather than just mockups.\\n</commentary>\\n</example>",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "sprint-prioritizer",
+    "name": "sprint-prioritizer",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent when planning 6-day development cycles, prioritizing features, managing product roadmaps, or making trade-off decisions. This agent specializes in maximizing value delivery within tight timelines. Examples:\\n\\n<example>\\nContext: Planning the next sprint\\nuser: \"We have 50 feature requests but only 6 days\"\\nassistant: \"I'll help prioritize for maximum impact. Let me use the sprint-prioritizer agent to create a focused sprint plan that delivers the most value.\"\\n<commentary>\\nSprint planning requires balancing user needs, technical constraints, and business goals.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Making feature trade-offs\\nuser: \"Should we build AI chat or improve onboarding?\"\\nassistant: \"Let's analyze the impact of each option. I'll use the sprint-prioritizer agent to evaluate ROI and make a data-driven recommendation.\"\\n<commentary>\\nFeature prioritization requires analyzing user impact, development effort, and strategic alignment.\\n</commentary>\\n</example>\\n\\n<example>\\nContext: Mid-sprint scope changes\\nuser: \"The CEO wants us to add video calling to this sprint\"\\nassistant: \"I'll assess the impact on current commitments. Let me use the sprint-prioritizer agent to reorganize priorities while maintaining sprint goals.\"\\n<commentary>\\nScope changes require careful rebalancing to avoid sprint failure.\\n</commentary>\\n</example>",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "ui-designer",
+    "name": "ui-designer",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent when creating user interfaces, designing components, building design systems, or improving visual aesthetics. This agent specializes in creating beautiful, functional interfaces that can be implemented quickly within 6-day sprints. Examples:\\n\\n<example>\\nContext: Starting a new app or feature design",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "ux-researcher",
+    "name": "ux-researcher",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent when conducting user research, analyzing user behavior, creating journey maps, or validating design decisions through testing. This agent specializes in understanding user needs, pain points, and behaviors to inform product decisions within rapid development cycles. Examples:\\n\\n<example>\\nContext: Understanding user needs for a new feature",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "vision-adoption",
+    "name": "vision-adoption",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "vision",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Scan all projects to assess Vision System adoption and recommend where to add it. Use when the user says \"/vision-adoption\", \"vision adoption\", \"vision report\", \"which projects need vision\", or \"vision system status\".",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "vision-check",
+    "name": "vision-check",
+    "kind": "skill",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "vision",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Quick alignment check between the project's VISION.md and recent development activity. Use when the user says \"/vision-check\", \"vision check\", \"check vision\", \"alignment check\", \"are we on track\", or \"scope check\".",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "workflow-optimizer",
+    "name": "workflow-optimizer",
+    "kind": "agent",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "planning",
+    "updated": "2026-03-09",
+    "technical": {
+      "tagline": "Use this agent for optimizing human-agent collaboration workflows and analyzing workflow efficiency. This agent specializes in identifying bottlenecks, streamlining processes, and ensuring smooth handoffs between human creativity and AI assistance. Examples:\\n\\n<example>\\nContext: Improving development workflow efficiency",
+      "installCommand": "~/.local/share/operators-academy-pro/install.sh"
+    }
+  },
+  {
+    "slug": "claude-md-management",
+    "name": "claude-md-management",
+    "kind": "plugin",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": null,
+    "technical": {
+      "tagline": "Official Claude Code plugin auto-enabled by the premium settings patch.",
+      "installCommand": "/plugin install claude-md-management@claude-plugins-official"
+    }
+  },
+  {
+    "slug": "context7",
+    "name": "context7",
+    "kind": "plugin",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": null,
+    "technical": {
+      "tagline": "Official Claude Code plugin auto-enabled by the premium settings patch.",
+      "installCommand": "/plugin install context7@claude-plugins-official"
+    }
+  },
+  {
+    "slug": "frontend-design-plugin",
+    "name": "frontend-design",
+    "kind": "plugin",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "build",
+    "updated": null,
+    "technical": {
+      "tagline": "Official Claude Code plugin auto-enabled by the premium settings patch.",
+      "installCommand": "/plugin install frontend-design@claude-plugins-official"
+    }
+  },
+  {
+    "slug": "playwright",
+    "name": "playwright",
+    "kind": "plugin",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "quality",
+    "updated": null,
+    "technical": {
+      "tagline": "Official Claude Code plugin auto-enabled by the premium settings patch.",
+      "installCommand": "/plugin install playwright@claude-plugins-official"
+    }
+  },
+  {
+    "slug": "supabase",
+    "name": "supabase",
+    "kind": "plugin",
+    "origin": "oa",
+    "tier": "premium",
+    "categoryKey": "database",
+    "updated": null,
+    "technical": {
+      "tagline": "Official Claude Code plugin auto-enabled by the premium settings patch.",
+      "installCommand": "/plugin install supabase@claude-plugins-official"
+    }
+  }
+]

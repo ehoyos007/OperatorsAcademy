@@ -23,6 +23,13 @@ import ClaudeCodeGuide from './ClaudeCodeGuide'
 import CoopPage from './CoopPage'
 import VisionSystemGuide from './VisionSystemGuide'
 import PremiumToolkitPage from './PremiumToolkitPage'
+import ExploreIndex from './explore/ExploreIndex'
+import ExploreDetail from './explore/ExploreDetail'
+import GuidesIndex from './guides/GuidesIndex'
+import GuideDetail from './guides/GuideDetail'
+import StacksPage from './stacks/StacksPage'
+import UpdatesIndex from './updates/UpdatesIndex'
+import UpdateDetail from './updates/UpdateDetail'
 import SettingsPage from './SettingsPage'
 import PrivacyPage from './PrivacyPage'
 
@@ -43,6 +50,19 @@ export default function App() {
       <div className="pt-12">
       <Routes>
         <Route path="/" element={<HomePage />} />
+
+        {/* Explore catalog — public (shop-window); actions inside are gated */}
+        <Route path="/explore" element={<ExploreIndex />} />
+        <Route path="/explore/:slug" element={<ExploreDetail />} />
+
+        {/* Guides — public long-form how-tos */}
+        <Route path="/guides" element={<GuidesIndex />} />
+        <Route path="/guides/:slug" element={<GuideDetail />} />
+
+        {/* Stacks + Updates — public */}
+        <Route path="/stacks" element={<StacksPage />} />
+        <Route path="/updates" element={<UpdatesIndex />} />
+        <Route path="/updates/:slug" element={<UpdateDetail />} />
 
         {/* Course routes with shared layout — public */}
         <Route path="/course" element={<CourseLayout />}>
@@ -65,7 +85,7 @@ export default function App() {
         <Route path="/tools/session-monitor" element={<GatedRoute><SessionMonitorPage /></GatedRoute>} />
         <Route path="/tools/claude-code-guide" element={<GatedRoute><ClaudeCodeGuide /></GatedRoute>} />
         <Route path="/tools/coop" element={<GatedRoute><CoopPage /></GatedRoute>} />
-        <Route path="/tools/premium" element={<GatedRoute requiredTier="premium"><PremiumToolkitPage /></GatedRoute>} />
+        <Route path="/tools/premium" element={<PremiumToolkitPage />} />
         <Route path="/tools/vision-system" element={<GatedRoute requiredTier="premium"><VisionSystemGuide /></GatedRoute>} />
 
         {/* Settings — gated */}
