@@ -8,6 +8,7 @@
  * silently rendering broken UI. Run: node scripts/check-items.mjs
  */
 import { items, getItem } from '../src/data/items.js';
+import { stacks } from '../src/data/stacks.js';
 
 const KINDS = new Set(['skill', 'agent', 'plugin', 'hook']);
 const CATS = new Set(['session', 'quality', 'database', 'planning', 'vision', 'build', 'content']);
@@ -37,9 +38,16 @@ for (const it of items) {
   }
 }
 
+// Stacks must reference real catalog items (no dead chips).
+for (const st of stacks) {
+  for (const s of st.itemSlugs || []) {
+    if (!getItem(s)) errors.push(`stack "${st.slug}": itemSlug "${s}" does not resolve`);
+  }
+}
+
 const oa = items.filter((i) => i.origin === 'oa').length;
 const eco = items.filter((i) => i.origin === 'ecosystem').length;
-console.log(`[check-items] ${items.length} items (${oa} OA + ${eco} ecosystem), ${seen.size} unique slugs`);
+console.log(`[check-items] ${items.length} items (${oa} OA + ${eco} ecosystem), ${seen.size} unique slugs, ${stacks.length} stacks`);
 
 if (errors.length) {
   console.error(`[check-items] FAILED — ${errors.length} problem(s):`);

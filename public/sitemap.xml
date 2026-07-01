@@ -13,6 +13,8 @@
   <url><loc>https://www.operatoracademy.io/explore</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.operatoracademy.io/privacy</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://www.operatoracademy.io/guides</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.operatoracademy.io/stacks</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.operatoracademy.io/updates</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.operatoracademy.io/explore/auto-init</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.operatoracademy.io/explore/auto-init-check</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.operatoracademy.io/explore/debugger</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -103,4 +105,11 @@
   <url><loc>https://www.operatoracademy.io/guides/subagents</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.operatoracademy.io/guides/types-explained</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.operatoracademy.io/guides/vision-system</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.operatoracademy.io/updates/explore-launch</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.operatoracademy.io/updates/guides-launch</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.operatoracademy.io/updates/tool-detail-pages</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.operatoracademy.io/updates/premium-toolkit-v21</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.operatoracademy.io/updates/course-claude-native</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.operatoracademy.io/updates/windows-install</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.operatoracademy.io/updates/free-toolkit-refresh</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>

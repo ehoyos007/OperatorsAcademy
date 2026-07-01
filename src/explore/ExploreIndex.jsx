@@ -152,6 +152,7 @@ export default function ExploreIndex() {
             <input
               type="text"
               value={qRaw}
+              aria-label="Search tools by name, description, or tag"
               onChange={(e) => setParam('q', e.target.value, true)}
               placeholder="Search by name, what it does, or tag…"
               className="w-full bg-gray-800 border border-gray-700 rounded-lg pl-9 pr-8 py-2 text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-teal-500/50"
@@ -172,6 +173,7 @@ export default function ExploreIndex() {
             <span className="hidden sm:inline">Sort</span>
             <select
               value={sort}
+              aria-label="Sort results"
               onChange={(e) => setParam('sort', e.target.value)}
               className="bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-2 text-sm text-gray-200 focus:outline-none focus:border-teal-500/50"
             >

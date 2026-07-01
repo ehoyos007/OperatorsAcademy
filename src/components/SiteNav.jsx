@@ -17,6 +17,8 @@ const allMobileLinks = [
   { to: '/course', label: 'Course' },
   { to: '/explore', label: 'Explore' },
   { to: '/guides', label: 'Guides' },
+  { to: '/stacks', label: 'Stacks' },
+  { to: '/updates', label: 'Updates' },
   { to: '/tools/install', label: 'Install' },
   { to: '/tools/claude-code-guide', label: 'Quick Reference' },
   { to: '/tools/prompt-flows', label: 'Prompt Flows' },
@@ -78,6 +80,24 @@ export default function SiteNav() {
           }`}
         >
           Guides
+        </Link>
+
+        <Link
+          to="/stacks"
+          className={`text-sm transition-colors ${
+            isActive('/stacks') ? 'text-white' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          Stacks
+        </Link>
+
+        <Link
+          to="/updates"
+          className={`text-sm transition-colors ${
+            isActive('/updates') ? 'text-white' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          Updates
         </Link>
 
         {/* Tools dropdown */}

@@ -27,6 +27,9 @@ import ExploreIndex from './explore/ExploreIndex'
 import ExploreDetail from './explore/ExploreDetail'
 import GuidesIndex from './guides/GuidesIndex'
 import GuideDetail from './guides/GuideDetail'
+import StacksPage from './stacks/StacksPage'
+import UpdatesIndex from './updates/UpdatesIndex'
+import UpdateDetail from './updates/UpdateDetail'
 import SettingsPage from './SettingsPage'
 import PrivacyPage from './PrivacyPage'
 
@@ -55,6 +58,11 @@ export default function App() {
         {/* Guides — public long-form how-tos */}
         <Route path="/guides" element={<GuidesIndex />} />
         <Route path="/guides/:slug" element={<GuideDetail />} />
+
+        {/* Stacks + Updates — public */}
+        <Route path="/stacks" element={<StacksPage />} />
+        <Route path="/updates" element={<UpdatesIndex />} />
+        <Route path="/updates/:slug" element={<UpdateDetail />} />
 
         {/* Course routes with shared layout — public */}
         <Route path="/course" element={<CourseLayout />}>

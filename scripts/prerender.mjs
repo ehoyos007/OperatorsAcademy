@@ -48,6 +48,16 @@ try {
   console.warn('[prerender] skipping guide routes:', err.message)
 }
 
+// Append Stacks + Updates routes.
+try {
+  ROUTES.push('/stacks', '/updates')
+  const u = await import('../src/data/updates.js')
+  ROUTES.push(...(u.updates || []).map((x) => `/updates/${x.slug}`))
+  console.log(`[prerender] + stacks + ${(u.updates || []).length + 1} updates routes`)
+} catch (err) {
+  console.warn('[prerender] skipping stacks/updates routes:', err.message)
+}
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js':   'application/javascript; charset=utf-8',
