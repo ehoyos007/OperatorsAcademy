@@ -58,9 +58,23 @@ src/
 │   ├── OpenClaw.jsx            # Module 5: OpenClaw (key='module6')
 │   └── ProjectSystem.jsx       # Appendix: Project Startup System (key='appendix')
 # NOTE: n8n + Marketing modules removed 2026-06-20. /course/n8n + /course/marketing redirect to /course/building-blocks.
+├── explore/                    # Explore catalog (Phase 1, public shop-window)
+│   ├── ExploreIndex.jsx        # /explore — faceted, searchable, URL-persisted index
+│   ├── ExploreDetail.jsx       # /explore/:slug — Operator/Technical detail + setup prompt
+│   ├── FacetBar.jsx            # Filter sidebar (kind/origin/category/tier, live counts)
+│   └── ItemCard.jsx            # Shared toggle-aware catalog card
+├── data/                       # Explore content model
+│   ├── items.generated.json    # Mechanical records (from scripts/generate-items.mjs)
+│   ├── content.js              # Hand-authored operator copy + FAQ + ecosystem picks
+│   └── items.js                # Merge layer + facet helpers (UI imports from here)
+├── components/
+│   └── ViewModeToggle.jsx      # Operator | Technical segmented toggle
 └── context/
-    └── AuthContext.jsx          # React Context: user, session, profile, tier
+    ├── AuthContext.jsx          # React Context: user, session, profile, tier
+    └── ViewModeContext.jsx      # Operator/Technical view mode (persisted)
 ```
+
+> Explore data pipeline: `npm run gen:items` regenerates `items.generated.json` from the `operators-academy-pro` toolkit repo; `npm run check:items` validates the merged catalog. `scripts/generate-items.mjs` needs the toolkit repo present, so it is NOT part of the Vercel build — the generated JSON is committed.
 
 ---
 

@@ -8,17 +8,17 @@ const INSTALL = {
   windows: {
     label: 'Windows',
     shell: 'PowerShell',
-    cmd: 'irm https://operators-academy.vercel.app/claude-setup/install.ps1 | iex',
+    cmd: 'irm https://www.operatoracademy.io/claude-setup/install.ps1 | iex',
   },
   mac: {
     label: 'Mac',
     shell: 'Terminal',
-    cmd: 'curl -fsSL https://operators-academy.vercel.app/claude-setup/install.sh | bash',
+    cmd: 'curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash',
   },
   linux: {
     label: 'Linux',
     shell: 'Terminal',
-    cmd: 'curl -fsSL https://operators-academy.vercel.app/claude-setup/install.sh | bash',
+    cmd: 'curl -fsSL https://www.operatoracademy.io/claude-setup/install.sh | bash',
   },
 };
 
@@ -130,7 +130,16 @@ export default function InstallPage() {
 
       {/* What's Included */}
       <div className="max-w-4xl mx-auto px-4 pb-12">
-        <h2 className="text-2xl font-bold mb-6">What you get</h2>
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <h2 className="text-2xl font-bold">What you get</h2>
+          <Link
+            to="/explore?tier=free"
+            className="inline-flex items-center gap-1.5 text-sm text-purple-300 hover:text-purple-200 transition-colors"
+          >
+            Browse all in Explore
+            <ArrowRight size={14} />
+          </Link>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-4">
           {/* Agents */}
@@ -146,7 +155,7 @@ export default function InstallPage() {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {AGENTS.map(a => (
-                <span key={a} className="text-xs bg-gray-700 px-2 py-0.5 rounded">{a}</span>
+                <Link key={a} to="/explore?tier=free&kind=agent" className="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-0.5 rounded transition-colors">{a}</Link>
               ))}
             </div>
           </div>
@@ -164,7 +173,7 @@ export default function InstallPage() {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {SKILLS.map(s => (
-                <span key={s} className="text-xs bg-gray-700 px-2 py-0.5 rounded">/{s}</span>
+                <Link key={s} to="/explore?tier=free&kind=skill" className="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-0.5 rounded transition-colors">/{s}</Link>
               ))}
             </div>
           </div>
