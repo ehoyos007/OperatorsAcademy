@@ -1,6 +1,6 @@
 import { createServer } from 'node:http'
 import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises'
-import { existsSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { join, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import puppeteer from 'puppeteer'
@@ -35,6 +35,17 @@ try {
   console.log(`[prerender] + ${slugs.size + 1} explore routes`)
 } catch (err) {
   console.warn('[prerender] skipping explore routes — could not load catalog:', err.message)
+}
+
+// Append Guides routes (index + one per guide file).
+try {
+  const gslugs = readdirSync(join(__dirname, '..', 'src', 'guides', 'content'))
+    .filter((f) => f.endsWith('.js'))
+    .map((f) => f.replace(/\.js$/, ''))
+  ROUTES.push('/guides', ...gslugs.map((s) => `/guides/${s}`))
+  console.log(`[prerender] + ${gslugs.length + 1} guide routes`)
+} catch (err) {
+  console.warn('[prerender] skipping guide routes:', err.message)
 }
 
 const MIME = {

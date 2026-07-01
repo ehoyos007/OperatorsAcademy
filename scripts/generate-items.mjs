@@ -194,9 +194,16 @@ try {
   for (const e of content.ecosystem || []) if (e?.slug) exploreSlugs.push(e.slug);
 } catch { /* ecosystem optional */ }
 exploreSlugs = [...new Set(exploreSlugs)];
+let guideSlugs = [];
+try {
+  guideSlugs = readdirSync(join(__dirname, '..', 'src', 'guides', 'content'))
+    .filter((f) => f.endsWith('.js')).map((f) => f.replace(/\.js$/, ''));
+} catch { /* guides optional */ }
 const urls = [
   ...STATIC.map(([loc, cf, pr]) => `  <url><loc>${BASE}${loc}</loc><changefreq>${cf}</changefreq><priority>${pr}</priority></url>`),
+  `  <url><loc>${BASE}/guides</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`,
   ...exploreSlugs.map((s) => `  <url><loc>${BASE}/explore/${s}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>`),
+  ...guideSlugs.map((s) => `  <url><loc>${BASE}/guides/${s}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>`),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
 const SITEMAP = join(__dirname, '..', 'public', 'sitemap.xml');

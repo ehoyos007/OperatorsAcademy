@@ -25,6 +25,8 @@ import VisionSystemGuide from './VisionSystemGuide'
 import PremiumToolkitPage from './PremiumToolkitPage'
 import ExploreIndex from './explore/ExploreIndex'
 import ExploreDetail from './explore/ExploreDetail'
+import GuidesIndex from './guides/GuidesIndex'
+import GuideDetail from './guides/GuideDetail'
 import SettingsPage from './SettingsPage'
 import PrivacyPage from './PrivacyPage'
 
@@ -49,6 +51,10 @@ export default function App() {
         {/* Explore catalog — public (shop-window); actions inside are gated */}
         <Route path="/explore" element={<ExploreIndex />} />
         <Route path="/explore/:slug" element={<ExploreDetail />} />
+
+        {/* Guides — public long-form how-tos */}
+        <Route path="/guides" element={<GuidesIndex />} />
+        <Route path="/guides/:slug" element={<GuideDetail />} />
 
         {/* Course routes with shared layout — public */}
         <Route path="/course" element={<CourseLayout />}>

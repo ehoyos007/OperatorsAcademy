@@ -16,6 +16,7 @@ const toolsLinks = [
 const allMobileLinks = [
   { to: '/course', label: 'Course' },
   { to: '/explore', label: 'Explore' },
+  { to: '/guides', label: 'Guides' },
   { to: '/tools/install', label: 'Install' },
   { to: '/tools/claude-code-guide', label: 'Quick Reference' },
   { to: '/tools/prompt-flows', label: 'Prompt Flows' },
@@ -68,6 +69,15 @@ export default function SiteNav() {
           }`}
         >
           Explore
+        </Link>
+
+        <Link
+          to="/guides"
+          className={`text-sm transition-colors ${
+            isActive('/guides') ? 'text-white' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          Guides
         </Link>
 
         {/* Tools dropdown */}
